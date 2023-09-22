@@ -8,7 +8,7 @@ This repository contains the material for the SAP TechEd 2022 session called Ses
 
 ## Overview
 
-This session introduces attendees to...
+This session introduces attendees to some very cool ideas and some more ideas
 
 ## Requirements
 
