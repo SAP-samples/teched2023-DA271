@@ -15,8 +15,8 @@ Create Analytic Model w 4VF_SalesOrderItems as fact source.
 
 Choose to include all measures, attributes and associated dimensions 
 
-[Exercise 2 - Exercise 2 Description](exercises/ex1/images/Include_Associated_Attributes_measures_dimensions.png)
-exercises/ex1/images/Include_Associated_Attributes_measures_dimensions.png
+![Include all measures, attributes, and dimensions](../ex1/images/Include_Associated_Attributes_measures_dimensions.png)
+
 
 Save & deploy as 4AM_SalesOrderItems  
 
