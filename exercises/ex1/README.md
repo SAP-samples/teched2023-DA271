@@ -1,4 +1,4 @@
-# Exercise 1 - Exercise 1 Description
+# Exercise 1 - Create Analytic Model
 
 We will now create an Analytic Model to support consumption of the imported data model. 
 
