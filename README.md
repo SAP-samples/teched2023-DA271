@@ -18,13 +18,15 @@ The requirements to follow the exercises in this repository are...
 
 Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
-- [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
+- [Getting Started - Uploading Initial Data and Data Model](exercises/ex0/)
+- [Exercise 1 - Build your Analytic Modl to prepare data for consumption](exercises/ex1/)
+    - [Exercise 1.1 - Create starting Analytic Model](exercises/ex1#exercise-11-sub-exercise-1-description)
+    - [Exercise 1.2 - Add associated dimensions](exercises/ex1#exercise-12-sub-exercise-2-description)
+    - [Exercise 1.3 - Add measures and variables]( TODO)
+    - [Exercise 1.4 - Add more complex measures and variables]( TODO)
+- [Exercise 2 - Refine Data Layer entities to support consumption](exercises/ex2/)
+    - [Exercise 2.1 - Add labels and internationalization](exercises/ex2#exercise-21-sub-exercise-1-description)
+    - [Exercise 2.3 - Update Analytic Model and preview results](exercises/ex2#exercise-22-sub-exercise-2-description)
 
   
 **OR** Link to the Tutorial Navigator for example...
