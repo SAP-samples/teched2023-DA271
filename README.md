@@ -21,7 +21,7 @@ Provide the exercise content here directly in README.md using [markdown](https:/
 - [Getting Started - Uploading Initial Data and Data Model](exercises/ex0/)
 - [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
     - [Exercise 1.1 - Create starting Analytic Model]( TODO)
-    - [Exercise 1.2 - Add associated dimensions]( TODO)
+    - [Exercise 1.2 - Add associated dimensions](exercises/ex1/Add_Associated_Dimensions)
     - [Exercise 1.3 - Add measures and variables]( TODO)
     - [Exercise 1.4 - Add more complex measures and variables]( TODO)
 - [Exercise 2 - Refine Data Layer entities to support consumption](exercises/ex2/)
