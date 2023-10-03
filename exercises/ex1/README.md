@@ -1,6 +1,6 @@
 # Exercise 1 - Exercise 1 Description
 
-We will not create an Analytic Model to support consumption of the imported data model. 
+We will now create an Analytic Model to support consumption of the imported data model. 
 
 We start with a minimal model and subsequently enhance it step by step. On the way, we get to know the features of the Analytic Model editor incl. adding of dimensions, modelling of measures, preparation of variables and previewing data. 
 
