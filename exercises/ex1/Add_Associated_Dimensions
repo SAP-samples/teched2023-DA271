@@ -1,1 +1,17 @@
 
+# Exercise 1.1 - Add Associated Dimensions
+
+Add additional drill-dimensions by adding nested dimensions 
+
+User steps 
+
+Add dimensions for Business Partner & Address. Include attribute Company Name of Business Partner and Country, Region, City, Street, Postalcode of Address 
+
+Reopen data preview and confirm that you can now also drill by these dimensions 
+
+## Summary
+
+You've now ...
+
+Continue to - [Exercise 1.2 - Exercise 2 Description](../ex2/README.md)
+
