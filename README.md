@@ -19,7 +19,7 @@ The requirements to follow the exercises in this repository are...
 Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
 - [Getting Started - Uploading Initial Data and Data Model](exercises/ex0/)
-- [Exercise 1 - Build your Analytic Modl to prepare data for consumption](exercises/ex1/)
+- [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
     - [Exercise 1.1 - Create starting Analytic Model](exercises/ex1#exercise-11-sub-exercise-1-description)
     - [Exercise 1.2 - Add associated dimensions](exercises/ex1#exercise-12-sub-exercise-2-description)
     - [Exercise 1.3 - Add measures and variables]( TODO)
