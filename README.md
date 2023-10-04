@@ -14,9 +14,8 @@ This jump start session will give you the opportunity to build a scenario with e
 
 * Google Chrome Browser
 * Access to this GitHub repository 
-* Access to any SAP Datasphere system and in case you do not have access you can use a guided experience trial
-* You will also need a set of files for these exercises  <br>
-Download the ZIP-file from the GitHub site: :arrow_right: [DA271_ModelFiles.zip](DA271_ModelFiles.zip)
+* Access to SAP Datasphere system
+* You will also need the following files for these exercises: <br> :point_right: [DA271_ModelFiles.zip](DA271_ModelFiles.zip)
 
 ## Exercises
 
