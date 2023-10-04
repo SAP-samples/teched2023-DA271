@@ -1,18 +1,22 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2023-DA271)](https://api.reuse.software/info/github.com/SAP-samples/teched2023-DA271)
 
-# Session ID - Session Title
+# DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere - Jump Start Session
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2022 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2023 session called <br> :point_right: ***DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere***. 
 
 ## Overview
 
-This session introduces attendees to some very cool ideas and some more ideas
+This jump start session will give you the opportunity to build a scenario with exercises for SAP Datasphere. Analyzing complex business data in the SAP Analytics Cloud solution is massively simplified if modelers prepare their data models well using the SAP Datasphere solution. They can prepare the relevant dimensions of analysis and company KPIs regardless of internal complexity, leverage hierarchies, automate currency conversion, and more. Dig deep into the modeling tools of SAP Datasphere, get hands-on experience modeling an end-to-end case, and quickly prepare analytics that delight business users.
 
 ## Requirements
 
-The requirements to follow the exercises in this repository are...
+* Google Chrome Browser
+* Access to this GitHub repository 
+* Access to any SAP Datasphere system and in case you do not have access you can use a guided experience trial
+* You will also need a set of files for these exercises  <br>
+Download the ZIP-file from the GitHub site: :arrow_right: [DA271_ModelFiles.zip](DA271_ModelFiles.zip)
 
 ## Exercises
 
