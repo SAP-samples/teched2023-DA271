@@ -1,6 +1,10 @@
 # Getting Started - Preparing your system
 
-**Section Goal:** Load all required data & models that are the base line for modelling. 
+**Section Goal:** Load all required data & models that are the base line for the following exercises. 
+
+We have prepared a simple data model to analyze product sales for a typical company. For this exerise we will simply load this model with connections to the associated data from a CSN file so we can focus on the Analytic Model.
+
+If you want to learn how to create data layer ER models like this, go here...
 
 
 ## Steps
