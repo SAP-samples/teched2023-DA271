@@ -31,7 +31,7 @@ Provide the exercise content here directly in README.md using [markdown](https:/
     - [Exercise 1.3 - Add more complex measures and variables](exercises/ex1/Add_complex_measures_and_variables)
 - [Exercise 2 - Refine Data Layer entities to support consumption](exercises/ex2/)
     - [Exercise 2.1 - Add labels and internationalization](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.3 - Update Analytic Model and preview results](exercises/ex2#exercise-22-sub-exercise-2-description)
+    - [Exercise 2.3 - Add Hierachies](exercises/ex2#exercise-22-sub-exercise-2-description)
 
   
 **OR** Link to the Tutorial Navigator for example...
