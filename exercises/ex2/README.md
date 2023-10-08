@@ -15,6 +15,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 -   Open ER Model
 
 -   Choose node *Time Dimension - Day* to open its properties dialog
+<img width="388" alt="Screenshot 2023-10-08 at 7 49 08 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/21e6261f-125b-4612-a4fd-5f3a38d142d8">
 
 -   Find hierarchy icon in the view properties  
    
