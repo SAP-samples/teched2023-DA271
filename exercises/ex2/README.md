@@ -1,12 +1,14 @@
 # Hierarchies
 
-In this chapter we prepare hierarchical display of data. The time dimension readily brings along several hierachies (like Year-Month-Day), but the organizational hierarchy of employees, regional hierarchy, custom hierarchies for products are not yet configured.
+In this chapter we configure several hierarchies to use in our Analytic Model and preview the results. 
 
-We'll configure these to familiarize ourselves with their capabiliites & modelling requirements
+The time dimension includes several hierachies (e.g. Year-Month-Day) that we can explore directly.
+
+Then we will configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchies for products to familiarize ourselves with their capabiliites & modelling requirements
 
 ## Explore time hierarchy
 
-The time dimension *Time Dimension - Day* includes its "level-based hierarchy". Since each day belongs to a month, quarter and year, the system comes pre-loaded with common hierarchies that we can inspect in modelling and then use in reporting
+The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Since each day belongs to a month, quarter and year, the system comes pre-loaded with common hierarchies that we can inspect in modelling and then use in reporting
 
 ### Understand the pre-loaded level-based Time Dimension hierachy
 
@@ -15,7 +17,7 @@ The time dimension *Time Dimension - Day* includes its "level-based hierarchy". 
 -   Choose node *Time Dimension - Day* to open its properties dialog
 
 -   Find hierarchy icon in the view properties  
-    ![](4aad23d2967067b88af9e10c8513a69d.png)
+   
 
 -   Inspect the three pre-delivered hierarchies  
     ![](1de7cbb63fabce1bc772ef0dfe59b1cb.png)
