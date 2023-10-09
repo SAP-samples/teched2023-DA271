@@ -28,6 +28,9 @@ If you want to learn how to create data layer ER models like this, go here...
     -   SalesOrderItems
     -   SalesOrder
 -   **Screenshot** Deploy & run the replication flow
+
+    ![](media/f402d44cae5d77b15518700a78663801.png)
+
 -   Import CSN
 -   Open ER Model
 -   Now your initial ER should look like this **[Screenshot to upload]**
