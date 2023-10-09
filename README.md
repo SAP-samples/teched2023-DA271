@@ -4,11 +4,18 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2023 session called :point_right: **DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere**.
+This repository contains the material for the SAP TechEd 2023 session called :point_right: **DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere**. This jump start session will give you the opportunity to build a scenario with exercises for SAP Datasphere. Analyzing complex business data in the SAP Analytics Cloud solution is massively simplified if modelers prepare their data models well using the SAP Datasphere solution. They can prepare the relevant dimensions of analysis and company KPIs regardless of internal complexity, leverage hierarchies, automate currency conversion, and more. Dig deep into the modeling tools of SAP Datasphere, get hands-on experience modeling an end-to-end case, and quickly prepare analytics that delight business users.
 
 ## Overview
 
-This jump start session will give you the opportunity to build a scenario with exercises for SAP Datasphere. Analyzing complex business data in the SAP Analytics Cloud solution is massively simplified if modelers prepare their data models well using the SAP Datasphere solution. They can prepare the relevant dimensions of analysis and company KPIs regardless of internal complexity, leverage hierarchies, automate currency conversion, and more. Dig deep into the modeling tools of SAP Datasphere, get hands-on experience modeling an end-to-end case, and quickly prepare analytics that delight business users.
+In this exercise we leverage the strong modelling capabilities of SAP Datasphere to add business semantics on data that have been ingested from remote sources. The goal is to prepare a flexible, rich, governed & understandable data model to our analytics users that they can subsequently use in their dashboards & data analysis. On the way, you'll get to know many of the modelling marvels that the SAP Datasphere team has added over the last year since last TechEd. Concretely, you'll get to know the following:
+
+| Table Name          | Description                           |
+|:--------------------|:--------------------------------------|
+| Sales Transactions  | Daily retail transactions per store   | 
+| Store	              | Details per Store Outlet              |
+| Sales Manager       | Details on all Sales Manager          |
+| Product             | Details on the products being sold    |
 
 ## Requirements
 
