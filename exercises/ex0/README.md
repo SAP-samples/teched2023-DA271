@@ -33,7 +33,10 @@ If you want to learn how to create data layer ER models like this, go here...
 
 -   Import CSN
 -   Open ER Model
--   Now your initial ER should look like this **[Screenshot to upload]**
+-   Now your initial ER should look like this
+
+    ![](media/942d19ab7c4219bf6c0597169cd14484.png)
+
 -   Inspect details in ER Model (contained objects, their inner workings)
 
 ## Summary
