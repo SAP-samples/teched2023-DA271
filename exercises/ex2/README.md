@@ -17,7 +17,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 -   Choose node *Time Dimension - Day* to open its properties dialog
 <img width="388" alt="Screenshot 2023-10-08 at 7 49 08 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/21e6261f-125b-4612-a4fd-5f3a38d142d8">
 
--   Find hierarchy icon in the view properties  
+-   Click the hierarchy icon in the view properties  
    
 
 -   Inspect the three pre-delivered hierarchies  
@@ -32,7 +32,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 -   Click the three dots to the right of CREATION DATE to select the hierarchy  
     ![](c484af7ca02a06a9dab1a237d8895e8e.png)
 
--   Find the three pre-delivered hierarchies  
+-   Click the three pre-delivered hierarchies  
     ![](f79214b4d4761ec0a7a7f53bc8b69fce.png)
 
 -   Choose hierarchy *Year, Month, Day*
