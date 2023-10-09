@@ -9,7 +9,7 @@ If you want to learn how to create data layer ER models like this, go here...
 ## Steps
 
 -   Download CSN from Github [[link](../../model/DA271_DataModel%20-%20Quick%20Start.json)]
--   Create new replication flow RF_Initial_Load to import all relevant tables from HANA Cloud connection DSP1_OPENSAP
+-   Create new replication flow **RF_Initial_Load** to import all relevant tables from **HANA Cloud** connection **DSP1_OPENSAP**
 -   Select the following 16 tables:
     -   Addresses
     -   BusinessPartners
@@ -27,7 +27,7 @@ If you want to learn how to create data layer ER models like this, go here...
     -   Regions
     -   SalesOrderItems
     -   SalesOrder
--   **Screenshot** Deploy & run the replication flow
+-   **Deploy** & **Run** the replication flow
 
     ![](media/f402d44cae5d77b15518700a78663801.png)
 
