@@ -1,4 +1,4 @@
-# Getting Started - Preparing your system
+# Exercise 0 - Getting Started - Preparing your system
 
 **Section Goal:** Load all required data & models that are the base line for the following exercises.
 
