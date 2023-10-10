@@ -31,9 +31,9 @@ If you want to learn how to create data layer ER models like this, go here...
     -   ProductTexts
     -   Regions
     -   SalesOrderItems
-    -   **![](media/491eeded4e8dac24fcb4fcc51eac0ac6.png)**SalesOrder
--   ![](media/1b677828bdd6a3f8dca4be59e676d0d1.png)Once the objects have been added, click the **Deploy**  button (top-left of screen) to save and render your replication flow ready to use. Save the flow as **RF_Initial_Load**
--   Once your RF is deployed, click the **Run** button (top-left of screen). This allows your local repository to house the source tables you imported from HANA Cloud.
+    -   SalesOrder
+-   Once the objects have been added, click the **Deploy** ![](media/491eeded4e8dac24fcb4fcc51eac0ac6.png) button (top-left of screen) to save and render your replication flow ready to use. Save the flow as **RF_Initial_Load**
+-   Once your RF is deployed, click the **Run** ![](media/1b677828bdd6a3f8dca4be59e676d0d1.png)button (top-left of screen). This allows your local repository to house the source tables you imported from HANA Cloud.
 
     ![](media/f402d44cae5d77b15518700a78663801.png)
 
@@ -58,7 +58,7 @@ If you want to learn how to create data layer ER models like this, go here...
     ![](media/942d19ab7c4219bf6c0597169cd14484.png)
 
 -   **Deploy** your model and name it **4EM_Overview_Simple**
--   ![](media/6f7db63b5fcea819fba8792e6e1dd8c2.png)![](media/4607e716afa73a5ce285b733d94c935d.png)Within the View Properties section, you can inspect the **attributes** and **measures** associated with a given entity. You can preview the data by clicking on the entity and clicking on the Preview Data button. You can also view the lineage of an entity by clicking on the **Impact and Lineage Analysis** button
+-   Within the View Properties section, you can inspect the **attributes** and **measures** associated with a given entity. You can preview the data by clicking on the entity and clicking on the **Preview Data**![](media/4607e716afa73a5ce285b733d94c935d.png) button. You can also view the lineage of an entity by clicking on the **Impact and Lineage Analysis** ![](media/a727dcc612e497793134b01f08c97a17.png) button
 
 ## Summary
 
