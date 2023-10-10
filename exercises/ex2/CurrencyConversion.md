@@ -21,28 +21,20 @@ In the subsequent exercise, we'll
 So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just numbers without dedicated semantics. Since very often sales transactions can happen in different transaction currencies, it might not even be justified to aggregate them without taking their transaction currency into account. Datasphere offers a dedicated semantic annotation to point out the relationship between a value (the amount) and its currency (the transaction currency used, when the amount was billed).
 
 -   Open fact 4VF_SalesOrderItems
-
 -   Preview its data
-
 -   Confirm that each sales order item indeed has its transaction currency spelled out in column CURRENCY and its unit spelled out in column QUANTITYUNIT
-
 -   Change semantic types of attributes
 
     -   set semantic type of CURRENCY to Currency Code
-
     -   set semantic type of QUANTITYUNIT to Unit of Measures
 
 -   Change semantic type of measures
 
     -   set semantic type of NETAMOUNT to Amount w Currency and Unit Column to CURRENCY
-
     -   set semantic type of GROSSAMOUNT to Amount w Currency and Unit Column to CURRENCY
-
     -   set semantic type of TAXAMOUNT to Amount w Currency and Unit Column to CURRENCY
-
     -   set semantic type of QUANTITY to Quantity with Unit and Unit Column to QUANTITYUNIT
-
-![](418ae1a6302ca32efa138f2ed047089b.png)
+<img width="1127" alt="Screenshot 2023-10-10 at 2 09 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/11c07940-363f-465d-8886-f1bfa34a8865">
 
 -   Save & Deploy
 
@@ -57,9 +49,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Open Data Preview
 
 -   Confirm that all amounts now show a dollar sign behind themselves. The quantity shows a unit symbol (EA for EACH) and the average price is even aware of the division and correctly denotes its unit as \$ / EA, i.e. dollars per piece.
-
-![](e4421a465409b3e6c13a58d7cccfc4f9.png)
-
+<img width="1134" alt="Screenshot 2023-10-10 at 2 10 10 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d5799b27-b20b-413f-b74b-4c05e3f8f62a">
 -   
 
 ## Aggregation behavior for mixed currency data
@@ -77,7 +67,8 @@ Showing a dollar sign behind amounts is simple, but the calculation also changes
 -   Refresh data preview of *4AM_SalesOrderItems*
 
 -   Confirm that NETAMOUNT, GROSSAMOUNT, TAXAMOUNT and Avg Price now all show \* only, denoting that no value can be displayed  
-    ![](9f9931243ff7d0cfc1899bcdc4496285.png)
+    <img width="790" alt="Screenshot 2023-10-10 at 2 10 38 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/9357432f-3558-4d20-9c31-9e9b45c79709">
+
 
 -   Drill by CURRENCY
 
@@ -125,29 +116,27 @@ We could now run all 8 data flows manually; just open each one and hit run. Sinc
 
 -   Drag data flow "Conversion Factors (ODP)" onto the canvas and drop it on the drop zone
 
--   Choose ![](4e42e9de307cc09c69b45f12842833ab.png) sign on the node to add a parallel branch  
-    ![](f39b9b42d1b044acb61b3b46706a2386.png)
+-   Choose <img width="38" alt="Screenshot 2023-10-10 at 2 11 14 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/749b5878-0aad-4d83-b6ac-a7209e173436">
+sign on the node to add a parallel branch  
+    <img width="545" alt="Screenshot 2023-10-10 at 2 11 43 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/ef313b5f-499a-488c-8984-a399fdf282fd">
+
 
 -   Drag & drop data flow "Currency Code Names (ODP)" onto the new drop zone
 
 -   Repeat this 6 more times so that finally all 8 data flows are in parallel nodes of the same task flow  
-    ![](26f50858a323fac70982d9bae88f974f.png)
+    <img width="1078" alt="Screenshot 2023-10-10 at 2 12 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/bd65b73c-9d97-4285-bb42-0cdffa05215b">
+
 
 -   Save & deploy as 4TC_TCUR_Replication
 
--   Open Data Integration Monitor and authorize system to run task chains in your stead  
-    ![](7f4c32770448f72bab5a34babb54966e.png)
+-   Open Data Integration Monitor and authorize system to run task chains 
+<img width="1011" alt="Screenshot 2023-10-10 at 2 12 39 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/5a6875e8-c212-4465-b484-fdcd992a5883">
 
 -   Change to Task Chain Monitor
-
 -   Select entry 4TC_TCUR_Replication and choose Run
-
 -   Choose to see run details of 4TC_TCUR_Replication
-
 -   Refresh regularly until task chain has been executed. This should not take longer than 3-5 minutes
-
 -   Once task chain is completed, reopen Data Builder for table Exchange Rates (SAP.CURRENCY.TABLE.TCURR)
-
 -   Use data preview to confirm that table now contains data
 
 ## Create new currency conversion measure in Analytic Model and preview results
@@ -155,17 +144,15 @@ We could now run all 8 data flows manually; just open each one and hit run. Sinc
 Now all groundwork has been laid for automatic currency conversion
 
 -   Open *4AM_SalesOrderItems*
-
 -   Choose to create a new measure of type Currency Conversion Measure
-
 -   Fill its details as follows
+<img width="350" alt="Screenshot 2023-10-10 at 2 13 07 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/303bc756-7377-4632-862a-f1b3eb4b344a">
 
-    ![](493aaac611ca3aa5fe0210b0591c75f9.png)
 
 -   Save & deploy
 
 -   Preview data of Analytic Model
 
 -   Confirm gross amount is now automatically converted and displayed as Gross Sales EUR  
-    ![](c0d810391efa58bfbe75896f56a7d176.png)
+<img width="801" alt="Screenshot 2023-10-10 at 2 13 55 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0681e4b8-b5ce-41bc-a58a-025b6e7f255e">
 
