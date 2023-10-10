@@ -89,7 +89,7 @@ The new data layer modeling needs to be considered also by the Analytic Model - 
 <img width="1127" alt="Screenshot 2023-10-10 at 1 27 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/339392f8-6bf5-49a1-be59-c0e5d41449e7">
 
 -   Drill by additional dimensions like e.g. COUNTRIES is fully supported  
-    ![](3dc917c9d61db7d8cb8bd2b4c1c33abb.png)
+<img width="1129" alt="Screenshot 2023-10-10 at 1 28 19 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/7b64a696-56bb-4c2c-86a9-d5b2be2da010">
 
 ## External hierarchies with directories
 
@@ -98,19 +98,12 @@ In October 2023, SAP Datasphere introduced a revamped data model for parent-chil
 This improvement provides many more features than the classical parent-child hierarchies, namely
 
 -   Support of S/4 and BW hierarchies and alignment w/ their data model
-
 -   Data-driven definition of hierarchies
-
 -   Support of Text Nodes (e.g. GL account groups - GL accounts)
-
 -   Support of nodes of different dimensions within the same hierarchy (e.g. sales area - cost center – employee)
-
 -   Language-dependent hierarchy descriptions
-
 -   Language-dependent node texts
-
 -   Time-dependent hierarchies
-
 -   Time-dependent hierarchy nodes & their attributes
 
 In the following exercise, we leverage their wealth to introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). The second marketing strategy is currently being developed and will only be set live at the beginning of the year, by leveraging time-dependency of hierarchies.
@@ -124,25 +117,20 @@ All hierarchies and their properties are listed in their own hierarchy directory
 Hierarchy directories are modelled as dimensions and the product hierarchy entity will later associate to it. Since we deal with time-dependent hierarchies (note that we will configure the new product strategy to only go live at the start of 2024), two special columns (VALIDFROM, VALIDTO) tell the system the validity period of each hierarchy. In order for the Analytic Model to leverage this information, we need to assign the corresponding semantic types. Then when selecting the hierarchies in the Analytic Model, the system will query the hierarchy directory table with the reference date provided by the users and ensure that the only hierarchies whose validity period contains that reference date are being returned.
 
 -   Open local table *HierarchyDirectory*
-
 -   Preview its data
-
 -   In section General, change Semantic Usage to *Dimension*
-
 -   In section Attributes, change
-
     -   For VALIDFROM, set semantic type to *Business Date - From*   
         For VALIDTO, set semantic type to *Business Date - To*
-
     -   For DESCRIPTION, set semantic type to *Text*
-
     -   For HIERARCHYID, set label column to *DESCRIPTION*
-
 -   Save & deploy
 
 Note that we model the description as a language-independent field here. If we wanted to have language-dependent hierarchies, we'd need to follow the steps done above for product texts, where a text entity is created and associated to the dimension (here: HierarchyDirectory) via a text association.
 
-As an optional exercise, you can create a table with language dependent data, enter some data to it and do that modelling by yourself.
+As an additional exercise, you can use the provided table with language dependent data. That lesson is covered in...
+**
+[from Jan's other recording!]**
 
 ### Create Text Node Dimension
 
@@ -153,17 +141,11 @@ With the new hierarchy capability, more complex hierarchies like sales areas tha
 During data import, a ProductHierarchyNodes table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there and in more productive scenarios, we'd highly suggest to add this additional level of abstraction, but as an exercise, it's totally enough to apply those changes directly on the table.
 
 -   Open table *ProductHierarchyNodes*
-
 -   Preview data
-
 -   In section *General*, change Semantic Usage to *Dimension*
-
 -   In section *Attributes*, do these changes
-
     -   For DESCRIPTION, set semantic type to *Text*
-
     -   For NODEID, set Label column to DESCRIPTION
-
 -   Save & deploy
 
 ### Create entity for product hierarchy with directory
@@ -175,50 +157,36 @@ Note that the model makes a distinction between the key used in the parent-child
 As before, the required data has been imported as local table ProductHierarchy during the setup steps. We could wrap this table in a view for an additional level of abstraction & flexibility or just update the table's semantic information like we do here.
 
 -   Open table *ProductHierarchy*
-
 -   Preview its data
-
 -   In section Associations
 
     -   Create an association to dimension *HierarchyDirectory*  
         Map column *ProductHierarchy.HIERARCHY* to column *HierarchyDirectory.HIERARCHYID*
-
     -   Create an association to dimension *ProductHierarchyNodes*  
         Map column *ProductHierarchy.TEXTNODEID* to column *HierarchyDirectory.NODEID*
 
 -   In section *General*, change Semantic Usage to *Hierarchy with Directory*. A new button Hierarchy with Directory Settings appears together with some error message that we haven't completed all modelling steps yet  
-    ![](47da1ac9e55ff1c952f53de12ac90cbb.png)
+<img width="558" alt="Screenshot 2023-10-10 at 1 36 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/df73e37b-0768-4578-a6d2-23d45a2d7df3">
 
 -   Click button Hierarchy with Directory Settings to open this configuration window  
-    ![](03c2e045341624a0ef03249fba49eceb.png)
+    <img width="1124" alt="Screenshot 2023-10-10 at 1 38 42 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/6a8c295c-4981-4d5d-a946-a7d7240abc94">
+
 
 -   Fill the configuration window as follows
 
     -   Parent: PARENTID
-
     -   Child: CHILDID
-
     -   Hierarchy Name Column: HIERARCHY
-
     -   Node Type Column: NODETYPE
-
     -   Node Type Value \#1
-
         -   Node Type Value: ProductNode
-
         -   Set as Leaf: Checked
-
         -   Column 1: PRODUCTID
-
     -   Node Type Value \#2
-
         -   Node Type Value: TextNode
-
         -   Set as Leaf: Unchecked
-
         -   Column 1: TEXTNODEID
-
-![](03524322d9865f3fc4cc014e136855c6.png)
+<img width="1130" alt="Screenshot 2023-10-10 at 1 39 27 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/ee703276-d2fe-4713-b409-60d8bd1ef096">
 
 -   Save & Deploy
 
@@ -229,9 +197,11 @@ Now to associate the new external hierarchy from the product dimension.
 -   Open dimension 4VD_Products
 
 -   Create new assocation of type "Hierarchy with Directory Association"   
-    ![](aea0b53af5cbe121822deb7d557f5584.png)
+    <img width="563" alt="Screenshot 2023-10-10 at 1 39 50 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/1c81aefb-ce09-4515-99ad-dd977eb836c6">
 
--   Choose ProductHierarchy from the list of suitable entities ![](eff6d84139d894eae8de570e1a547dee.png)
+
+-   Choose ProductHierarchy from the list of suitable entities
+<img width="1133" alt="Screenshot 2023-10-10 at 1 40 49 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/358f8239-8678-4321-a566-e9e254caeb2e">
 
 -   Save & Deploy
 
@@ -240,21 +210,15 @@ Now to associate the new external hierarchy from the product dimension.
 As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing its browser page. Subsequently save & deploy the updated model information.
 
 -   Open *4AM_SalesOrderItems* and refresh its browser page
-
 -   Save & deploy
-
 -   Open Data Preview
-
 -   Drill by PRODUCTID
 
 -   Choose a hierarchy via the three dots in the Rows area of the Builder panel  
-    ![](6f0a5bc4493bdd8ab8f52903c41ce0d5.png)
+<img width="564" alt="Screenshot 2023-10-10 at 1 41 43 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/e16b542f-f743-4e2a-add5-2d63cec2f5c4">
 
 -   Drill by COUNTRY and confirm that country name is now displayed in French
-
 -   Drill by REGION and confirm that region name is now displayed in French
-
 -   Change data access settings of your user from French to English
-
 -   Repeat drilling by COUNTRY and REGION and confirm that all their texts are now displayed in English again.
 
