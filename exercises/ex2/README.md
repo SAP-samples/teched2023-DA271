@@ -2,9 +2,7 @@
 
 In this chapter we configure several hierarchies to use in our Analytic Model and preview the results. 
 
-The time dimension includes several hierachies (e.g. Year-Month-Day) that we can explore directly.
-
-Then we will configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchies for products to familiarize ourselves with their capabiliites & modelling requirements
+The time dimension includes several hierachies (e.g. Year-Month-Day) that we will explore directly. Then we will configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchies for products to familiarize ourselves with their capabiliites & modelling requirements
 
 ## Explore time hierarchy
 
@@ -15,37 +13,33 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 -   Open ER Model
 
 -   Choose node *Time Dimension - Day* to open its properties dialog
-<img width="388" alt="Screenshot 2023-10-08 at 7 49 08 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d5a97a30-3ea3-415e-8e20-270644ef5d60">
+
 
 -   Click the hierarchy icon in the view properties  
-   
+   <img width="388" alt="Screenshot 2023-10-08 at 7 49 08 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d5a97a30-3ea3-415e-8e20-270644ef5d60">
 
 -   Inspect the three pre-delivered hierarchies  
-    ![](1de7cbb63fabce1bc772ef0dfe59b1cb.png)
+<img width="1118" alt="Screenshot 2023-10-10 at 12 54 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/7b1b2f0f-c593-437d-91b2-5b4b250a7b01">
 
 -   Open Analytic Model *SalesOrderItems*
-
 -   Open Data Preview
-
 -   Drill by CREATION DATE
-
 -   Click the three dots to the right of CREATION DATE to select the hierarchy  
-    ![](c484af7ca02a06a9dab1a237d8895e8e.png)
+<img width="568" alt="Screenshot 2023-10-10 at 12 55 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/426dcda5-ba80-48a4-9ea3-98425fc31e92">
 
 -   Click the three pre-delivered hierarchies  
-    ![](f79214b4d4761ec0a7a7f53bc8b69fce.png)
+<img width="763" alt="Screenshot 2023-10-10 at 1 01 19 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/89f60b7b-6e40-4ecb-a5d3-149418ab073b">
 
 -   Choose hierarchy *Year, Month, Day*
+-   Use the hierarchy drill-down to view the aggregation roll-ups for the node levels  
+    <img width="1048" alt="Screenshot 2023-10-10 at 1 07 03 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/6d26b56c-7150-4489-92be-d3d52668cb0d">
 
--   Use the hierarchy drill-down to confirm the aggregation roll-ups for the node levels  
-    ![](b12fd92fb7f3bbc8e63a1e61601c82f0.png)
 
 ## Classic hierarchy model
 
 SAP Datasphere has supported hierarchies for many years with two separate hierarchy models, namely
 
 -   Level-based hierarchies and
-
 -   Parent-child hierarchies
 
 We'll use both types to understand their power and expressability.
@@ -57,11 +51,9 @@ In a subsequent chapter, we'll get to know the new, even more flexible "external
 We now follow the pattern of the time hierarchy to build a region hierarchy of Region-Country-City. Structurally, this is called a "level-based hierarchy" in which different column values of an entry together form a hierarchy. In the case at hand, each ADDRESSID has its respective values of REGION, COUNTRY and CITY. Together, they form a hierarchy. The classic example here is the time hierarchy that we saw above. Level-based hierarchies are "balanced", i.e. they always have the same depth in each subtree (here: depth = 3)
 
 -   Open entity 4VD_Addresses
-
 -   Find hierarchy icon in properties pane and click it
-
 -   Create new level-based hierarchy based on columns REGION-COUNTRY-CITY in that order  
-    ![](da8bab83da6a592b4256c348188df708.png)
+<img width="1116" alt="Screenshot 2023-10-10 at 1 23 35 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0e3b0a8d-4961-448e-b2af-d54685613ca2">
 
 -   Save & Deploy
 
@@ -72,38 +64,29 @@ For the organizational hierarchy, we leverage the reporting structure of the com
 In our example data, each row in the entity 4VD_Employees has columns for the manager information. This is the simplest case of parent-child hierarchy to introduce the world of parent-child hierarchies.
 
 -   Open entity 4VD_Employees
-
 -   Find hierarchy icon in properties pane and click it
-
 -   Create new parent-child hierarchy and specify its properties like in the screenshot below
-
     -   Business name: Organizational Hierarchy
-
     -   Parent: MANAGERID
-
     -   CHILD: EMPLOYEEID
-
-![](3fdf68291669e3e138ba1352fed16416.png)
+<img width="1131" alt="Screenshot 2023-10-10 at 1 24 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d819447a-97e0-4430-ae2a-622dd92a47e1">
 
 ### Update Analytic Model and preview results
 
 The new data layer modeling needs to be considered also by the Analytic Model - the Analytic Model page needs to be loaded newly or refreshed. Then you should save and deploy.
 
 -   Open *4AM_SalesOrderItems* and refresh page
-
 -   Save & deploy
-
 -   Open Data Preview
-
 -   Drill by RESPONSIBLE
-
 -   Open three dots next to RESPONSIBLE and choose to select another hierarchy   
-    ![](01e3a2cdd07837b6f802869e123cbc13.png)
+<img width="567" alt="Screenshot 2023-10-10 at 1 25 05 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/f539f2d0-866f-4895-805e-9aa0f3b02a5d">
 
 -   Choose Organizational Hierarchy from the list of hierarchies  
-    ![](d2353cea1a4f6ed574f8008f65b1bbdf.png)
+<img width="755" alt="Screenshot 2023-10-10 at 1 26 18 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/14ab36c5-555b-43c2-80be-154899db4551">
 
--   Organizational hierarchy is now used to display data. Rollups to intermediate nodes happens automatically![](8fc3470aa3a36744f32906e161bd9f1f.png)
+-   Organizational hierarchy is now used to display data. Rollups to intermediate nodes happens automatically![]
+<img width="1127" alt="Screenshot 2023-10-10 at 1 27 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/339392f8-6bf5-49a1-be59-c0e5d41449e7">
 
 -   Drill by additional dimensions like e.g. COUNTRIES is fully supported  
     ![](3dc917c9d61db7d8cb8bd2b4c1c33abb.png)
