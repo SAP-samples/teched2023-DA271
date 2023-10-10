@@ -41,6 +41,8 @@ Provide the exercise content here directly in README.md using [markdown](https:/
 -   [Exercise 2 - Refine Data Layer entities to support consumption](exercises/ex2/)
     -   [Exercise 2.1 - Add labels and internationalization](exercises/ex2#exercise-21-sub-exercise-1-description)
     -   [Exercise 2.3 - Add Hierarchies](exercises/ex2#exercise-22-sub-exercise-2-description)
+ 
+  [Summary](exercises/ex2/Summary)
 
 **OR** Link to the Tutorial Navigator for example...
 
