@@ -1,37 +1,71 @@
-# Exercise 1 - Create Analytic Model
+# 
 
-We will now create an Analytic Model to support consumption of the imported data model. 
+# Exercise 1: Build Analytic Model to prepare data consumption for end-user
 
-We start with a minimal model and subsequently enhance it step by step. On the way, we get to know the features of the Analytic Model editor incl. adding of dimensions, modelling of measures, preparation of variables and previewing data. 
+**Goal**: In this step we prepare consumption of the imported data model via an Analytic Model. We start with a minimal model and subsequently enhance it step by step. On the way, we get to know the features of the Analytic Model editor including adding of dimensions, modelling of measures, preparation of variables and previewing data.
 
+## Create Initial Analytic Model
 
-## Exercise 1.1 Create Initial Analytic Model
+We will now create an Analytic Model to support consumption of the imported data model.
 
-Initial run-through incl. data preview 
+We start with a minimal model and subsequently enhance it step by step. On the way, we get to know the features of the Analytic Model editor incl. adding of dimensions, modelling of measures, preparation of variables and previewing data.
 
-User Steps:  
+## Add associated dimensions
 
-Create Analytic Model w 4VF_SalesOrderItems as fact source.  
+Add additional drill-dimensions by adding nested dimensions
 
-Choose to include all measures, attributes and associated dimensions 
+User steps:
 
-![Include all measures, attributes, and dimensions](../ex1/images/Include_Associated_Attributes_measures_dimensions.png)
+-   Add dimensions for Business Partner & Address. Include attribute Company Name of Business Partner and Country, Region, City, Street, Postalcode of Address
+-   Reopen data preview and confirm that you can now also drill by these dimensions
 
+## Add Associated Dimensions
 
-Save & deploy as 4AM_SalesOrderItems  
+## Add Measures & Variables
 
-Preview data. Check various dimensions to drill by, change their order, add a filter 
+Add calculated & restricted measures. (Note: Point out that in large organization its crucial to agree on common definition of KPIs. This is helpful for their reuse (saves time) and governance (we all use same definitions)
 
-So there are all these measures and now you will drill by your product ID 
+User steps:
 
-There are these three dots that eventually will become important. There's also a philtre that you can you can follow along, and if there was a prompt later on this this prompt button, this is all they need to do at the no at this point.
+-   Add calculated measure Average Price (AVG_PRICE) as GROSSAMOUNT / QUANTITY
+-   Add restricted measures
+    1.  Domestic Gross Sales (DOMESTIC_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY = 'DE'
+    2.  International Gross Sales (INTL_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY != 'DE'
+-   Add Filter Variable YEAR w settings multi-value, no default, not mandatory   
+    Note: explain that many users will want to see only the current year. This way the system pre-filters on the current year. The same could be true for e.g. own region. Explain that other variable types exist also (w link to docu)
+-   Save & deploy
+-   Preview data and confirm empty prompt. Check new calculations (e.g. drill by country)
+-   Redo prompt (button exists!) and filter on 2023. Confirm data is now filtered (e.g. by taking YEAR into drill-down)
 
-Fetzer, Jan 11 minutes 5 seconds
-We're adding additional details on the sales order ID. So like the business partner, their response to employee or time information, we add additional information on the product ID. This none so far. So we're happy with what we're seeing. But on the partner, let's say we want to know about their company names on the responsibles. We want to know about their full names or for the Gration date, we are.
+## Add More Complex Measures & Variables
+
+Showcase features count distinct & constant selection
+
+User steps:
+
+-   Add restricted measure All Countries (ALL_COUNTRIES_GROSSAMOUNT) based on measure GROSSAMOUNT and w empty expression. Activate constant selection on dimension COUNTRY  
+    Note that constant selection ensures that a given dimension is taken out of drill-down even it actually is part of drill-down. This is important to compute reference figures (like e.g. here all countries). We could also have used a variable and used it in the restriction expression to make the list of reference countries configurable (optional exercise w/o guide)
+-   Add calculated measure Share of Sales (SHARE_OF_SALES) w expression 100 \* GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
+-   Add count distinct measure Customer Count (CUSTOMER_CNT) based on Dimension PARTNERID
+-   Add calculated measure Avg Spend per Customer (AVG_GROSSAMOUNT_PER_CUSTOMER) w expression GROSSAMOUNT / CUSTOMER_CNT
+-   **Deploy** entity
+-   Preview data. Drill by COUNTRY and PARTNERID
+
+## Introduce Model Enhancements
+
+For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained. Also all amounts are in US Dollars, but this is neither shown nor converted into another currency.
+
+User Steps:
+
+-   Preview data
+-   Drill by REGION and COUNTRY. Realize you need to understand their respective abbreviations to understand what you see on the screen.
+-   Drill by PARTNERID. Realize You need to also drill by Company Name to realize which customer this is
+-   Drill by Employee ID. Realize you need to add Full Name into drill to realize which user this is. If you only drilled by Full Name and two users had the same name, you'd not realize. Also realize there is no way to know/see the organizational hierarchy
+
+Drill by Product Category & Product. Realize there are no product names or custom groupings of products (e.g. strategic products, low-end products or else)
 
 ## Summary
 
-You've now ...
+Note: One of the main goals in SAP Datasphere modelling is provide & leverage business semantics in datasets such that intelligent data consumers like SAP Analytics Cloud can leverage the same to simplify consumption, provide a rich end-user interaction.
 
 Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
-
