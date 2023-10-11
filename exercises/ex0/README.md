@@ -42,6 +42,7 @@ If you want to learn how to create data layer ER models like this, go here...
     ![](media/72759a4ef0978b980d4a5091b3641f26.png)
 
 -   You will be prompted to select the objects you want to import. Select the objects with the status of “Ready to Import” and click **Import CSN File**.
+-   When prompted, if you want to reimport existing objects, choose to not reimport them **Click No** 
 -   Once those objects are imported, you’ll need to deploy them.
 
     ![](media/097ca79424adc02a531fd2a677d5ac36.png)
