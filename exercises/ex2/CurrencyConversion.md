@@ -1,14 +1,16 @@
 # Currency Conversion
 
-SAP Datasphere can perform currency conversion (aka: currency translation) fully aligned with the [respective functionality in SAP S/4](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/8fbeed5f2046489696a50ac7fd76f9c6/d16ebe532789b44ce10000000a174cb4.html?locale=en-US) and SAP BW. The tables TCUR\* play a central role in the conversion since they contain the conversion rates, the list of supported currencies, conversion types and much more. These tables can be brought into SAP Datasphere in a very convenient fashion as described in [SAP Help " Enabling Currency Conversion with TCUR\* Tables and Views "](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b462239ffb644d9baab4442a10a72edf.html). In essence, with a single click, the respective remote & local tables, the data flows to replicate data between them and convenience wrapper views can be imported into SAP Datasphere via any SAP ABAP connection. Subsequently, the HANA function [CONVERT_CURRENCY](https://help.sap.com/docs/HANA_SERVICE_CF/7c78579ce9b14a669c1f3295b0d8ca16/d22d746ed2951014bb7fb0114ffdaf96.html) does the automatic translation at runtime. For convenience, the SAP Datasphere modelling UIs simplify this by wrapping the currency conversion in easy-to-use modelling UIs.
+SAP Datasphere can perform currency conversion (aka: currency translation) fully aligned with the [respective functionality in SAP S/4](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/8fbeed5f2046489696a50ac7fd76f9c6/d16ebe532789b44ce10000000a174cb4.html?locale=en-US) and SAP BW. The tables TCUR\* play a central role in the conversion since they contain the conversion rates, the list of supported currencies, conversion types and much more. These tables can be brought into SAP Datasphere in a very convenient fashion as described in [SAP Help " Enabling Currency Conversion with TCUR\* Tables and Views "](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b462239ffb644d9baab4442a10a72edf.html). 
+
+With a single click, the respective remote & local tables, the data flows to replicate data between them and convenience wrapper views can be imported into SAP Datasphere via any SAP ABAP connection. Subsequently, the HANA function [CONVERT_CURRENCY](https://help.sap.com/docs/HANA_SERVICE_CF/7c78579ce9b14a669c1f3295b0d8ca16/d22d746ed2951014bb7fb0114ffdaf96.html) does the automatic translation at runtime. For convenience, the SAP Datasphere modelling UIs simplify this by wrapping the currency conversion in easy-to-use modelling UIs.
 
 Currency conversion can be executed both before and after aggregation:
 
--   with [currency conversion before aggregation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/6e3d8bed7ece4c27ba10e2cc523915fe.html), the graphical view offers the modelling of a dedicated calculated column in which each row is converted individually. An Analytic Model consuming that view would normally aggregate all those converted values into one overarching figure
+-   with [currency conversion before aggregation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/6e3d8bed7ece4c27ba10e2cc523915fe.html), the graphical view models a dedicated calculated column in which each row is converted individually. An Analytic Model consuming that view would normally aggregate all those converted values into one overarching figure
 
--   with [currency conversion after aggregation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/ec00efb338f3421a87dab4006d7ce6c8.html), the Analytic Model offers a dedicated measure type "Currency Conversion Measure" that converts an already aggregated fact source measure. In this case, instead of converting each record individually and aggregating the converted values, the order is the other way round: first all records are aggregated and then the conversion happens on that final, aggregated figure. This is both preferable from a performance & rounding error perspective.
+-   with [currency conversion after aggregation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/ec00efb338f3421a87dab4006d7ce6c8.html), the Analytic Model offers a dedicated measure type "Currency Conversion Measure" that converts an already aggregated fact source measure. In this case, instead of converting each record individually and aggregating the converted values, first all records are aggregated and then the conversion happens on that final, aggregated figure. This is preferable both for performance and to minimize rounding errors.
 
-In the subsequent exercise, we'll
+In this exercise, we'll
 
 -   get to know the currency semantics in modelling
 
@@ -18,7 +20,7 @@ In the subsequent exercise, we'll
 
 ## Model currency semantics of fact source
 
-So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just numbers without dedicated semantics. Since very often sales transactions can happen in different transaction currencies, it might not even be justified to aggregate them without taking their transaction currency into account. Datasphere offers a dedicated semantic annotation to point out the relationship between a value (the amount) and its currency (the transaction currency used, when the amount was billed).
+So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just numbers without dedicated semantics. Since sales transactions often happen in different transaction currencies, it might not be valid to aggregate them without taking their transaction currency into account. Datasphere offers a dedicated semantic annotation to point out the relationship between a value (the amount) and its currency (the transaction currency used, when the amount was billed).
 
 -   Open fact 4VF_SalesOrderItems
 -   Preview its data
@@ -40,32 +42,26 @@ So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just n
 
 ## Update Analytic Model and preview results
 
-The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
+Refrest the Analytic Model to take note of the updated metadata. Then save and deploy.
 
 -   Open *4AM_SalesOrderItems* and refresh page
-
 -   Save & deploy
-
 -   Open Data Preview
 
--   Confirm that all amounts now show a dollar sign behind themselves. The quantity shows a unit symbol (EA for EACH) and the average price is even aware of the division and correctly denotes its unit as \$ / EA, i.e. dollars per piece.
+-   Confirm that all amounts now show a dollar sign. The quantity shows a unit symbol (EA for EACH) and the average price correctly denotes its unit as \$ / EA, i.e. dollars per piece.
 <img width="1134" alt="Screenshot 2023-10-10 at 2 10 10 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d5799b27-b20b-413f-b74b-4c05e3f8f62a">
 -   
 
 ## Aggregation behavior for mixed currency data
 
-Showing a dollar sign behind amounts is simple, but the calculation also changes. Let's manipulate the data and check how our actions influence the aggregation result. Since all data has been replicated into respective tables, we could manually change the data and understand the ripple effects of our changes.
+The dollar sign semantics also affect the calculation to ensure currencies are calculated correctly. Let's manipulate the data and check how our actions influence the aggregation result. Since all data has been replicated into respective tables, we can manually change the data and understand the ripple effects of our changes.
 
 -   Open table *SalesOrderItems*
-
 -   Choose Data Editor
-
 -   Change value of CURRENCY of the first record, i.e. sales order id 0050000001 and item id 0000000010 to EUR
-
 -   Choose save
 
 -   Refresh data preview of *4AM_SalesOrderItems*
-
 -   Confirm that NETAMOUNT, GROSSAMOUNT, TAXAMOUNT and Avg Price now all show \* only, denoting that no value can be displayed  
     <img width="790" alt="Screenshot 2023-10-10 at 2 10 38 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/9357432f-3558-4d20-9c31-9e9b45c79709">
 
@@ -77,9 +73,7 @@ Showing a dollar sign behind amounts is simple, but the calculation also changes
     Since all currencies are now clean within each drill-row, aggregation is now correctly supported. Our changed row is displayed with its associated values for NETAMOUNT, GROSSAMOUNT and TAXAMOUNT as well as for its calculations (Avg Price)
 
 -   Go back to the data editor of table *SalesOrderItems* to revert your change (i.e. change CURRENCY back from EUR to USD for the first record)
-
 -   Save your change
-
 -   Refresh the data preview of Analytic Model *4AM_SalesOrderItems*
 
 ## Load currency data from S/4 - Generate artfacts
@@ -87,33 +81,25 @@ Showing a dollar sign behind amounts is simple, but the calculation also changes
 Let's now replicate the currency conversion data from SAP S/4 into respective artefacts in SAP Datasphere. As described in the introduction, this has been packaged very conveniently.
 
 -   Open Data Builder
-
 -   Choose + \> Currency Conversion Views
-
 -   Choose source S4_HANA
 
 -   Open each of the for sections for Remote Tables, Data Flows, Tables & Views and inspect what objects will be created. You might want to read up [background in the documentation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b462239ffb644d9baab4442a10a72edf.html).
 
--   Confirm w CREATE  
+-   Confirm with CREATE  
     This will generate 32 objects, namely 8 remote tables, 8 data flows, 8 local tables and 8 views
 
 -   Select all objects and deploy
-
 -   Open table Exchange Rates (SAP.CURRENCY.TABLE.TCURR)
-
--   Preview its data
-
--   Confirm it contains no data  
-    Obviously we still need to run those 8 data flows to actually replicate the data from the remote tables (e.g. SAP.CURRENCY.RTABLE.TCURR) into the local tables. This is also required to ensure satisfactory performance during currency conversion
+-   Preview the data to confirm it contains no data  
+    We still need to run those 8 data flows to actually replicate the data from the remote tables (e.g. SAP.CURRENCY.RTABLE.TCURR) into the local tables. This is also required to ensure satisfactory performance during currency conversion
 
 ## Load currency data from S/4 - Run all data flows together via new task chain
 
 We could now run all 8 data flows manually; just open each one and hit run. Since new exchange rate data will regularly be created in S/4, we'd rather have the system do this for us. We’ll prepare the regular replication via a new task flow that automatically executes all 8 data flows. We'll run it manually for our purposes, but we could also schedule it, for e.g. a daily cadence.
 
 -   Create new task chain
-
 -   Open repository section for data flows
-
 -   Drag data flow "Conversion Factors (ODP)" onto the canvas and drop it on the drop zone
 
 -   Choose <img width="38" alt="Screenshot 2023-10-10 at 2 11 14 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/749b5878-0aad-4d83-b6ac-a7209e173436">
@@ -122,7 +108,7 @@ sign on the node to add a parallel branch
 
 
 -   Drag & drop data flow "Currency Code Names (ODP)" onto the new drop zone
-
+-   
 -   Repeat this 6 more times so that finally all 8 data flows are in parallel nodes of the same task flow  
     <img width="1078" alt="Screenshot 2023-10-10 at 2 12 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/bd65b73c-9d97-4285-bb42-0cdffa05215b">
 
