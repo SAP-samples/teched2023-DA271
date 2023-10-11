@@ -41,14 +41,6 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
  
   [Summary](exercises/ex2/Summary)
 
-**OR** Link to the Tutorial Navigator for example...
-
-Start the exercises [here](exercises/ex0/).
-
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder.
-
 ## Contributing
 
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
