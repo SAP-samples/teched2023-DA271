@@ -1,5 +1,3 @@
-![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2023-DA271)
-
 # DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere - Jump Start Session
 
 ## Description
