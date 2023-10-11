@@ -2,11 +2,11 @@
 
 In this chapter we configure several hierarchies to use in our Analytic Model and preview the results. 
 
-The time dimension includes several hierachies (e.g. Year-Month-Day) that we will explore directly. Then we will configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchies for products to familiarize ourselves with their capabiliites & modelling requirements
+The time dimension includes several hierachies (e.g. Year-Month-Day) that we will explore directly. We will then configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchy for products to familiarize ourselves with their capabiliites & modelling requirements
 
 ## Explore time hierarchy
 
-The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Since each day belongs to a month, quarter and year, the system comes pre-loaded with common hierarchies that we can inspect in modelling and then use in reporting
+The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Since each day belongs to a month, quarter and year, the system comes pre-loaded with common hierarchies that we can inspect in modelling and use in reporting
 
 ### Understand the pre-loaded level-based Time Dimension hierachy
 
@@ -37,7 +37,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 
 ## Classic hierarchy model
 
-SAP Datasphere has supported hierarchies for many years with two separate hierarchy models, namely
+SAP Datasphere has supported hierarchies for many years with two hierarchy models, namely
 
 -   Level-based hierarchies and
 -   Parent-child hierarchies
@@ -51,7 +51,7 @@ In a subsequent chapter, we'll get to know the new, even more flexible "external
 We now follow the pattern of the time hierarchy to build a region hierarchy of Region-Country-City. Structurally, this is called a "level-based hierarchy" in which different column values of an entry together form a hierarchy. In the case at hand, each ADDRESSID has its respective values of REGION, COUNTRY and CITY. Together, they form a hierarchy. The classic example here is the time hierarchy that we saw above. Level-based hierarchies are "balanced", i.e. they always have the same depth in each subtree (here: depth = 3)
 
 -   Open entity 4VD_Addresses
--   Find hierarchy icon in properties pane and click it
+-   Click the hierarchy icon in the properties pane
 -   Create new level-based hierarchy based on columns REGION-COUNTRY-CITY in that order  
 <img width="1116" alt="Screenshot 2023-10-10 at 1 23 35 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0e3b0a8d-4961-448e-b2af-d54685613ca2">
 
@@ -59,12 +59,12 @@ We now follow the pattern of the time hierarchy to build a region hierarchy of R
 
 ### Create organizational hierarchy of type parent-child hierarchy
 
-For the organizational hierarchy, we leverage the reporting structure of the company. Each employee has a manager and we can thus speak of a parent-child relationship between the two by configuring a "parent-child hierarchy". Unlike level-based hierarchies, parent-child hierarchies are typically not balanced since some managers might have only direct reports while others might manage managers who manage their own teams.
+For the organizational hierarchy, we leverage the reporting structure of the company. Each employee has a manager and we can therefore create a parent-child relationship between the two by configuring a "parent-child hierarchy". Unlike level-based hierarchies, parent-child hierarchies are typically not balanced since some managers might have only direct reports while others might manage managers who manage their own teams.
 
 In our example data, each row in the entity 4VD_Employees has columns for the manager information. This is the simplest case of parent-child hierarchy to introduce the world of parent-child hierarchies.
 
 -   Open entity 4VD_Employees
--   Find hierarchy icon in properties pane and click it
+-   Click the hierarchy icon in the properties pane
 -   Create new parent-child hierarchy and specify its properties like in the screenshot below
     -   Business name: Organizational Hierarchy
     -   Parent: MANAGERID
@@ -73,7 +73,7 @@ In our example data, each row in the entity 4VD_Employees has columns for the ma
 
 ### Update Analytic Model and preview results
 
-The new data layer modeling needs to be considered also by the Analytic Model - the Analytic Model page needs to be loaded newly or refreshed. Then you should save and deploy.
+The Analytic Model page needs to be reopened or refreshed to load the updated Data Layer modeling. Then you should save and deploy.
 
 -   Open *4AM_SalesOrderItems* and refresh page
 -   Save & deploy
@@ -106,15 +106,15 @@ This improvement provides many more features than the classical parent-child hie
 -   Time-dependent hierarchies
 -   Time-dependent hierarchy nodes & their attributes
 
-In the following exercise, we leverage their wealth to introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). The second marketing strategy is currently being developed and will only be set live at the beginning of the year, by leveraging time-dependency of hierarchies.
+In the following exercise, we introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). The second marketing strategy is currently being developed and will only be set live at the beginning of the year, by leveraging time-dependency.
 
-Note: We refrain from language-dependent hierarchy names & hierarchy nodes for simplicity's sake, but with the knowledge of the last chapter, you'd quickly be able to design the necessary text entities and associate them from the respective hierarchy directory & node entities.
+Note: We refrain from language-dependent hierarchy names & hierarchy nodes for simplicity, but you'd quickly be able to design the necessary text entities and associate them from the respective hierarchy directory & node entities if you are interested in that exercise.
 
 ### Create Hierarchy Directory Dimension
 
-All hierarchies and their properties are listed in their own hierarchy directory dimension. During our initial data import, the HierarchyDirectory table was imported that has all required fields & data. We will make the respective modeling here directly on this view.
+All hierarchies and their properties are listed in their own hierarchy directory dimension. During our initial data import, the HierarchyDirectory table was imported that has all required fields & data. We will make the respective modeling here directly on this view. However, in an enterprise environment we recommend not changing the directly imported Views and instead wrapping the view in a Graphical View so that our modeling does not change the base view.
 
-Hierarchy directories are modelled as dimensions and the product hierarchy entity will later associate to it. Since we deal with time-dependent hierarchies (note that we will configure the new product strategy to only go live at the start of 2024), two special columns (VALIDFROM, VALIDTO) tell the system the validity period of each hierarchy. In order for the Analytic Model to leverage this information, we need to assign the corresponding semantic types. Then when selecting the hierarchies in the Analytic Model, the system will query the hierarchy directory table with the reference date provided by the users and ensure that the only hierarchies whose validity period contains that reference date are being returned.
+Hierarchy directories are modelled as dimensions and the product hierarchy entity will later associate to it. Since we are configuring a time-dependent hierarchy (note that we will configure the new product strategy to only go live at the start of 2024), two special columns (VALIDFROM, VALIDTO) tell the system the validity period of each hierarchy. In order for the Analytic Model to leverage this information, we need to assign the corresponding semantic types. Then when selecting the hierarchies in the Analytic Model, the system will query the hierarchy directory table with the reference date provided by the users and return the hierarchies that are valid or the selected data.
 
 -   Open local table *HierarchyDirectory*
 -   Preview its data
@@ -126,7 +126,7 @@ Hierarchy directories are modelled as dimensions and the product hierarchy entit
     -   For HIERARCHYID, set label column to *DESCRIPTION*
 -   Save & deploy
 
-Note that we model the description as a language-independent field here. If we wanted to have language-dependent hierarchies, we'd need to follow the steps done above for product texts, where a text entity is created and associated to the dimension (here: HierarchyDirectory) via a text association.
+Note that we model the description as a language-independent field here. If we wanted to have language-dependent hierarchies, we'd need to follow the steps we completed above above for product texts, where a text entity is created and associated to the dimension (here: HierarchyDirectory) via a text association.
 
 As an additional exercise, you can use the provided table with language dependent data. That lesson is covered in...
 **
@@ -134,11 +134,11 @@ As an additional exercise, you can use the provided table with language dependen
 
 ### Create Text Node Dimension
 
-One of the new features in "external hierarchies with directories" is that node and leaves can belong to different dimensions. In the case of classical parent-child hierarchies like the one in 4VD_Employees, parent and child were always of the same dimension (i.e. each manager is also an employee).
+One of the new features in "external hierarchies with directories" is that node and leaves can belong to different dimensions. In the case of classical parent-child hierarchies like the one in 4VD_Employees, parent and child were always in the same dimension (i.e. each manager is also an employee).
 
 With the new hierarchy capability, more complex hierarchies like sales areas that contain cost centers and cost centers who contain employees can be modelled. In the simplest case, the other dimension is just a plain text node (i.e. just an ID and a description, possibly language-specific), not a full-fledged dimension with plenty of other attributes (like a sales area)
 
-During data import, a ProductHierarchyNodes table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there and in more productive scenarios, we'd highly suggest to add this additional level of abstraction, but as an exercise, it's totally enough to apply those changes directly on the table.
+During data import, a ProductHierarchyNodes table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there. In more productive scenarios, we'd highly suggest to add this additional level of abstraction, but for this eample we'll apply those changes directly on the table.
 
 -   Open table *ProductHierarchyNodes*
 -   Preview data
@@ -207,7 +207,7 @@ Now to associate the new external hierarchy from the product dimension.
 
 ### Update Analytic Model and preview results
 
-As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing its browser page. Subsequently save & deploy the updated model information.
+As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing the browser page. Then you also need to save & deploy the updated model information.
 
 -   Open *4AM_SalesOrderItems* and refresh its browser page
 -   Save & deploy
