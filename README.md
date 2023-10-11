@@ -6,7 +6,7 @@
 
 This repository contains the material for the SAP TechEd 2023 session called :point_right: **DA271 - Delighting Analytics Users via Advanced Data Models in SAP Datasphere**.
 
-This jump start session will give you the opportunity to build a scenario with exercises for SAP Datasphere. Analyzing complex business data in the SAP Analytics Cloud solution is massively simplified if modelers prepare their data models well using the SAP Datasphere solution. They can prepare the relevant dimensions of analysis and company KPIs regardless of internal complexity, leverage hierarchies, automate currency conversion, and more. Dig deep into the modeling tools of SAP Datasphere, get hands-on experience modeling an end-to-end case, and quickly prepare analytics that delight business users.
+Analyzing complex business data in the SAP Analytics Cloud solution is massively simplified if modelers prepare their data models well using the SAP Datasphere solution. They can prepare the relevant dimensions of analysis and company KPIs regardless of internal complexity, leverage hierarchies, automate currency conversion, and more. Dig deep into the modeling tools of SAP Datasphere, get hands-on experience modeling an end-to-end case, and quickly prepare analytics that delight business users. 
 
 ## Overview
 
@@ -25,13 +25,9 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 -   Google Chrome Browser
 -   Access to this GitHub repository
 -   Access to SAP Datasphere system
--   You will also need the following .json file for these exercises: :point_right: [DA271_DataModel - Quick Start.json](DA271_DataModel%20-%20Quick%20Start.json)
-
->   :warning: **Once downloaded to your local machine, please unzip the file into a separate folder.** :warning: **You will need it for the exercises. So, please remember the file location of the unzipped file!**
+-   You will also need the following .json file for these exercises: :point_right: [DA271_DataModel - Quick Start.json](DA271_DataModel%20-%20Quick%20Start.json) Please download it and remember its download location. 
 
 ## Exercises
-
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
 -   [Getting Started - Uploading Initial Data and Data Model](exercises/ex0/)
 -   [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
@@ -47,7 +43,7 @@ Provide the exercise content here directly in README.md using [markdown](https:/
 
 **OR** Link to the Tutorial Navigator for example...
 
-Start the exercises [here](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html).
+Start the exercises [here](exercises/ex0/).
 
 **IMPORTANT**
 
