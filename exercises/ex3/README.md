@@ -1,277 +1,167 @@
-# Hierarchies
+# Add labels & internationalization
 
-In this chapter we configure several hierarchies to use in our Analytic Model and preview the results. 
+In this exercise we enhance the data model such that we add labels to countries & regions as well as full names to employees.
 
-The time dimension includes several hierachies (e.g. Year-Month-Day) that we can explore directly.
+## Add language-independent labels to employees & companies
 
-Then we will configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchies for products to familiarize ourselves with their capabiliites & modelling requirements
+In this exercise we deal with language-independent labels for company names & employees. These obviously don't change with the user language.
 
-## Explore time hierarchy
+### Update Employee labels
 
-The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Since each day belongs to a month, quarter and year, the system comes pre-loaded with common hierarchies that we can inspect in modelling and then use in reporting
+-   Open entity V4D_Employees and do these changes
+    -   Add semantic type of FULL NAME to Text
+    -   Set Label Column of EMPLOYEEID to FULL NAME
+-   Save & deploy
 
-### Understand the pre-loaded level-based Time Dimension hierachy
+### Update Company Labels
 
--   Open ER Model
+-   Open entity V4D_BusinessPartners and do these changes
+    -   Add semantic type of COMPANYNAME to Text
+    -   Set Label Column of PARTNERID to COMPANYNAME
+-   Save & deploy
 
--   Choose node *Time Dimension - Day* to open its properties dialog
-<img width="388" alt="Screenshot 2023-10-08 at 7 49 08 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d5a97a30-3ea3-415e-8e20-270644ef5d60">
+### Update Analyic Model and preview results
 
--   Click the hierarchy icon in the view properties  
-   
-
--   Inspect the three pre-delivered hierarchies  
-    ![](1de7cbb63fabce1bc772ef0dfe59b1cb.png)
-
--   Open Analytic Model *SalesOrderItems*
-
--   Open Data Preview
-
--   Drill by CREATION DATE
-
--   Click the three dots to the right of CREATION DATE to select the hierarchy  
-    ![](c484af7ca02a06a9dab1a237d8895e8e.png)
-
--   Click the three pre-delivered hierarchies  
-    ![](f79214b4d4761ec0a7a7f53bc8b69fce.png)
-
--   Choose hierarchy *Year, Month, Day*
-
--   Use the hierarchy drill-down to confirm the aggregation roll-ups for the node levels  
-    ![](b12fd92fb7f3bbc8e63a1e61601c82f0.png)
-
-## Classic hierarchy model
-
-SAP Datasphere has supported hierarchies for many years with two separate hierarchy models, namely
-
--   Level-based hierarchies and
-
--   Parent-child hierarchies
-
-We'll use both types to understand their power and expressability.
-
-In a subsequent chapter, we'll get to know the new, even more flexible "external hierarchies with directory" feature that has just been introduced in October 2023. This new capability provides many more features that are aligned with the classic model of S/4 and BW hierarchies so that those hierarchies can be imported and leveraged in Datasphere with most of their features.
-
-### Create a regional, level-based hierarchy
-
-We now follow the pattern of the time hierarchy to build a region hierarchy of Region-Country-City. Structurally, this is called a "level-based hierarchy" in which different column values of an entry together form a hierarchy. In the case at hand, each ADDRESSID has its respective values of REGION, COUNTRY and CITY. Together, they form a hierarchy. The classic example here is the time hierarchy that we saw above. Level-based hierarchies are "balanced", i.e. they always have the same depth in each subtree (here: depth = 3)
-
--   Open entity 4VD_Addresses
-
--   Find hierarchy icon in properties pane and click it
-
--   Create new level-based hierarchy based on columns REGION-COUNTRY-CITY in that order  
-    ![](da8bab83da6a592b4256c348188df708.png)
-
--   Save & Deploy
-
-### Create organizational hierarchy of type parent-child hierarchy
-
-For the organizational hierarchy, we leverage the reporting structure of the company. Each employee has a manager and we can thus speak of a parent-child relationship between the two by configuring a "parent-child hierarchy". Unlike level-based hierarchies, parent-child hierarchies are typically not balanced since some managers might have only direct reports while others might manage managers who manage their own teams.
-
-In our example data, each row in the entity 4VD_Employees has columns for the manager information. This is the simplest case of parent-child hierarchy to introduce the world of parent-child hierarchies.
-
--   Open entity 4VD_Employees
-
--   Find hierarchy icon in properties pane and click it
-
--   Create new parent-child hierarchy and specify its properties like in the screenshot below
-
-    -   Business name: Organizational Hierarchy
-
-    -   Parent: MANAGERID
-
-    -   CHILD: EMPLOYEEID
-
-![](3fdf68291669e3e138ba1352fed16416.png)
-
-### Update Analytic Model and preview results
-
-The new data layer modeling needs to be considered also by the Analytic Model - the Analytic Model page needs to be loaded newly or refreshed. Then you should save and deploy.
+The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy
 
 -   Open *4AM_SalesOrderItems* and refresh page
-
+-   Confirm that dimension PARTNERID now has a capital T (for Text) next to itself in the dimensin list
+-   Confirm that RESPONSIBLE now also has a capital T next to itself in the dimension list
 -   Save & deploy
-
 -   Open Data Preview
+-   Drill by PARTNERID and confirm that company name is now displayed
+-   Drill by RESPONSIBLE and confirm that employee's full name is now displayed
+-   Check drill-settings (three dots in dimension list on the right) and change presentation from ID+Description to Description or just to ID.
 
--   Drill by RESPONSIBLE
+## Add language-independent labels for products and product categories
 
--   Open three dots next to RESPONSIBLE and choose to select another hierarchy   
-    ![](01e3a2cdd07837b6f802869e123cbc13.png)
+Users feel a lot more at ease if they see data in their mother tongue rather than in some global language. To this end, SAP Datasphere provides the support of language-dependent labels. Depending on the data access language of the user (by default this is their logon language and mother tongue), the labels for objects are drawn in that specific language.
 
--   Choose Organizational Hierarchy from the list of hierarchies  
-    ![](d2353cea1a4f6ed574f8008f65b1bbdf.png)
+The recommended modelling setup for this to work is as follows:
 
--   Organizational hierarchy is now used to display data. Rollups to intermediate nodes happens automatically![](8fc3470aa3a36744f32906e161bd9f1f.png)
+An entity of usage type Dimension uses a text association to link itself to an entity of type Text. The association uses the dimensions key field (not some other field!) to link to the key of the Text entity. If the key is comprised of several key fields (also known as "composite key" or "compound key"), then this is totally fine. It is dedicatedly not recommended, and a warning will be issued in cases where:
 
--   Drill by additional dimensions like e.g. COUNTRIES is fully supported  
-    ![](3dc917c9d61db7d8cb8bd2b4c1c33abb.png)
+-   the text association does not start from a dimension (but e.g. a Fact) or
+-   the text association is on a non-key field of the dimension
 
-## External hierarchies with directories
+Both cases are technically supported, but a warning will be issued. Both cases should rather have a dimension in the middle whose key is used in the text association. We'll see more of this below.
 
-In October 2023, SAP Datasphere introduced a revamped data model for parent-child hierarchies that is aligned with the SAP S/4 and SAP BW data models for hierarchies. This capability is called "[external hierarchies with directories](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36c39eee184c485a80ebce9d0fec49ec.html)".
+### Add language-specific names to Product dimension
 
-This improvement provides many more features than the classical parent-child hierarchies, namely
-
--   Support of S/4 and BW hierarchies and alignment w/ their data model
-
--   Data-driven definition of hierarchies
-
--   Support of Text Nodes (e.g. GL account groups - GL accounts)
-
--   Support of nodes of different dimensions within the same hierarchy (e.g. sales area - cost center – employee)
-
--   Language-dependent hierarchy descriptions
-
--   Language-dependent node texts
-
--   Time-dependent hierarchies
-
--   Time-dependent hierarchy nodes & their attributes
-
-In the following exercise, we leverage their wealth to introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). The second marketing strategy is currently being developed and will only be set live at the beginning of the year, by leveraging time-dependency of hierarchies.
-
-Note: We refrain from language-dependent hierarchy names & hierarchy nodes for simplicity's sake, but with the knowledge of the last chapter, you'd quickly be able to design the necessary text entities and associate them from the respective hierarchy directory & node entities.
-
-### Create Hierarchy Directory Dimension
-
-All hierarchies and their properties are listed in their own hierarchy directory dimension. During our initial data import, the HierarchyDirectory table was imported that has all required fields & data. We will make the respective modeling here directly on this view.
-
-Hierarchy directories are modelled as dimensions and the product hierarchy entity will later associate to it. Since we deal with time-dependent hierarchies (note that we will configure the new product strategy to only go live at the start of 2024), two special columns (VALIDFROM, VALIDTO) tell the system the validity period of each hierarchy. In order for the Analytic Model to leverage this information, we need to assign the corresponding semantic types. Then when selecting the hierarchies in the Analytic Model, the system will query the hierarchy directory table with the reference date provided by the users and ensure that the only hierarchies whose validity period contains that reference date are being returned.
-
--   Open local table *HierarchyDirectory*
-
--   Preview its data
-
--   In section General, change Semantic Usage to *Dimension*
-
--   In section Attributes, change
-
-    -   For VALIDFROM, set semantic type to *Business Date - From*   
-        For VALIDTO, set semantic type to *Business Date - To*
-
-    -   For DESCRIPTION, set semantic type to *Text*
-
-    -   For HIERARCHYID, set label column to *DESCRIPTION*
-
+-   Open entity ProductTexts and do these changes
+    -   Change semantic usage to Text
+    -   Set LANGUAGE to semantic type Language
+    -   Set SHORT_DESCR to semantic type Text
+    -   Set SHORT_DESCR as label column of PRODUCTID
+-   Save & deploy
+-   Add text association between 4VD_Product.PRODUCTID and ProductTexts
 -   Save & deploy
 
-Note that we model the description as a language-independent field here. If we wanted to have language-dependent hierarchies, we'd need to follow the steps done above for product texts, where a text entity is created and associated to the dimension (here: HierarchyDirectory) via a text association.
+As you see, here we follow the the standard way for language-dependent texts to work: a dimension (here 4VD_Products) with its key (here 4VD_Products .PRODUCTID) uses a text association to map to a text entity (here ProductTexts) and its key (here ProductTexts.PRODUCTID)
 
-As an optional exercise, you can create a table with language dependent data, enter some data to it and do that modelling by yourself.
+### Add language-specific names to product category
 
-### Create Text Node Dimension
+#### Create new Product Category Dimension
 
-One of the new features in "external hierarchies with directories" is that node and leaves can belong to different dimensions. In the case of classical parent-child hierarchies like the one in 4VD_Employees, parent and child were always of the same dimension (i.e. each manager is also an employee).
+The product category so far is just an attribute of 4VD_Products. In order to comply w above-mentioned modelling best practices, we require a real product category dimension that subsequently links out to the Text entity for product category texts.
 
-With the new hierarchy capability, more complex hierarchies like sales areas that contain cost centers and cost centers who contain employees can be modelled. In the simplest case, the other dimension is just a plain text node (i.e. just an ID and a description, possibly language-specific), not a full-fledged dimension with plenty of other attributes (like a sales area)
+We'll therefore create a new dimension view for product categories and base it on the the imported table ProductCategories. We use the occasion to also hide fields that we don't want to expose to our analytics users (like CREATEDBY and CREATEDAT)
 
-During data import, a ProductHierarchyNodes table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there and in more productive scenarios, we'd highly suggest to add this additional level of abstraction, but as an exercise, it's totally enough to apply those changes directly on the table.
+Since table ProductCategories only has three columns, the hiding of CREATEDBY and CREATEDAT leaves only a minimal dimension (consisting of just one field, PRODUCTCATEGORYID), but that's fine. In many more realistic cases there'd be own attributes to the category, like its category manager, a hierarchy on it or else, making it worthwhile to model this as a dimension in its own right.
 
--   Open table *ProductHierarchyNodes*
+-   Create new Graphical View
+-   Draw table ProductCategories into the canvas
+-   Add a projection node and choose to exclude columns CREATEDBY and CREATEDAT.
+-   Choose final node and set semantic usage to Dimension
+-   Save & deploy with name as *4VD_ProductCategories*
 
--   Preview data
+#### Update Product Category Text Entity
 
--   In section *General*, change Semantic Usage to *Dimension*
+-   Open entity ProductCategoryTexts and do these changes
+    -   Change semantic usage to Text
+    -   Set LANGUAGE to semantic type Language
+    -   Set SHORT_DESCR to semantic type Text
+    -   Set SHORT_DESCR as label column of PRODUCTCATEGORYID
+-   Save & deploy
+-   Add text association between 4VD_ProductCategories.PRODUCTCATEGORYID and ProductCategoryTexts. PRODUCTCATEGORYID
+-   Save & deploy
+-   Add assocation between 4VD_Products and 4VD_ProductCategories
 
--   In section *Attributes*, do these changes
+### Update ER Model
 
-    -   For DESCRIPTION, set semantic type to *Text*
+We should update the ER model w the new objects and their relationships in order to always have a good overview of our overarching model. This is easy to do since we can leverage the newly drawn associations to add the respective entities.
 
-    -   For NODEID, set Label column to DESCRIPTION
-
+-   Open ER Model 4EM_Overview_Simple
+-   Select node 4VD_Products and choose plus sign
+-   Choose to add related entities 4VD_ProductCategories and ProductTexts
 -   Save & deploy
 
-### Create entity for product hierarchy with directory
+### Update Analyic Model and preview results
 
-Now let's get to the actual hierarchy object. A new semantic usage "Hierarchy with Directory" has been introduced that contains information about the parent-child relationship, which of the multiple parallel hierarchies that relationship belongs to, the type of node (here: is the current node is a product or text node) and a redirection to the actual node key.
+The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
 
-Note that the model makes a distinction between the key used in the parent-child relationship (here: NODEID) and the key used to identify the respective entity key (of the product or text node dimensions).
+-   Open *4AM_SalesOrderItems* and refresh page
+-   Confirm that dimension PRODUCTID now has a capital T (for Text) next to itself in the dimension list
+-   Open node PRODUCTID and choose to add associated dimension PRODCATEGORYID. Note that it also has a capital T (for Text) next to itself
+-   Save & deploy
+-   Open Data Preview
+-   Drill by PRODUCTID and confirm that Product Names are now being displayed
+-   Drill by PRODCATEGORYID and confirm that the category ID name is now displayed
+-   Change settings of your user. In section Language & Region, change data access language from English to French. Confirm with Close
+-   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see french texts for products and their category.
 
-As before, the required data has been imported as local table ProductHierarchy during the setup steps. We could wrap this table in a view for an additional level of abstraction & flexibility or just update the table's semantic information like we do here.
+## Add language-independent labels for countries, regions
 
--   Open table *ProductHierarchy*
+### Add country text
 
--   Preview its data
+-   Open entity Countries and do these changes
+    -   Add semantic usage to text
+    -   Set LANGUAGE to semantic type Language
+    -   Set COUNTRYTEXT to semantic type Text
+    -   Set COUNTRYTEXT as label column of COUNTRYCODE
+-   Save & deploy
+-   Add assocation between 4VD_Addresses and its attribute COUNTRY and Countries.COUNTRYCODE
+-   Save & deploy
 
--   In section Associations
+Note the warning about key mapping in the properties of 4VD_Addresses. This is because of the above-mentioned modelling best practices. Here, the text association from 4VD_Address to the text entities for country text & region text are not using the key of 4VD_Addresses. For cleaner modelling, there should be an own Country dimension and an own Region dimension that are put in between like we did above for product categories.
 
-    -   Create an association to dimension *HierarchyDirectory*  
-        Map column *ProductHierarchy.HIERARCHY* to column *HierarchyDirectory.HIERARCHYID*
+![](media/64272377a7c415df34808e8cdce8a721.png)
 
-    -   Create an association to dimension *ProductHierarchyNodes*  
-        Map column *ProductHierarchy.TEXTNODEID* to column *HierarchyDirectory.NODEID*
+### Add region text
 
--   In section *General*, change Semantic Usage to *Hierarchy with Directory*. A new button Hierarchy with Directory Settings appears together with some error message that we haven't completed all modelling steps yet  
-    ![](47da1ac9e55ff1c952f53de12ac90cbb.png)
+-   Open entity Countries and do these changes
+    -   Add semantic usage to text
+    -   Set LANGUAGE to semantic type Language
+    -   Set COUNTRYTEXT to semantic type Text
+    -   Set COUNTRYTEXT as label column of COUNTRYCODE
+-   Save & deploy
+-   Add text assocation between 4VD_Addresses and its attribute REGION and REGION.REGIONCODE
 
--   Click button Hierarchy with Directory Settings to open this configuration window  
-    ![](03c2e045341624a0ef03249fba49eceb.png)
+### Update ER Model
 
--   Fill the configuration window as follows
+We should update the ER model w the new objects and their relationships in order to always have a good overview of our overarching model. This is easy to do since we can leverage the newly drawn associations to add the respective entities.
 
-    -   Parent: PARENTID
-
-    -   Child: CHILDID
-
-    -   Hierarchy Name Column: HIERARCHY
-
-    -   Node Type Column: NODETYPE
-
-    -   Node Type Value \#1
-
-        -   Node Type Value: ProductNode
-
-        -   Set as Leaf: Checked
-
-        -   Column 1: PRODUCTID
-
-    -   Node Type Value \#2
-
-        -   Node Type Value: TextNode
-
-        -   Set as Leaf: Unchecked
-
-        -   Column 1: TEXTNODEID
-
-![](03524322d9865f3fc4cc014e136855c6.png)
-
--   Save & Deploy
-
-### Add external hierarchy to product dimension
-
-Now to associate the new external hierarchy from the product dimension.
-
--   Open dimension 4VD_Products
-
--   Create new assocation of type "Hierarchy with Directory Association"   
-    ![](aea0b53af5cbe121822deb7d557f5584.png)
-
--   Choose ProductHierarchy from the list of suitable entities ![](eff6d84139d894eae8de570e1a547dee.png)
-
--   Save & Deploy
+-   Open ER Model 4EM_Overview_Simple
+-   Select node 4VD_Addresses in the canvas and choose plus sign
+-   Choose to add related text entities Countries & Regions
+-   Save & deploy
 
 ### Update Analytic Model and preview results
 
-As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing its browser page. Subsequently save & deploy the updated model information.
+The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
 
--   Open *4AM_SalesOrderItems* and refresh its browser page
-
+-   Open *4AM_SalesOrderItems* and refresh page
+-   Confirm that dimension COUNTRY now has a capital T next to itself in the dimension list
+-   Confirm that REGION now also has a capital T next to itself in the dimension list
 -   Save & deploy
-
 -   Open Data Preview
-
--   Drill by PRODUCTID
-
--   Choose a hierarchy via the three dots in the Rows area of the Builder panel  
-    ![](6f0a5bc4493bdd8ab8f52903c41ce0d5.png)
-
 -   Drill by COUNTRY and confirm that country name is now displayed in French
-
 -   Drill by REGION and confirm that region name is now displayed in French
-
 -   Change data access settings of your user from French to English
-
 -   Repeat drilling by COUNTRY and REGION and confirm that all their texts are now displayed in English again.
 
+## Summary
+
+Great work! You were able to enhance the data model by adding labels to countries & regions as well as full names to employees.
+
+Continue to - [Exercise 4 – Currency](../ex4/README.md) Conversion
