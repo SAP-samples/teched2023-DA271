@@ -8,9 +8,28 @@
 
 We will now create an Analytic Model to support consumption of the imported data model.
 
-We start with a minimal model and subsequently enhance it step by step. On the way, we get to know the features of the Analytic Model editor incl. adding of dimensions, modelling of measures, preparation of variables and previewing data.
+User Steps:
 
-## Add associated dimensions
+-   Select the menu option **Data Builder** on the left-hand side
+-   Under the **Analytic Model** tab**,** click on **New Analytic Model**
+-   Because the system detects associated dimensions from our **4VF_SalesOrderItems**, you will see the screen below.
+    -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
+
+![](media/f7e27b3998798b8a4c9d74cd50059f96.png)
+
+We start with this minimal model and subsequently enhance it step by step.
+
+![](media/7d207fbeab53cbd8d37cec20fe28848e.png)
+
+-   **Deploy** your model and name it **4AM_SalesOrderItems**
+-   **Preview** your data![](media/7fe2730f27132200b1e73c09a5563a64.png)
+-   Check various dimensions to drill by, change their order, add a filter, etc
+-   The **Builder** panel ![](media/acd718ea27982c9573ef49020840f9c1.png)is displayed at the right side of the application. You can show it or hide it by choosing **Query Builder Designer Panel**.
+-   When you choose **Available Objects**, you get a list of all available dimensions and measures in the analytic model. Here you can select dimensions and measures and assign them directly to the table's rows or columns by clicking ![](media/7cdf02ef1f1fc62872287e4c403700da.png)Column or ![](media/8a01b48dd17bbbd968f3effdc7b8b319.png)Row. Here, you can see the dimension PRODUCTID has been added a row. You also see the ability to drill-down into the PRODUCTID dimension. All the measures have been added as columns as well
+
+    ![](media/aa14741a3acdada459f2d68f81927787.png)
+
+## Add Associated Dimensions
 
 Add additional drill-dimensions by adding nested dimensions
 
@@ -18,8 +37,6 @@ User steps:
 
 -   Add dimensions for Business Partner & Address. Include attribute Company Name of Business Partner and Country, Region, City, Street, Postalcode of Address
 -   Reopen data preview and confirm that you can now also drill by these dimensions
-
-## Add Associated Dimensions
 
 ## Add Measures & Variables
 
@@ -29,9 +46,9 @@ User steps:
 
 -   Add calculated measure Average Price (AVG_PRICE) as GROSSAMOUNT / QUANTITY
 -   Add restricted measures
-    1.  Domestic Gross Sales (DOMESTIC_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY = 'DE'
-    2.  International Gross Sales (INTL_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY != 'DE'
--   Add Filter Variable YEAR w settings multi-value, no default, not mandatory   
+    -   Domestic Gross Sales (DOMESTIC_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY = 'DE'
+    -   International Gross Sales (INTL_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY != 'DE'
+-   Add Filter Variable YEAR w settings multi-value, no default, not mandatory  
     Note: explain that many users will want to see only the current year. This way the system pre-filters on the current year. The same could be true for e.g. own region. Explain that other variable types exist also (w link to docu)
 -   Save & deploy
 -   Preview data and confirm empty prompt. Check new calculations (e.g. drill by country)
