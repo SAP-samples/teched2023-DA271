@@ -1,4 +1,4 @@
-# Wrap-up
+# Session Wrap-up
 
 We started the exercise by importing a couple of tables that had been superficially wired up for us as a fact with a couple of dimensions around it. We prepared a rich data model for our analytics users and touched a multitude of functionalities on the way:
 
