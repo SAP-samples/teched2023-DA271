@@ -30,16 +30,21 @@ So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just n
     -   set semantic type of GROSSAMOUNT to Amount w Currency and Unit Column to CURRENCY
     -   set semantic type of TAXAMOUNT to Amount w Currency and Unit Column to CURRENCY
     -   set semantic type of QUANTITY to Quantity with Unit and Unit Column to QUANTITYUNIT
+
+![](media/e0b946cc9d7b3d98f19b9eedbe68b064.png)
+
 -   Save & Deploy
 
 ## Update Analytic Model and preview results
 
-Refrest the Analytic Model to take note of the updated metadata. Then save and deploy.
+Refresh the Analytic Model to take note of the updated metadata. Then save and deploy.
 
 -   Open *4AM_SalesOrderItems* and refresh page
 -   Save & deploy
 -   Open Data Preview
 -   Confirm that all amounts now show a dollar sign. The quantity shows a unit symbol (EA for EACH) and the average price correctly denotes its unit as \$ / EA, i.e. dollars per piece.
+
+![](media/c3f4a57d9b483e0a7c800ad5f7b70a95.png)
 
 ## Aggregation behavior for mixed currency data
 
@@ -51,6 +56,9 @@ The dollar sign semantics also affect the calculation to ensure currencies are c
 -   Choose save
 -   Refresh data preview of *4AM_SalesOrderItems*
 -   Confirm that NETAMOUNT, GROSSAMOUNT, TAXAMOUNT and Avg Price now all show \* only, denoting that no value can be displayed
+
+![](media/f2680f992521e6e7231ce0e88cdbc54a.png)
+
 -   Drill by CURRENCY
 -   Confirm that now all numbers display normally - the EUR amounts display a Euro sign (€) while the dollar amounts display a USD dollar sign (\$)  
     ![](5bb2d413a0eb1dee7d8ea442a845c8c5.png)  
@@ -81,12 +89,20 @@ We could now run all 8 data flows manually; just open each one and hit run. Sinc
 -   Create new task chain
 -   Open repository section for data flows
 -   Drag data flow "Conversion Factors (ODP)" onto the canvas and drop it on the drop zone
--   Choose sign on the node to add a parallel branch
+-   Choose ![](media/eaacdd20ee20cfb64379eaf5b872fef2.png) sign on the node to add a parallel
+
+![](media/3255add923c27983776a03da33db7f0a.png)
+
 -   Drag & drop data flow "Currency Code Names (ODP)" onto the new drop zone
--   
 -   Repeat this 6 more times so that finally all 8 data flows are in parallel nodes of the same task flow
+
+![](media/346dd9353311969dd867598cfe08f4b0.png)
+
 -   Save & deploy as 4TC_TCUR_Replication
 -   Open Data Integration Monitor and authorize system to run task chains
+
+![](media/363d8c9674a2592360ac534d0777259a.png)
+
 -   Change to Task Chain Monitor
 -   Select entry 4TC_TCUR_Replication and choose Run
 -   Choose to see run details of 4TC_TCUR_Replication
@@ -101,6 +117,19 @@ Now all groundwork has been laid for automatic currency conversion
 -   Open *4AM_SalesOrderItems*
 -   Choose to create a new measure of type Currency Conversion Measure
 -   Fill its details as follows
+
+![](media/61540c7182cb8ed5fd87b675fe865d4e.png)
+
 -   Save & deploy
 -   Preview data of Analytic Model
 -   Confirm gross amount is now automatically converted and displayed as Gross Sales EUR
+
+![](media/7e99c133e240ee70692913ba761f2a24.png)
+
+## Summary
+
+Way to go! You were able to semantic annotation to point out the relationship between a value and its currency.
+
+This brings us to the end of the TechEd Session on Data Modelling!!
+
+Continue to [Session Wrap-Up](../Session%20Wrap-Up) for a quick summary of lessons learned.
