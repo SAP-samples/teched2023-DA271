@@ -11,7 +11,7 @@ We will now create an Analytic Model to support consumption of the imported data
 User Steps:
 
 -   Select the menu option **Data Builder** on the left-hand side
--   Under the **Analytic Model** tab**,** click on **New Analytic Model**
+-   Under the **Analytic Model** tab\*\*,\*\* click on **New Analytic Model**
 -   Because the system detects associated dimensions from our **4VF_SalesOrderItems**, you will see the screen below.
     -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
 
@@ -22,12 +22,19 @@ We start with this minimal model and subsequently enhance it step by step.
 ![](media/7d207fbeab53cbd8d37cec20fe28848e.png)
 
 -   **Deploy** your model and name it **4AM_SalesOrderItems**
--   **Preview** your data![](media/7fe2730f27132200b1e73c09a5563a64.png)
+-   **Preview** the data
+
+![](media/7fe2730f27132200b1e73c09a5563a64.png)
+
 -   Check various dimensions to drill by, change their order, add a filter, etc
 -   The **Builder** panel ![](media/acd718ea27982c9573ef49020840f9c1.png)is displayed at the right side of the application. You can show it or hide it by choosing **Query Builder Designer Panel**.
--   When you choose **Available Objects**, you get a list of all available dimensions and measures in the analytic model. Here you can select dimensions and measures and assign them directly to the table's rows or columns by clicking ![](media/7cdf02ef1f1fc62872287e4c403700da.png)Column or ![](media/8a01b48dd17bbbd968f3effdc7b8b319.png)Row. Here, you can see the dimension PRODUCTID has been added a row. You also see the ability to drill-down into the PRODUCTID dimension. All the measures have been added as columns as well
+-   When you choose **Available Objects**, you get a list of all available dimensions and measures in the analytic model. Here you can select dimensions and measures and assign them directly to the table's rows or columns by clicking ![](media/7cdf02ef1f1fc62872287e4c403700da.png)Column or ![](media/8a01b48dd17bbbd968f3effdc7b8b319.png)Row.
+-   Here, you can see the dimension PRODUCTID has been added a row. You also see the ability to drill-down into the PRODUCTID dimension. All the measures have been added as columns as well
 
-    ![](media/aa14741a3acdada459f2d68f81927787.png)
+![](media/aa14741a3acdada459f2d68f81927787.png)
+
+-   You can filter on dimensions and measures using the ![](media/35c540e99672a162c9b1321d2ec4cd56.png) button (top-left area)
+-   Click on **Model** to return to your analytic model
 
 ## Add Associated Dimensions
 
@@ -35,51 +42,70 @@ Add additional drill-dimensions by adding nested dimensions
 
 User steps:
 
--   Add dimensions for Business Partner & Address. Include attribute Company Name of Business Partner and Country, Region, City, Street, Postalcode of Address
--   Reopen data preview and confirm that you can now also drill by these dimensions
+-   Select the **SALESORDERID** (**4VD_SalesOrders** dimension)
+-   Within the Properties section, enable **PARTNERID, RESPONSIBLE & CREATION DATE** within the **Associated Dimensions** section
+-   You should now see the added dimensions that stem from the **4VD_SalesOrders** dimension
+
+![](media/516e49d65b42d31f120637a7d7254cb1.png)
+
+-   We want to add the **4VD_Address** dimension, which is associated to the **4VD_BusinessPartners** dimension object
+-   Your more robust analytic model should now look like this:
+
+![](media/9b40e8559fdd329c5eff31f8f283f6b9.png)
+
+-   Within the **Attributes** section of **Properties**, enable the following attributes for the given dimensions:
+    -   Business Partner dimension: COMPANYNAME
+    -   Address dimension: Country, REGION, CITY, STREET, POSTALCODE
+-   Reopen data preview and confirm that you can now also drill by these dimensions (if, for any reason you do not see your added dimensions, **deploy** your Analytic Model first before continuing to preview data)
 
 ## Add Measures & Variables
 
-Add calculated & restricted measures. (Note: Point out that in large organization its crucial to agree on common definition of KPIs. This is helpful for their reuse (saves time) and governance (we all use same definitions)
+Add calculated & restricted measures. In large organizations, its crucial to agree on common definition of KPIs. This is helpful for their reusability (saves time) and governance (we all use same definitions).
 
 User steps:
+
+-   To add a calculated measure, locate the **Measures** section within **Properties** and click the **+** sign. Select Calculated Measure
+
+![](media/d21152bcc9058cac4fbc4a953bbd29b5.png)
 
 -   Add calculated measure Average Price (AVG_PRICE) as GROSSAMOUNT / QUANTITY
--   Add restricted measures
-    -   Domestic Gross Sales (DOMESTIC_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY = 'DE'
-    -   International Gross Sales (INTL_GROSSAMOUNT) based on measure GROSSAMOUNT and with restriction as COUNTRY != 'DE'
--   Add Filter Variable YEAR w settings multi-value, no default, not mandatory  
-    Note: explain that many users will want to see only the current year. This way the system pre-filters on the current year. The same could be true for e.g. own region. Explain that other variable types exist also (w link to docu)
--   Save & deploy
--   Preview data and confirm empty prompt. Check new calculations (e.g. drill by country)
--   Redo prompt (button exists!) and filter on 2023. Confirm data is now filtered (e.g. by taking YEAR into drill-down)
+-   Name your measure **Avg Price**
 
-## Add More Complex Measures & Variables
+![](media/1550894b2d51f893439adbf52770ab3b.png)
 
-Showcase features count distinct & constant selection
+-   You can navigate back to the main properties window by clicking on the object link, as shown below
 
-User steps:
+![](media/2b01e176bee5cf7b7215a1b39fa127fe.png)
 
--   Add restricted measure All Countries (ALL_COUNTRIES_GROSSAMOUNT) based on measure GROSSAMOUNT and w empty expression. Activate constant selection on dimension COUNTRY  
-    Note that constant selection ensures that a given dimension is taken out of drill-down even it actually is part of drill-down. This is important to compute reference figures (like e.g. here all countries). We could also have used a variable and used it in the restriction expression to make the list of reference countries configurable (optional exercise w/o guide)
--   Add calculated measure Share of Sales (SHARE_OF_SALES) w expression 100 \* GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
--   Add count distinct measure Customer Count (CUSTOMER_CNT) based on Dimension PARTNERID
--   Add calculated measure Avg Spend per Customer (AVG_GROSSAMOUNT_PER_CUSTOMER) w expression GROSSAMOUNT / CUSTOMER_CNT
--   **Deploy** entity
--   Preview data. Drill by COUNTRY and PARTNERID
+-   Following the previous navigation path, let’s now create **restricted measures**.
+    -   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' as an expression
+    -   Create **International Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY != 'DE' as an expression
+-   Add a **Filter Variable** (within Properties Window) *YEAR* with the filter type of **Multiple single values**
+
+![](media/2db949fc0c1dda668af857dffe3f4e2a.png)  
+Many users will want to see only the current year. This way the system pre-filters on the current year. The same could be true for your own region.
+
+-   **Deploy** your Analytic Model
+-   Preview data and open the **Year** filter variable.
+
+![](media/26f76cfa604c2ca94525b1730f6fda87.png)
+
+-   Select years **2021, 2022, 2023** and click **OK**
+-   Under **Dimensions,** drill into **Creation Date** and enable the row on **YEAR** to reveal the filtered years
+
+![](media/e15014576b679911cbd8c14ff31bdd95.png)
 
 ## Introduce Model Enhancements
 
-For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained. Also all amounts are in US Dollars, but this is neither shown nor converted into another currency.
+For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained.
 
 User Steps:
 
 -   Preview data
--   Drill by REGION and COUNTRY. Realize you need to understand their respective abbreviations to understand what you see on the screen.
--   Drill by PARTNERID. Realize You need to also drill by Company Name to realize which customer this is
--   Drill by Employee ID. Realize you need to add Full Name into drill to realize which user this is. If you only drilled by Full Name and two users had the same name, you'd not realize. Also realize there is no way to know/see the organizational hierarchy
-
-Drill by Product Category & Product. Realize there are no product names or custom groupings of products (e.g. strategic products, low-end products or else)
+-   Drill by REGION and COUNTRY (as rows). Realize the need to understand their respective abbreviations
+-   Drill by PARTNERID (as rows). Realize the need to also drill by COMPANYNAME to realize which customer this is
+-   Drill by EMPLOYEEID. Realize you need to add Full Name into drill to realize which user this is. If you only drill by Full Name and two users had the same name, you'd not realize which individual this is. Also realize there is no way to know/see the organizational hierarchy
+-   Drill by PRODUCTCATEGORY & PRODUCTID. Realize there are no product names or custom groupings of products (e.g. strategic products, low-end products or else)
 
 ## Summary
 
