@@ -1,12 +1,12 @@
-# Add labels & internationalization
+# Add Labels & Internationalization
 
 In this exercise we enhance the data model such that we add labels to countries & regions as well as full names to employees.
 
-## Add language-independent labels to employees & companies
+## Add Language-independent Labels to Employees & Companies
 
 In this exercise we deal with language-independent labels for company names & employees. These obviously don't change with the user language.
 
-### Update Employee labels
+### Update Employee Labels
 
 -   Open entity V4D_Employees and do these changes
     -   Add semantic type of FULL NAME to Text
@@ -20,7 +20,7 @@ In this exercise we deal with language-independent labels for company names & em
     -   Set Label Column of PARTNERID to COMPANYNAME
 -   Save & deploy
 
-### Update Analyic Model and preview results
+### Update Analyic Model and Preview Results
 
 The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy
 
@@ -33,7 +33,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Drill by RESPONSIBLE and confirm that employee's full name is now displayed
 -   Check drill-settings (three dots in dimension list on the right) and change presentation from ID+Description to Description or just to ID.
 
-## Add language-independent labels for products and product categories
+## Add Language-independent Labels For Products and Product Categories
 
 Users feel a lot more at ease if they see data in their mother tongue rather than in some global language. To this end, SAP Datasphere provides the support of language-dependent labels. Depending on the data access language of the user (by default this is their logon language and mother tongue), the labels for objects are drawn in that specific language.
 
@@ -46,7 +46,7 @@ An entity of usage type Dimension uses a text association to link itself to an e
 
 Both cases are technically supported, but a warning will be issued. Both cases should rather have a dimension in the middle whose key is used in the text association. We'll see more of this below.
 
-### Add language-specific names to Product dimension
+### Add Language-Specific Names to Product Dimension
 
 -   Open entity ProductTexts and do these changes
     -   Change semantic usage to Text
@@ -59,7 +59,7 @@ Both cases are technically supported, but a warning will be issued. Both cases s
 
 As you see, here we follow the the standard way for language-dependent texts to work: a dimension (here 4VD_Products) with its key (here 4VD_Products .PRODUCTID) uses a text association to map to a text entity (here ProductTexts) and its key (here ProductTexts.PRODUCTID)
 
-### Add language-specific names to product category
+### Add Language-specific Names to Product Category
 
 #### Create new Product Category Dimension
 
@@ -96,7 +96,7 @@ We should update the ER model w the new objects and their relationships in order
 -   Choose to add related entities 4VD_ProductCategories and ProductTexts
 -   Save & deploy
 
-### Update Analyic Model and preview results
+### Update Analyic Model and Preview Results
 
 The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
 
@@ -110,9 +110,9 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Change settings of your user. In section Language & Region, change data access language from English to French. Confirm with Close
 -   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see french texts for products and their category.
 
-## Add language-independent labels for countries, regions
+## Add Language-independent Labels For Countries, Regions
 
-### Add country text
+### Add Country Text
 
 -   Open entity Countries and do these changes
     -   Add semantic usage to text
@@ -127,7 +127,7 @@ Note the warning about key mapping in the properties of 4VD_Addresses. This is b
 
 ![](media/64272377a7c415df34808e8cdce8a721.png)
 
-### Add region text
+### Add Region Text
 
 -   Open entity Countries and do these changes
     -   Add semantic usage to text
@@ -146,7 +146,7 @@ We should update the ER model w the new objects and their relationships in order
 -   Choose to add related text entities Countries & Regions
 -   Save & deploy
 
-### Update Analytic Model and preview results
+### Update Analytic Model and Preview Results
 
 The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
 
