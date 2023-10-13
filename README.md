@@ -31,7 +31,7 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 -   [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
 -   [Exercise 2 - Add labels and internationalization](exercises/ex2#README.md)
 -   [Exercise 3 - Add Hierarchies](exercises/ex3/README.md)
--   [Exercise 4 - Add Currency Conversion](exercises/ex4/README.md))
+-   [Exercise 4 - Add Currency Conversion](exercises/ex4/README.md)
 -   [Summary](https://github.com/SAP-samples/teched2023-DA271/tree/ab2465abdaaf65ea1ec25ab45dba03049b9b61d2/exercises/Session%20Wrap-Up/README.md)
 
 ## Contributing
