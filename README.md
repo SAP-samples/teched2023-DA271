@@ -32,7 +32,7 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 -   [Exercise 2 - Add labels and internationalization](exercises/ex2#README.md)
 -   [Exercise 3 - Add Hierarchies](exercises/ex3/README.md)
 -   [Exercise 4 - Add Currency Conversion](exercises/ex4/README.md))
--   [Summary](exercises/ex2/Summary)
+-   [Summary](exercises/SessionWrap-Up/README.md)
 
 ## Contributing
 
