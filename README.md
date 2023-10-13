@@ -34,10 +34,6 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 -   [Exercise 4 - Add Currency Conversion](exercises/ex4/README.md)
 -   [Summary](https://github.com/SAP-samples/teched2023-DA271/tree/ab2465abdaaf65ea1ec25ab45dba03049b9b61d2/exercises/Session%20Wrap-Up/README.md)
 
-## Contributing
-
-Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
-
 ## Code of Conduct
 
 Please read the [SAP Open Source Code of Conduct](https://github.com/SAP-samples/.github/blob/main/CODE_OF_CONDUCT.md).
