@@ -1,4 +1,4 @@
-# Hierarchies
+# Exercise 3 - Hierarchies
 
 In this chapter we configure several hierarchies to use in our Analytic Model and preview the results.
 
@@ -225,3 +225,9 @@ As a final step we update the Analytic Model to view the results from this model
 -   Drill by REGION and confirm that region name is now displayed in French
 -   Change data access settings of your user from French to English
 -   Repeat drilling by COUNTRY and REGION and confirm that all their texts are now displayed in English again.
+
+## Summary
+
+Great work! You were able to configure several hierarchies to use in our Analytic Model and preview the results.
+
+Continue to - [Exercise 4 – Currency Conversion](../ex4/README.md)
