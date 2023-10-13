@@ -32,12 +32,10 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
     -   [Exercise 1.1 - Add associated dimensions](exercises/ex1/Add_Associated_Dimensions)
     -   [Exercise 1.2 - Add measures and variables](exercises/ex1/Add_measures_and_variables)
     -   [Exercise 1.3 - Add more complex measures and variables](exercises/ex1/Add_complex_measures_and_variables)
--   [Exercise 2 - Refine Data Layer entities to support consumption](exercises/ex2/)
-    -   [Exercise 2.1 - Add labels and internationalization](exercises/ex2#exercise-21-sub-exercise-1-description)
-    -   [Exercise 2.3 - Add Hierarchies](exercises/ex2#exercise-22-sub-exercise-2-description)
-    -   [Exercise 2.3 - Add Currency Conversion](exercises/ex2/CurrencyConversion)
- 
-  [Summary](exercises/ex2/Summary)
+    -   [Exercise 2 - Add labels and internationalization](exercises/ex2#README.md)
+    -   [Exercise 3 - Add Hierarchies](exercises/ex3/README.md)
+    -   [Exercise 4 - Add Currency Conversion](exercises/ex4/README.md))
+    -   [Summary](exercises/ex2/Summary)
 
 ## Contributing
 
