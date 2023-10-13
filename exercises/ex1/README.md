@@ -111,4 +111,4 @@ User Steps:
 
 Note: One of the main goals in SAP Datasphere modelling is provide & leverage business semantics in datasets such that intelligent data consumers like SAP Analytics Cloud can leverage the same to simplify consumption, provide a rich end-user interaction.
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
