@@ -1,4 +1,4 @@
-# Add Labels & Internationalization
+# Exercise 2 - Add Labels & Internationalization
 
 In this exercise we enhance the data model such that we add labels to countries & regions as well as full names to employees.
 
