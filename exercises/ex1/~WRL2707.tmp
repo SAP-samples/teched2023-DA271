@@ -95,31 +95,6 @@ Many users will want to see only the current year. This way the system pre-filte
 
 ![](media/e15014576b679911cbd8c14ff31bdd95.png)
 
-## Add More Complex Measures & Variables
-
-Showcase features count distinct & constant selection
-
--   Add **Restricted Measure** Gross Sales All Countries (Gross_Sales_All_Countries) based on measure GROSSAMOUNT and with an empty expression
--   Activate **Constant Selection** on dimension COUNTRY (ADDRESSID)
-
-![](media/11c3eb6f2f67d1407ef5e3054619dab6.png)
-
--   Note that **Constant Selection** ensures that a given dimension is taken out of drill-down EVEN if it is a part of drill-down. This is important to compute reference figures (in this case, all countries). We could also have used a variable and used it in the restriction expression to make the list of reference countries configurable.
--   Add calculated measure Share of All Countries Sales (Share_Of_All_Countries_Sales) with expression GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
-
-![](media/e5b0c55ccf6a67f7c29fba9768f30f5c.png)
-
--   Add **Count Distinct Measure** Customer Count (CUSTOMER_COUNT) based on **Dimension** PARTNERID (SALESORDERID)
-
-![](media/b2e73e5bdbdd37ff65ae3e429354c528.png)
-
--   Add **Calculated Measure** Avg Spend per Customer (AVG_GROSSAMOUNT_PER_CUSTOMER) w expression GROSSAMOUNT / CUSTOMER_COUNT
-
-![](media/2466b9f01c2bda8c0ad72c70184e7f10.png)
-
--   **Deploy** your Analytic Model
--   **Preview** data. Drill by COUNTRY and PARTNERID
-
 ## Introduce Model Enhancements
 
 For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained.
