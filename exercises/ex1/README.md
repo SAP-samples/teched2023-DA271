@@ -126,11 +126,22 @@ For preparation of subsequent exercises, we realize that we lack descriptions to
 
 User Steps:
 
--   Preview data
--   Drill by REGION and COUNTRY (as rows). Realize the need to understand their respective abbreviations
--   Drill by PARTNERID (as rows). Realize the need to also drill by COMPANYNAME to realize which customer this is
+-   **Preview** data
+-   Drill by REGION and COUNTRY. Realize the need to understand their respective abbreviations
+
+![](media/2ba7c97a0ad3832be5d27b6689687f09.png)
+
+-   Drill by PARTNERID. Realize the need to also drill by COMPANYNAME to realize which customer this is
+
+![](media/adb80d6c2d50f4e80e97f1db4619b198.png)
+
 -   Drill by EMPLOYEEID. Realize you need to add Full Name into drill to realize which user this is. If you only drill by Full Name and two users had the same name, you'd not realize which individual this is. Also realize there is no way to know/see the organizational hierarchy
--   Drill by PRODUCTCATEGORY & PRODUCTID. Realize there are no product names or custom groupings of products (e.g. strategic products, low-end products or else)
+
+![](media/aabaa96b11989eef41a7efbf63d814f9.png)
+
+-   Drill by PRODUCTID & PRODUCTCATEGORY. Realize there are no product names or custom groupings of products (e.g. strategic products, low-end products or else)
+
+![](media/ea48c07ff58af10f78aee7c743c5392f.png)
 
 ## Summary
 
