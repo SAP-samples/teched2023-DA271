@@ -21,12 +21,14 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 ## Requirements
 
 -   Google Chrome Browser
--   Access to this GitHub repository
--   Access to SAP Datasphere system
--   You will also need the following .json file for these exercises: :point_right: [DA271_DataModel - Quick Start.json](DA271_DataModel%20-%20Quick%20Start.json) Please download it and remember its download location. 
+-   Access to [this GitHub repository](.)
+-   Access to a suitable SAP Datasphere system
+    - During TechEd 2023 hands-on sessions, you will be provided with user credentials for a personalized space in the [Datasphere system of the SAP Academy](https://academy.ap11.hcs.cloud.sap/dwaas-ui/index.html). 
+    - Subsequent users will be able to use the Guided Experience Systems (users to be requested [here](https://www.sap.com/products/technology-platform/datasphere.html) > "Experience SAP Datasphere")
+-   Object Model <br/> Download the following model file to your computer: [DA271_DataModel - Quick Start.json](./model/DA271_DataModel%20-%20Quick%20Start.json) 
 
 ## Exercises
-
+-   [Overview](./exercises/overview/)
 -   [Exercise 0 - Getting Started - Uploading Initial Data and Data Model](exercises/ex0/)
 -   [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
 -   [Exercise 2 - Add labels and internationalization](exercises/ex2#README.md)
