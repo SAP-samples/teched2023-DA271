@@ -11,7 +11,7 @@ We will now create an Analytic Model to support consumption of the imported data
 User Steps:
 
 -   Select the menu option **Data Builder** on the left-hand side
--   Under the **Analytic Model** tab\*\*,\*\* click on **New Analytic Model**
+-   Under the **Analytic Model** tab, click on **New Analytic Model**
 -   Because the system detects associated dimensions from our **4VF_SalesOrderItems**, you will see the screen below.
     -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
 
