@@ -1,10 +1,12 @@
 # Exercise 2 - Add Labels & Internationalization
 
-In this exercise we enhance the data model such that we add labels to countries & regions as well as full names to employees.
+In this exercise we enhance the data model such that we add 
+*   language-independent labels for employees and companies
+*   language-dependent descriptions to products, product categories, regions & countries.
 
 ## Add Language-independent Labels to Employees & Companies
 
-In this exercise we deal with language-independent labels for company names & employees. These obviously don't change with the user language.
+In this exercise we add labels for company names & employees. These obviously don't change with the user language and are thus **language-independent**. 
 
 ### Update Employee Labels
 
@@ -18,6 +20,7 @@ In this exercise we deal with language-independent labels for company names & em
 -   **Deploy** your view
 
 ### Update Company Labels
+Repeat above steps for tying the company name to the company identifier
 
 -   Open view **4VD_BusinessPartners**
     -   Set **Semantic Type** of COMPANYNAME to Text
@@ -39,25 +42,30 @@ The new metadata needs to be considered also by the Analytic Model. For the meta
 
 ## Add Language-independent Labels For Products and Product Categories
 
-Users feel at ease if they see data in their native language rather than in some global language. To this end, SAP Datasphere provides the support of language-dependent labels. Depending on the data access language of the user (by default, this is their log-on language and native language), the labels for objects are drawn in that specific language.
+Users feel more at ease if they see data in their native language rather than in some other language like English. To this end, SAP Datasphere provides the support of language-dependent labels. Depending on the data access language of the user (by default, this is their log-on language and native language), the labels for objects are drawn in that specific language.
 
-The recommended modelling setup for this to work is as follows:
+### Modelling Guidance
+The recommended modelling setup for language-dependent labels is as follows:
 
-An entity of usage type Dimension uses a text association to link itself to an entity of type Text. The association uses the dimensions key field (not some other field!) to link to the key of the Text entity. If the key is comprised of several key fields (also known as "composite key" or "compound key"), then this is totally fine. It is not recommended, and a warning will be issued in cases where:
+An entity of usage type Dimension uses a text association to link itself to an entity of type Text. The association uses the dimensions key field (not some other field!) to link to the key of the Text entity. If the key is comprised of several key fields (also known as "composite key" or "compound key"), then this is totally fine. The graphic below describes the relationship
+![](./images/ER%20diagram%20dim-to-text.png)
+In the example, dimension 4VD_Products has a text association to Text entity ProductTexts. The association uses the key PRODUCTID of the dimension in its mapping. In order to have also language-dependent labels for attribute PRODUCTCATEGORYID (no key!) in the product dimension, there should normally be an own dimension (here: 4VD_ProductCategory) that is associated to the attribute and uses the respective field (PRODUCTCATEGORYID) in its mapping. This looks artificial in the example, but normally things like the product category are indeed dimensions in their own right, carry a multitude of attributes and thus merit an entity in its own right. This dimension 4VD_ProductCategory in turn has a text association to a Text entity ProductCategoryTexts via the dimension's key field PRODUCTCATEGORYID.  
+
+It is not recommended (and a warning will be issued) when:
 
 -   the text association does not start from a dimension (but e.g. a Fact) or
 -   the text association is on a non-key field of the dimension
 
-Both cases are technically supported, but a warning will be issued. Both cases should rather have a dimension in the middle whose key is used in the text association. We'll see more of this below.
+Both cases are technically supported, but a warning will be issued. Both cases should rather have a dimension in the middle whose key is used in the text association (like for product category above). We'll see more of this below.
 
 ### Add Language-Specific Names to Product Dimension
 
--   Open entity **ProductTexts** and perform the following updates:
+-   Open table **ProductTexts** and perform the following updates:
     -   Change **Semantic Usage** to **Text**
     -   Within **Attributes**:
-        -   Set **Semantic Type** of LANGUAGE to Language
-        -   Set **semantic type** of SHORT_DESCR to Text
-        -   Set **Label Column** of PRODUCTID to SHORT_DESCR
+        -   Set **Semantic Type** of attribute LANGUAGE to Language
+        -   Set **semantic type** of attribute SHORT_DESCR to Text
+        -   Set **Label Column** of attribute PRODUCTID to SHORT_DESCR
 -   **Deploy** the table
 -   Open entity **4VD_Products**
 -   Within **Model Properties**, under **Associations**, add **Text Association** (+ sign) between 4VD_Products.PRODUCTID and ProductTexts
@@ -67,7 +75,7 @@ Both cases are technically supported, but a warning will be issued. Both cases s
 -   Ensure the mappings are correct (joined on PRODUCTID)
 -   **Deploy** your view
 
-As you see, we follow the standard way for language-dependent texts to work: a dimension (4VD_Products) with its key (here 4VD_Products .PRODUCTID) uses a **text association** to map to a text entity (here ProductTexts) and its key (here ProductTexts.PRODUCTID)
+As you see, we follow the standard way for language-dependent texts to work: a dimension (4VD_Products) with its key (here 4VD_Products .PRODUCTID) uses a text association to map to a text entity (here ProductTexts) and its key (here ProductTexts.PRODUCTID)
 
 ### Add Language-specific Names to Product Category
 
@@ -79,7 +87,7 @@ We'll therefore create a new dimension view for product categories and base it o
 
 Since table ProductCategories only has three columns, the hiding of CREATEDBY and CREATEDAT leaves only a minimal dimension (consisting of just one field, PRODUCTCATEGORYID), but that's fine. In many more realistic cases there'd be own attributes to the category, like its category manager, a hierarchy on it or else, making it worthwhile to model this as a dimension in its own right.
 
--   Create new **Graphical View** from the **Data Builder**
+-   Create new **Graphical View** from the **Data Builder** home page
 -   Drag table **ProductCategories** into the canvas
 -   Add a projection node ![](media/df28fe621d4e7dc45d527324527e8fa4.png)and choose to exclude columns CREATEDBY and CREATEDAT by clicking on the column and selecting the **x**
 
@@ -103,8 +111,8 @@ Since table ProductCategories only has three columns, the hiding of CREATEDBY an
 -   Open 4VD_Products and add an **Association** between 4VD_Products and 4VD_ProductCategory
 -   Ensure mapping is correct (mapped on PRODUCTCATEGORYID)
 -   **Deploy** your view
--   We are now going to add a **text association** on view **4VD_ProductCategory** between 4VD_ProductCategory.PRODUCTCATEGORYID and ProductCategoryTexts. PRODUCTCATEGORYID in the same way you’ve done previously
--   **Deploy** your view
+-   Add a **text association** on view **4VD_ProductCategory** by opening the view and adding a text assocation to ProductCategoryTexts that maps 4VD_ProductCategory.PRODUCTCATEGORYID to ProductCategoryTexts.PRODUCTCATEGORYID. 
+-   **Deploy** 4VD_ProductCategory
 
 ### Update ER Model
 
@@ -116,6 +124,7 @@ We should update the ER model with the new objects and their relationships in or
 ![](media/5758a0fc5bbf24167c626205d41d94db.png)
 
 -   Choose to add related entities **4VD_ProductCategories** and **ProductTexts**
+-   Choose to add related entities of 4VD_ProductCategories - again via the plus sign. 
 -   **Deploy** your ER model
 
 ### Update Analytic Model and Preview Results
@@ -140,6 +149,9 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see French texts for products and their category.
 
 ## Add Language-independent Labels For Countries & Regions
+For completeness sake, we should quickly add labels to countries & regions as well - "Germany" is just easier to read than "DE", isn't it? With what we have learned so far, that's just a couple of minutes more work, but it'll make life quite a bit simpler for our users.
+
+For simplicity, we do not go via own dimensions for countries and regions, but associate the text entities directly to the address dimension. This will give us warnings, but we can always clean this up later. 
 
 ### Add Country Text
 
@@ -167,7 +179,8 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   If mapping is missing, simply drag COUNTRY column to COUNTRYCODE
 -   Add **Text Association** between 4VD_Addresses and its attribute REGION and REGION.REGIONCODE
 -   If mapping is missing, simply drag REGION column to REGIONCODE
--   Note: The warning about key mapping in the properties of 4VD_Addresses. This is because of the above-mentioned modelling best practices. Here, the text association from 4VD_Address to the text entities for country text & region text are not using the key of 4VD_Addresses. For cleaner modelling, there should be a Country dimension and a Region dimension that are put in between like we did above for product categories.
+
+:warning: You'll get a warning about key mapping in the properties of 4VD_Addresses. This is because of the above-mentioned [modelling best practices](#modelling-guidance). Here, the text association from 4VD_Address to the text entities for country text & region text are not using the key of 4VD_Addresses. For cleaner modelling, there should be a Country dimension and a Region dimension that are put in between like we did above for product categories.
 
 ![](media/64272377a7c415df34808e8cdce8a721.png)
 
@@ -175,7 +188,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 
 ### Update ER Model
 
-We should update the ER model w the new objects and their relationships in order to always have a good overview of our overarching model. This is easy to do since we can leverage the newly drawn associations to add the respective entities.
+We should update the ER model with the new objects and their relationships in order to always have a good overview of our overarching model. This is easy to do since we can leverage the newly drawn associations to add the respective entities.
 
 -   Open ER Model **4EM_Overview_Simple**
 -   Select node **4VD_Addresses** in the canvas and choose plus sign (+)
@@ -198,6 +211,6 @@ The new metadata needs to be considered also by the Analytic Model. For the meta
 
 ## Summary
 
-Great work! You were able to enhance the data model by adding labels, associations to expand our ER model and Analytic Model.
+Great work! You were able to enhance the data model by adding language-independent and language-dependent labels, expanded our ER model and tested our improved model directly in the Analytic Model data preview.
 
-Continue to - [Exercise 3 – Hierarchies](../ex3/README.md)
+Continue to - [Exercise 3 – Hierarchies](../ex3/)

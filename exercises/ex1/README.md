@@ -176,7 +176,9 @@ User Steps:
 
 ## Summary
 
-You built an Analytic Model and thus provide a rich, analytical view on your data with governed KPI definitions, conscious design of which dimensions to expose to end-users and also where to flexibly take their input to e.g. filter or calculate. You have also double-checked all of your modelling by immediately previewing the data and flexibly analyzing it in a multi-dimensional grid. 
+You built an Analytic Model that provides a rich, analytical view on your data with governed KPI definitions, that contains a conscious selection of which dimensions to expose to end-users and also flexibly takes user input to e.g. filter or calculate. 
+
+You have also double-checked all of your modelling by immediately previewing the data and flexibly analyzing it in a multi-dimensional grid. 
 
 Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
-:warning: If you are short on time, you can alternatively also choose to do the exercises on [hierarchies](../ex3/) or [currency conversion](../ex4/), since all exercises from now on are independent of each other. 
+<br/> :warning: If you are short on time, you can alternatively also choose to do the exercises on [hierarchies](../ex3/) or [currency conversion](../ex4/), since all exercises from now on are independent of each other. 
