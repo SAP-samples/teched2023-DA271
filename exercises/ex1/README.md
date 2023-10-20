@@ -12,12 +12,13 @@ User Steps:
 
 -   Select the menu option **Data Builder** on the left-hand side
 -   Under the **Analytic Model** tab, click on **New Analytic Model**
--   Because the system detects associated dimensions from our **4VF_SalesOrderItems**, you will see the screen below.
+-   Drag view **4VF_SalesOrderItems** from the left panel and drop it onto the canvas. 
+-   The system analyzes its structure (i.e. measures, attributes & assocations) and let's you select which one to include by default
     -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
 
 ![](media/f7e27b3998798b8a4c9d74cd50059f96.png)
 
-We start with this minimal model and subsequently enhance it step by step.
+This is a first, minimal model that you'll subsequently enhance step by step.
 
 ![](media/7d207fbeab53cbd8d37cec20fe28848e.png)
 
@@ -26,14 +27,14 @@ We start with this minimal model and subsequently enhance it step by step.
 
 ![](media/7fe2730f27132200b1e73c09a5563a64.png)
 
--   Check various dimensions to drill by, change their order, add a filter, etc
--   The **Builder** panel ![](media/acd718ea27982c9573ef49020840f9c1.png)is displayed at the right side of the application. You can show it or hide it by choosing **Query Builder Designer Panel**.
--   When you choose **Available Objects**, you get a list of all available dimensions and measures in the analytic model. Here you can select dimensions and measures and assign them directly to the table's rows or columns by clicking ![](media/7cdf02ef1f1fc62872287e4c403700da.png)Column or ![](media/8a01b48dd17bbbd968f3effdc7b8b319.png)Row.
--   Here, you can see the dimension PRODUCTID has been added a row. You also see the ability to drill-down into the PRODUCTID dimension. All the measures have been added as columns as well
+Check various dimensions to drill by, change their order, add a filter, etc.: 
+-   The **Builder** panel is automatically displayed at the right side of the application. You can show it or hide it by choosing **Query Builder Designer Panel** ![](media/acd718ea27982c9573ef49020840f9c1.png).
+-   In section **Available Objects**, you see a list of all available measures & dimensions of the Analytic Model. Here you can select dimensions and measures and assign them directly to the table's rows or columns by clicking ![](media/7cdf02ef1f1fc62872287e4c403700da.png) (add as column) or ![](media/8a01b48dd17bbbd968f3effdc7b8b319.png) (add as row).
+-   In the screenshot below, all measures have been selected and are being examined by dimension PRODUCTID. Additional dimensions could be added also and their order rearranged via drag & drop. 
 
 ![](media/aa14741a3acdada459f2d68f81927787.png)
 
--   You can filter on dimensions and measures using the ![](media/35c540e99672a162c9b1321d2ec4cd56.png) button (top-left area)
+-   You can set filter on dimensions and measures using the ![](media/35c540e99672a162c9b1321d2ec4cd56.png) button (top-left area)
 -   Click on **Model** to return to your analytic model
 
 ## Add Associated Dimensions
