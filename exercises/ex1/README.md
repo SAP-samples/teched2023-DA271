@@ -79,10 +79,11 @@ Note that you could also build much more complex measures by making use of the d
 
 ![](media/2b01e176bee5cf7b7215a1b39fa127fe.png)
 
-Let's now create **restricted measures**, i.e. measures that build on existing measures but restrict them along a filter. This is typically used for comparing values by status like e.g. comparing of value of orders with value of all open orders. Here we'll compare domestic sales with international sales.  
+Let's now create **restricted measures**, i.e. measures that build on existing measures but restrict them along a filter. This is typically used for comparing values by status like e.g. comparing of the value of **all** orders with the value of **all open** orders. Here we'll compare domestic sales with international sales.  
 -   Choose to create a measure of type **restricted measure**.
-    -   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' in an expression
-    -   Create another restricted measure **International Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY != 'DE' in an expression
+-   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' in the expression
+-   Create another restricted measure 
+-   Call it **International Gross Sales**, base it on source measure GROSSAMOUNT and add restriction as COUNTRY != 'DE' in the expression
 
 # Add variables
 Analytic Models offer various variable types depending on usage, cp. [SAP Help](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/cdd8fa0fd74b495584dca343432f2814.html).
@@ -95,12 +96,14 @@ We'll simply use a filter variable to choose which years (multi-select) we want 
 Many users will want to see only data for e.g. the current year. With the prompt, they can now readily do. Similarly, we could set filters on region, country or other relevant dimensions. 
 
 -   **Deploy** your Analytic Model
--   Preview data and open the **Year** filter variable.
+-   Preview data
+-   You will be prompted automatically for the **Year** variable. 
 
 ![](media/26f76cfa604c2ca94525b1730f6fda87.png)
 
--   Select years **2021, 2022, 2023** and click **OK**
--   Under **Dimensions,** drill into **Creation Date** and enable the row on **YEAR** to reveal the filtered years
+-   Open the value help and select years **2021, 2022, 2023** and click **OK**
+If you look closely, you might note that the measure values have changed
+-   Under **Dimensions,** drill into **Creation Date** and enable the row on **YEAR** to reveal the filtered years. Confirm that only the selected years have indeed been retrieved by the system. 
 
 ![](media/e15014576b679911cbd8c14ff31bdd95.png)
 
@@ -140,13 +143,17 @@ We are also interested in the average spend per customer. To that end, we count 
 
 -   **Deploy** your Analytic Model
 -   **Preview** data. 
-    -   Drill by COUNTRY think about what the results you see
+    -   Drill by COUNTRY think about the results you see
     -   Take COUNTRY out of the drill and drill by PARTNERID only. Think about the results
     -   Drill by COUNTRY and PARTNERID and again understand what you see
 
 ## Motivate subsequent modelling steps Model Enhancements
 
-For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained.
+We have come pretty far and the Analytic Model provides users with aligned KPI definitions and a multitude of drill possibiliites. Nonetheless we realize that the model is lacking in some crucial ways. If we healed those, our analytics users would have a much easier time and could also apply more flexible analyses. Concretely these are: 
+*   No human-readable descriptions to all abreviations used like products code, company codes, employee IDs or region names
+*   No hierarchical display of things that are inherently hierarchical like regional hierarchy, organizational hierarchy or product hierarchy
+*   No details on currencies or units in the measures and certainly no automatic currency conversion 
+Let's investigate where these topics hit us concretely. 
 
 User Steps:
 
@@ -169,7 +176,7 @@ User Steps:
 
 ## Summary
 
-Note: One of the main goals in SAP Datasphere modelling is provide & leverage business semantics in datasets such that intelligent data consumers like SAP Analytics Cloud can leverage the same to simplify consumption, provide a rich end-user interaction.
+You built an Analytic Model and thus provide a rich, analytical view on your data with governed KPI definitions, conscious design of which dimensions to expose to end-users and also where to flexibly take their input to e.g. filter or calculate. You have also double-checked all of your modelling by immediately previewing the data and flexibly analyzing it in a multi-dimensional grid. 
 
 Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
 :warning: If you are short on time, you can alternatively also choose to do the exercises on [hierarchies](../ex3/) or [currency conversion](../ex4/), since all exercises from now on are independent of each other. 
