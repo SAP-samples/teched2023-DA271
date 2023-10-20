@@ -43,48 +43,56 @@ Add additional drill-dimensions by adding nested dimensions
 
 User steps:
 
--   Select the **SALESORDERID** (**4VD_SalesOrders** dimension)
--   Within the Properties section, enable **PARTNERID, RESPONSIBLE & CREATION DATE** within the **Associated Dimensions** section
--   You should now see the added dimensions that stem from the **4VD_SalesOrders** dimension
+-   Select node the **SALESORDERID** (**4VD_SalesOrders** dimension) in the canvas. This will update the properties panel on the right. 
+-   Within the properties panel, in section **Associated Dimensions** section, select dimensions **PARTNERID, RESPONSIBLE & CREATION DATE** <br/>
+These dimensions are automatically added to the canvas as well. 
 
 ![](media/516e49d65b42d31f120637a7d7254cb1.png)
 
--   We want to add the **4VD_Address** dimension, which is associated to the **4VD_BusinessPartners** dimension object
--   Your more robust analytic model should now look like this:
+-   To get addresses of business partners, we similarly select node **PARTNERID** (**4VD_BusinessPartners**) and add its associated dimension **4VD_Address** dimension. <br/>
+The updated canvas will look like this:
 
 ![](media/9b40e8559fdd329c5eff31f8f283f6b9.png)
 
 -   Within the **Attributes** section of **Properties**, enable the following attributes for the given dimensions:
-    -   Business Partner dimension: COMPANYNAME
-    -   Address dimension: Country, REGION, CITY, STREET, POSTALCODE
+    -   Choose node PARTNERID and select its attribute COMPANYNAME
+    -   Choose node ADDRESSID and add attributes COUNTRY, REGION, CITY, STREET, POSTALCODE
 -   Reopen data preview and confirm that you can now also drill by these dimensions (if, for any reason you do not see your added dimensions, **deploy** your Analytic Model first before continuing to preview data)
 
-## Add Measures & Variables
+## Add Measures
 
-Add calculated & restricted measures. In large organizations, its crucial to agree on common definition of KPIs. This is helpful for their reusability (saves time) and governance (we all use same definitions).
+Add calculated & restricted measures. In large organizations, its crucial to agree on common definition of KPIs. This is helpful for their reusability (saves time) and governance (all parties use the same definitions).
 
 User steps:
 
+-   Jump to the overview of the Analytic Model by clicking anywhere on the canvas (i.e. anything that is not a node). The properties panel will update to show the properties of the Analytic Model as a whole. 
 -   To add a calculated measure, locate the **Measures** section within **Properties** and click the **+** sign. Select Calculated Measure
 
 ![](media/d21152bcc9058cac4fbc4a953bbd29b5.png)
 
--   Add calculated measure Average Price (AVG_PRICE) as GROSSAMOUNT / QUANTITY
--   Name your measure **Avg Price**
+-   Add calculated measure Avg Price (Avg_Price) as GROSSAMOUNT / QUANTITY <br/>
+Note that you could also build much more complex measures by making use of the dimensions, variables (none defined yet) or operators. 
 
 ![](media/1550894b2d51f893439adbf52770ab3b.png)
 
--   You can navigate back to the main properties window by clicking on the object link, as shown below
+-   To navigate back to the main properties window, click on the object link, as shown below
 
 ![](media/2b01e176bee5cf7b7215a1b39fa127fe.png)
 
--   Following the previous navigation path, let’s now create **restricted measures**.
-    -   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' as an expression
-    -   Create **International Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY != 'DE' as an expression
--   Add a **Filter Variable** (within Properties Window) *YEAR* with the filter type of **Multiple single values**
+Let's now create **restricted measures**, i.e. measures that build on existing measures but restrict them along a filter. This is typically used for comparing values by status like e.g. comparing of value of orders with value of all open orders. Here we'll compare domestic sales with international sales.  
+-   Choose to create a measure of type **restricted measure**.
+    -   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' in an expression
+    -   Create another restricted measure **International Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY != 'DE' in an expression
+
+# Add variables
+Analytic Models offer various variable types depending on usage, cp. [SAP Help](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/cdd8fa0fd74b495584dca343432f2814.html).
+
+We'll simply use a filter variable to choose which years (multi-select) we want to see. If user does not set any filter, all data - regardless of creation year of the sales order - is selected. 
+-   Find section **Variables** and a add a new variable of type **Filter variable**
+-   Set filter on dimension **YEAR** with the filter type of **Multiple single values**
 
 ![](media/2db949fc0c1dda668af857dffe3f4e2a.png)  
-Many users will want to see only the current year. This way the system pre-filters on the current year. The same could be true for your own region.
+Many users will want to see only data for e.g. the current year. With the prompt, they can now readily do. Similarly, we could set filters on region, country or other relevant dimensions. 
 
 -   **Deploy** your Analytic Model
 -   Preview data and open the **Year** filter variable.
@@ -96,19 +104,31 @@ Many users will want to see only the current year. This way the system pre-filte
 
 ![](media/e15014576b679911cbd8c14ff31bdd95.png)
 
-## Add More Complex Measures & Variables
+## Add Complex Measures 
+Much more complex measures can be defined via Analytic Model functionalities like count distinct, constant selection or exception aggregation. All measures can also be stacked, resulting in potentially complex chains of calculations that modellers can consciously design. 
 
-Showcase features count distinct & constant selection
+For the case at hand let's use count distinct & constant selection features to compute 
+*   Share of overall sales
+*   Avg sales by customer
+This fixes their formular, but final results always depend on current drill-down & filter set by the analytics user. 
 
--   Add **Restricted Measure** Gross Sales All Countries (Gross_Sales_All_Countries) based on measure GROSSAMOUNT and with an empty expression
--   Activate **Constant Selection** on dimension COUNTRY (ADDRESSID)
+User Steps
+
+-   Add **Restricted Measure** Gross Sales All Countries (Gross_Sales_All_Countries) based on measure GROSSAMOUNT and with an empty expression (i.e. no restriction)
+-   Still within the same measure, activate **Constant Selection** on dimension COUNTRY (ADDRESSID)
 
 ![](media/11c3eb6f2f67d1407ef5e3054619dab6.png)
 
--   Note that **Constant Selection** ensures that a given dimension is taken out of drill-down EVEN if it is a part of drill-down. This is important to compute reference figures (in this case, all countries). We could also have used a variable and used it in the restriction expression to make the list of reference countries configurable.
--   Add calculated measure Share of All Countries Sales (Share_Of_All_Countries_Sales) with expression GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
+:information_source: **Constant Selection** ensures that for the measure at hand, a given dimension is taken out of drill-down or dynamic filter EVEN if it is a part of drill-down. This is important to compute reference figures (in this case, all countries) that can then be used as reference figure for display or subsequent calculations (like share of sales) 
+
+Additionally, we could also have used a variable and used it in the restriction expression to make the list of reference countries configurable
+
+Next, we use the measure for subsequent calculations: 
+-   Add calculated measure **Share of All Countries Sales** (Share_Of_All_Countries_Sales) with expression GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
 
 ![](media/e5b0c55ccf6a67f7c29fba9768f30f5c.png)
+
+We are also interested in the average spend per customer. To that end, we count indiviual customers in the current drill-down and use that to compute their average spend amount. 
 
 -   Add **Count Distinct Measure** Customer Count (CUSTOMER_COUNT) based on **Dimension** PARTNERID (SALESORDERID)
 
@@ -119,9 +139,12 @@ Showcase features count distinct & constant selection
 ![](media/2466b9f01c2bda8c0ad72c70184e7f10.png)
 
 -   **Deploy** your Analytic Model
--   **Preview** data. Drill by COUNTRY and PARTNERID
+-   **Preview** data. 
+    -   Drill by COUNTRY think about what the results you see
+    -   Take COUNTRY out of the drill and drill by PARTNERID only. Think about the results
+    -   Drill by COUNTRY and PARTNERID and again understand what you see
 
-## Introduce Model Enhancements
+## Motivate subsequent modelling steps Model Enhancements
 
 For preparation of subsequent exercises, we realize that we lack descriptions to products, companies, product categories and employees. We also realize that inherent hierarchies (managers have employees, regions have countries & cities, custom product groupings) are not contained.
 
@@ -149,3 +172,4 @@ User Steps:
 Note: One of the main goals in SAP Datasphere modelling is provide & leverage business semantics in datasets such that intelligent data consumers like SAP Analytics Cloud can leverage the same to simplify consumption, provide a rich end-user interaction.
 
 Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
+:warning: If you are short on time, you can alternatively also choose to do the exercises on [hierarchies](../ex3/) or [currency conversion](../ex4/), since all exercises from now on are independent of each other. 

@@ -231,3 +231,6 @@ As a final step we update the Analytic Model to view the results from this model
 Great work! You were able to configure several hierarchies to use in our Analytic Model and preview the results.
 
 Continue to - [Exercise 4 – Currency Conversion](../ex4/README.md)
+
+Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
+:warning: If you skipped [Exercise 2 - Add Labels & Internationalization](../ex2/README.md), you can alternatively do it now also. 
