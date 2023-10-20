@@ -8,7 +8,9 @@ Analyzing complex business data in the SAP Analytics Cloud solution is massively
 
 ## Overview on what you'll learn
 
-In this exercise we leverage the strong modelling capabilities of SAP Datasphere to add business semantics on data that have been ingested from remote sources. The goal is to prepare a flexible, rich, governed & understandable data model to our analytics users that they can subsequently use in their dashboards & data analysis. On the way, you'll get to know many of the modelling marvels that the SAP Datasphere team has added over the last year since TechEd 2022. Concretely, you'll get to know the following:
+In this exercise we leverage the strong modelling capabilities of SAP Datasphere to add business semantics on data that have been ingested from remote sources. The goal is to prepare a flexible, rich, governed & understandable data model to our analytics users that they can subsequently use in their dashboards & data analysis. On the way, you'll get to know many of the modelling marvels that the SAP Datasphere team has added over the last year since TechEd 2022. 
+
+Concretely, you'll get to know the following:
 
 | **Area**                      | **Feature**                                                                                                                                                                                                                                                                                          |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,6 +38,8 @@ In this exercise we leverage the strong modelling capabilities of SAP Datasphere
 -   [Exercise 3 - Add hierarchies](exercises/ex3/)
 -   [Exercise 4 - Add currency conversion](exercises/ex4/)
 -   [Session Wrap-Up](./exercises/Session%20Wrap-Up/)
+
+:warning: If you are short on time, you can choose to only do one of the exercises [#2](./exercises/ex2/), [#3](./exercises/ex3/) and [#4](./exercises/ex4/), since they are all independent of each other. 
 
 ## Code of Conduct
 
