@@ -37,20 +37,20 @@ For better overview of the imported objects and their relationships & details, y
 
     ![](media/f402d44cae5d77b15518700a78663801.png)
 
--   Once replication flow’s run has completed, import the CSN file from the **Data Builder** screen
+-   Once replication flow’s run has completed, import the CSN file that you downloaded in step #1 from the **Data Builder** screen
 
     ![](media/72759a4ef0978b980d4a5091b3641f26.png)
 
 -   You will be prompted to select the objects you want to import. Select the objects with the status of “Ready to Import” and click **Import CSN File**.
--   When prompted, if you want to reimport existing objects, choose to not reimport them **Click No** 
--   Once those objects are imported, you’ll need to deploy them.
+-   When prompted, if you want to reimport existing objects, choose to not reimport them, i.e. **Click No** 
+-   Once those objects are imported, you’ll need to deploy them. Select all object that are not yet deployed and deploy them together. 
 
     ![](media/097ca79424adc02a531fd2a677d5ac36.png)
 
--   Now you have all the datasets needed to begin crafting your ER model. On the **Data Builder** screen, select on the **E/R Models** tab, and click on the **New Entity – Relationship Model**
+-   Now you have all the tables, their data and a minimal data model ready in the system. You should now start crafting your entity-relationship model. On the **Data Builder** screen, select on the **E/R Models** tab, and click on the **New Entity – Relationship Model**
 -   Within the **Repository** section (left panel), under **Views**, you will find the entities necessary to create your initial ER model.
 -   Drag the **4VF_SalesOrderItems** entity onto the canvas
--   To add related entities, click on the entity and select the “**+**” sign
+-   To add related entities, click on the entity and select the “**+**” sign. In the subsequent dialog choose to add all related entities and confirm. 
 
     ![](media/a4e14a98f18bdb880111743468f74797.png)
 
@@ -59,10 +59,12 @@ For better overview of the imported objects and their relationships & details, y
     ![](media/942d19ab7c4219bf6c0597169cd14484.png)
 
 -   **Deploy** your model and name it **4EM_Overview_Simple**
--   Within the View Properties section, you can inspect the **attributes** and **measures** associated with a given entity. You can preview the data by clicking on the entity and clicking on the **Preview Data**![](media/4607e716afa73a5ce285b733d94c935d.png) button. You can also view the lineage of an entity by clicking on the **Impact and Lineage Analysis** ![](media/a727dcc612e497793134b01f08c97a17.png) button
+-   To inspect all entities, select each one and inspect the View Properties panel on the right side of the screen. This gives details on their properties like semantic usage, columns, measures & attributes (only for 4VF_SalesOrderItems), semantic types as well as associations (also visible in the ER model itself). You can also preview the data of an entity by clicking on the entity and clicking on the **Preview Data**![](media/4607e716afa73a5ce285b733d94c935d.png) button. 
+
+- You can also view the impact & lineage graph of an entity by clicking on the **Impact and Lineage Analysis** ![](media/a727dcc612e497793134b01f08c97a17.png) button. Note that the subsequent popup makes a differentiation between data lineage and dependency lineage (cp. [SAP Help Documentation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/9da4892cb0e4427ab80ad8d89e6676b8.html#loio9da4892cb0e4427ab80ad8d89e6676b8__section_dependency_analysis)).
 
 ## Summary
 
-Now that you have your data and data model uploaded, we can continue to data modeling.
+Now that you have your data and data model uploaded, we can continue with the core of session's exercises. 
 
-Continue to - [Exercise 1 - Create Analytic Model](../ex1/README.md)
+Continue to - [Exercise 1 - Create Analytic Model](../ex1/)
