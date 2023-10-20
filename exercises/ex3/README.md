@@ -8,10 +8,10 @@ In this chapter, you'll learn
 *   how to use them in your data analysis
 
 We'll go about as follows: 
-* inspect the time hierarchies that come predelivered w/ your time data
-* build a simple level-based hierarchy for regions
-* build a simple parent-child hierarchy for employees and their managers
-* use the new concept of "external hierarchies with directories" for data-driven, multi-language, multi-node, time-dependent hierarchies on for products and their categorization. 
+* [inspect and use the time hierarchies](#explore-time-hierarchy) that come predelivered w/ your time data
+* [build a simple level-based hierarchy for regions](#create-a-regional-level-based-hierarchy)
+* [build a simple parent-child hierarchy for employees](#create-organizational-hierarchy-of-type-parent-child-hierarchy) and their managers
+* [use the new concept of "external hierarchies with directories"](#external-hierarchies-with-directories) for data-driven, multi-language, multi-node, time-dependent hierarchies on for products and their categorization. 
 
 ## Explore time hierarchy
 
