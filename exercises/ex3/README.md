@@ -1,8 +1,17 @@
 # Exercise 3 - Hierarchies
 
-In this chapter we configure several hierarchies to use in our Analytic Model and preview the results.
+In this chapter we configure several hierarchies to use in our Analytic Model and preview the results. Hierarchies come natural in many domains (time hierarchies, organizational hierarchies, product hierarchies in marketing etc.) and help users to get an overview of a situation (e.g. regional sales), get deeper (e.g. country sales) until they finally look at raw numbers (by city, client, product or else). Several hierarchies can exist and be used in parallel (e.g. drill across regional hierarchy AND product hierarchy), exist on the same domain (e.g. organizational setup changes) and even be time-dependent (marketing approach for categorizing your products in this year vs. next year). SAP Datasphere supports all of these requirements and actually much more. 
 
-The time dimension includes several hierachies (e.g. Year-Month-Day) that we will explore directly. We will then configure the organizational hierarchy of employees, regional hierarchy, and custom hierarchy for products to familiarize ourselves with their capabiliites & modelling requirements
+In this chapter, you'll learn 
+*   what type of hierarchies exist
+*   how to configure each one
+*   how to use them in your data analysis
+
+We'll go about as follows: 
+* inspect the time hierarchies that come predelivered w/ your time data
+* build a simple level-based hierarchy for regions
+* build a simple parent-child hierarchy for employees and their managers
+* use the new concept of "external hierarchies with directories" for data-driven, multi-language, multi-node, time-dependent hierarchies on for products and their categorization. 
 
 ## Explore time hierarchy
 
@@ -36,16 +45,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 
 ![](media/63ad10c6da2d10ac460f4e5d97153d42.png)
 
-## Classic hierarchy model
-
-SAP Datasphere has supported hierarchies for many years with two hierarchy models, namely
-
--   Level-based hierarchies and
--   Parent-child hierarchies
-
-We'll use both types to understand their power and expressability.
-
-In a subsequent chapter, we'll get to know the new, even more flexible "external hierarchies with directory" feature that has just been introduced in October 2023. This new capability provides many more features that are aligned with the classic model of S/4 and BW hierarchies so that those hierarchies can be imported and leveraged in Datasphere with most of their features.
+If you prefer not to see the 2nd year column, go on the three dots (...) to the right of CREATION DATE in the Rows panel and change the presentation from *ID and Description* to *Description*.  
 
 ### Create a regional, level-based hierarchy
 
@@ -98,6 +98,8 @@ The Analytic Model page needs to be reopened or refreshed to load the updated Da
 
 ![](media/a58c8ac482a660123406c62343aa40eb.png)
 
+Again, if you prefer not to see the id columns for employees or region codes, go on the three dots (...) to the right of ADDRESSID and RESPONSIBLE in the Rows panel and change the presentation from *ID and Description* to *Description*.
+
 ## External hierarchies with directories
 
 In October 2023, SAP Datasphere introduced a revamped data model for parent-child hierarchies that is aligned with the SAP S/4 and SAP BW data models for hierarchies. This capability is called "[external hierarchies with directories](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36c39eee184c485a80ebce9d0fec49ec.html)".
@@ -108,18 +110,16 @@ This improvement provides many more features than the classical parent-child hie
 -   Data-driven definition of hierarchies
 -   Support of Text Nodes (e.g. GL account groups - GL accounts)
 -   Support of nodes of different dimensions within the same hierarchy (e.g. sales area - cost center – employee)
--   Language-dependent hierarchy descriptions
+-   Language-dependent hierarchy names
 -   Language-dependent node texts
 -   Time-dependent hierarchies
 -   Time-dependent hierarchy nodes & their attributes
 
-In the following exercise, we introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). The second marketing strategy is currently being developed and will only be set live at the beginning of the year, by leveraging time-dependency.
-
-Note: We refrain from language-dependent hierarchy names & hierarchy nodes for simplicity, but you'd quickly be able to design the necessary text entities and associate them from the respective hierarchy directory & node entities if you are interested in that exercise.
+In the following exercise, we introduce a flexible categorization of products along usage (men-women-kids) and along marketing categories (Premium-Standard-Low and Flagship-Core-Others). In the scenarios, the second marketing strategy is under development and will will only be set live at the beginning of the year 2024, thus leveraging time-dependency.
 
 ### Create Hierarchy Directory Dimension
 
-All hierarchies and their properties are listed in their own hierarchy directory dimension. During our initial data import, the HierarchyDirectory table was imported that has all required fields & data. We will make the respective modeling here directly on this view. However, in an enterprise environment we recommend not changing the directly imported Views and instead wrapping the view in a Graphical View so that our modeling does not change the base view.
+All hierarchies and their properties are listed in their own hierarchy directory dimension. During our initial data import, the HierarchyDirectory table was imported that has all required fields & data. We will make the respective modeling here directly on this view. However, in an enterprise environment we recommend not changing the imported tables directly but instead wrapping the table in a view so that our modeling does not change the base table.
 
 Hierarchy directories are modelled as dimensions and the product hierarchy entity will later associate to it. Since we are configuring a time-dependent hierarchy (note that we will configure the new product strategy to only go live at the start of 2024), two special columns (VALIDFROM, VALIDTO) tell the system the validity period of each hierarchy. In order for the Analytic Model to leverage this information, we need to assign the corresponding semantic types. Then when selecting the hierarchies in the Analytic Model, the system will query the hierarchy directory table with the reference date provided by the users and return the hierarchies that are valid or the selected data.
 
@@ -129,45 +129,72 @@ Hierarchy directories are modelled as dimensions and the product hierarchy entit
 -   In section Attributes, change
     -   For VALIDFROM, set semantic type to *Business Date - From*  
         For VALIDTO, set semantic type to *Business Date - To*
-    -   For DESCRIPTION, set semantic type to *Text*
-    -   For HIERARCHYID, set label column to *DESCRIPTION*
 -   Save & deploy
 
-Note that we model the description as a language-independent field here. If we wanted to have language-dependent hierarchies, we'd need to follow the steps we completed above above for product texts, where a text entity is created and associated to the dimension (here: HierarchyDirectory) via a text association.
+### Create Text entity for Hierarchy Directory and associate it
+In order to support language-dependent texts, the dimension *HierarchyDirectory* needs to associate to a Text entity that brings along the language-dependent descriptions of each hierarchy for each of the relevant languages. This is identical to the workflow we did for language-dependent texts in [exercise 2](../ex2/). 
 
-As an additional exercise, you can use the provided table with language dependent data. That lesson is covered in... \*\* [from Jan's other recording!]\*\*
+On import of all tables, the table *HierarchyDirectoryTexts* was imported that we'll now use for this. 
+
+-   Open local tabel *HierarchyDirectoryTexts* 
+-   Preview its data
+-   In section General, change Semantic Usage to *Text* 
+-   In section Attributes, do these changes
+    -   For LANGUAGE, set semantic type to Language
+    -   For DESCRIPTION, set semantic type to Text
+    -   For HIERARCHYID, set label column to DESCRIPTION
+-   Save & Deploy 
+-   Reopen local table *HierarchyDirectory* 
+-   In section Assocations, create a new text association between to *HierarchyDirectoryTexts* and define the mapping as HierarchyDirectory.HIERARCHYID = HierarchyDirectoryTexts.HIERARCHYID
+-   Save & Deploy
 
 ### Create Text Node Dimension
 
-One of the new features in "external hierarchies with directories" is that node and leaves can belong to different dimensions. In the case of classical parent-child hierarchies like the one in 4VD_Employees, parent and child were always in the same dimension (i.e. each manager is also an employee).
+One of the new features in "external hierarchies with directories" is that node and leaves can belong to different dimensions. In the case of classical parent-child hierarchies like the one [we created above on *4VD_Employees*](#create-organizational-hierarchy-of-type-parent-child-hierarchy), parent and child were always in the same dimension (i.e. each manager is also an employee).
 
-With the new hierarchy capability, more complex hierarchies like sales areas that contain cost centers and cost centers who contain employees can be modelled. In the simplest case, the other dimension is just a plain text node (i.e. just an ID and a description, possibly language-specific), not a full-fledged dimension with plenty of other attributes (like a sales area)
+With the new hierarchy capability, more complex hierarchies can be modelled like sales areas that contain cost centers and cost centers who contain employees. In the simplest case, the other dimension is just a plain text node (i.e. just an ID and a description, possibly language-specific), not a full-fledged dimension with plenty of other attributes (like a sales area with all its fields like region, manager, board area or else)
 
-During data import, a ProductHierarchyNodes table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there. In more productive scenarios, we'd highly suggest to add this additional level of abstraction, but for this eample we'll apply those changes directly on the table.
+During data import, a *ProductHierarchyNodes* table was imported. We'll update its semantics to become a dimension in its own right and tell the system which descriptions to draw for the nodes. Again, we could wrap the table in a view and do the changes there. In more productive scenarios, we'd highly suggest to add this additional level of abstraction, but for this example we'll apply those changes directly on the table.
 
 -   Open table *ProductHierarchyNodes*
 -   Preview data
 -   In section *General*, change Semantic Usage to *Dimension*
--   In section *Attributes*, do these changes
-    -   For DESCRIPTION, set semantic type to *Text*
-    -   For NODEID, set Label column to DESCRIPTION
 -   Save & deploy
+
+:warning: In the S/4 case, text nodes often carry an additional key field for the hierarchy id. We are abstracting from this in this simple example case, but note that it would totally be supported to have a hierarchy id as additionl key field in your text node dimension. 
+
+### Create Text entity for text node dimension and associate it 
+In order to support language-dependent texts, the dimension *ProductHierarchyNodes* needs to associate to a Text entity that brings along the language-dependent descriptions of each text node. for each of the relevant languages. This is identical to the workflow we did for language-dependent texts in [exercise 2](../ex2/) and above for hierarchy directory texts. 
+
+On import of all tables, the table *ProductHierarchyNodeTexts* was imported that we'll now use for this. 
+
+-   Open local tabel *ProductHierarchyNodeTexts* 
+-   Preview its data
+-   In section General, change Semantic Usage to *Text* 
+-   In section Attributes, do these changes
+    -   For LANGUAGE, set semantic type to Language
+    -   For DESCRIPTION, set semantic type to Text
+    -   For NODEID, set label column to DESCRIPTION
+-   Save & Deploy 
+-   Reopen local table *ProductHierarchyNodes* 
+-   In section Assocations, create a new text association to *ProductHierarchyNodeTexts* and define the mapping as ProductHierarchyNodes.NODEID = ProductHierarchyNodeTexts.NODEID
+-   Save & Deploy
 
 ### Create entity for product hierarchy with directory
 
-Now let's get to the actual hierarchy object. A new semantic usage "Hierarchy with Directory" has been introduced that contains information about the parent-child relationship, which of the multiple parallel hierarchies that relationship belongs to, the type of node (here: is the current node is a product or text node) and a redirection to the actual node key.
+Now let's get to the actual hierarchy object. A new semantic usage "Hierarchy with Directory" has been introduced that contains a bunch of information on the hierarchy, namely: 
+*   what is the parent of the current child? 
+*   what hierarchy does this parent-child relationship belong to
+*   what dimension does the current child belong to (i.e. is it itself a product or a text node) 
+*   what is the **actual** key of the child id. Here the system introduces a differentiaten between the key used in the parent-child relationship (=child id) and the key used for identifying the dimension member and all its details (e.g. product id = RX-1200). This indirection is what enables hierarchies that contain nodes and leaves of more than one dimension. 
 
-Note that the model makes a distinction between the key used in the parent-child relationship (here: NODEID) and the key used to identify the respective entity key (of the product or text node dimensions).
-
-As before, the required data has been imported as local table ProductHierarchy during the setup steps. We could wrap this table in a view for an additional level of abstraction & flexibility or just update the table's semantic information like we do here.
+As before, the required data has been imported as local table *ProductHierarchy* during the setup steps. We could wrap this table in a view for an additional level of abstraction & flexibility or just update the table's semantic information like we do here.
 
 -   Open table *ProductHierarchy*
 -   Preview its data
 -   In section Associations
-    -   Create an association to dimension *HierarchyDirectory*  
-        Map column *ProductHierarchy.HIERARCHY* to column *HierarchyDirectory.HIERARCHYID*
-    -   Create an association to dimension *ProductHierarchyNodes*  
-        Map column *ProductHierarchy.TEXTNODEID* to column *HierarchyDirectory.NODEID*
+    -   Create an association to dimension *HierarchyDirectory* with mapping as *ProductHierarchy.HIERARCHY=HierarchyDirectory.HIERARCHYID*
+    -   Create an association to dimension *ProductHierarchyNodes* with mapping as *ProductHierarchy.TEXTNODEID=HierarchyDirectory.NODEID*
 -   In section *General*, change Semantic Usage to *Hierarchy with Directory*. A new button Hierarchy with Directory Settings appears together with some error message that we haven't completed all modelling steps yet
 
 ![](media/f403056e687e1f2f402045cf9bb80ad0.png)
@@ -194,12 +221,14 @@ As before, the required data has been imported as local table ProductHierarchy d
 
 -   Save & Deploy
 
+:warning: Note that in the general case like e.g. S/4, multiple columns can be defined for each node type value, thus representing the composite key of the respective dimension. 
+
 ### Add external hierarchy to product dimension
 
 Now to associate the new external hierarchy from the product dimension.
 
--   Open dimension 4VD_Products
--   Create new assocation of type "Hierarchy with Directory Association"
+-   Open dimension *4VD_Products*
+-   Create new assocation of type *Hierarchy with Directory Association*
 
 ![](media/afde2fffea00c689d386e1757fe68e99.png)
 
@@ -209,6 +238,14 @@ Now to associate the new external hierarchy from the product dimension.
 
 -   Save & Deploy
 
+### Update ER model (optional)
+It is always good practice to keep the ER model up-to-date for good overview about your modelling. You can also use the impact & lineage graph, if you prefer it, but ER models are a good alternative way of keeping a good eye on your modelling
+
+-   Open ER Model *4EM_Overview_Simple*
+-   Select node 4VD_Addresses in the canvas and choose plus sign (+)
+-   Choose to add related text entities Countries & Regions
+-   Deploy your ER Model
+
 ### Update Analytic Model and preview results
 
 As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing the browser page. Then you also need to save & deploy the updated model information.
@@ -217,20 +254,62 @@ As a final step we update the Analytic Model to view the results from this model
 -   Save & deploy
 -   Open Data Preview
 -   Drill by PRODUCTID
--   Choose a hierarchy via the three dots in the Rows area of the Builder panel
+-   Choose to show a different hierarchy via the three dots in the Rows area of the Builder panel
+-   Choose hierarchy *Men-Women-Kids*
 
-![](media/466e2c299b7d1efd74ab8974584f2152.png)
+![](./images/HierarchyMen_EN.png)
 
--   Drill by COUNTRY and confirm that country name is now displayed in French
--   Drill by REGION and confirm that region name is now displayed in French
--   Change data access settings of your user from French to English
--   Repeat drilling by COUNTRY and REGION and confirm that all their texts are now displayed in English again.
+-   Check data and its nodes is now displayed hierarchically. Confirm that roll-ups are performed dynamically on the nodes & leaves
+
+![](./images/HierarchySelection2023_EN.png)
+
+-   Change data access settings of your user from English to French
+-   Repeat drilling by PRODUCTID and selecting a different hierarchy for it
+
+![](./images/HierarchySelection2023_FR.png)
+
+![](./images/HierarchyMen_FR.png)
+
+## Leverage time-dependent hierarchies
+Remember that the marketing department is in the process of developing a new positioning away from *Premium-Standard-Low* towards *Flagship-Core-Others*. That new hierarchy shall go live in 2024 and groups products totally differently. 
+
+Since external hierarchies support time-dependency for complete hierarchies as well as for single nodes & leaves, this requirement can easily be solved
+
+*   Reopen table *HierarchyDirectory*
+*   Preview its data. Confirm that hierarchy 002 is only valid in 2023 whereas hierarchy 003 is valid from 2024-01-01 and beyond 
+*   Check the modelling [that we did above when we touched table *HierarchyDirectory*](#create-hierarchy-directory-dimension) and worked on the Attributes section. Back then, we assigned semantic type *Business Date - From* to attribute *VALIDFROM* and semantic type *Business Date - To* to attribute *VALIDTO*. With this, we have done all required modelling on the dimension side 
+*   Open Analytic Model *4AM_SalesOrderItems*
+*   Create a new variable of type Referecnce Date Variable. Set its default to today. 
+
+![](./images/ReferenceDateVariabnle.png)
+
+*   Save & deploy
+*   Preview the data. 
+*   The user prompt will ask you for the reference date. Confirm the default. 
+*   Drill by PRODUCTID
+*   Open hierarchies for PRODUCTID via the three dots (...). It should show the same hierarchies as before
+*   Change the prompt values by clicking the prompt icon of the toolbar
+
+![](./images/ReopenPrompt.png)
+
+*   Enter any date on or after 2024-01-01 and close the dialog via Set
+
+![](./images/Prompt2024.png)
+
+*   Reopen the hierarchy selection again. It should now have replaced hierarchy *Premium-Standard-Low* by *New Strategy 2024*. Choose it. 
+
+![](./images/HierarchySelection2024.png)
+
+*   Confirm all data is now displayed using the new hierarchy
+
+![](./images/Hierarchy2024_EN.png)
+
+:tada: Welcome to time-dependent hierarchies! 
 
 ## Summary
 
-Great work! You were able to configure several hierarchies to use in our Analytic Model and preview the results.
+Great work! You were able to configure several hierarchies to use in our Analytic Model and preview their results.
 
 Continue to - [Exercise 4 – Currency Conversion](../ex4/README.md)
 
-Continue to - [Exercise 2 - Add Labels & Internationalization](../ex2/README.md)
 :warning: If you skipped [Exercise 2 - Add Labels & Internationalization](../ex2/README.md), you can alternatively do it now also. 
