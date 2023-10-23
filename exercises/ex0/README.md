@@ -15,6 +15,15 @@ For better overview of the imported objects and their relationships & details, y
     ![](media/7cc0042d09475ab45aae465107ce8040.png)
 
 -   Create a new replication flow to import all relevant tables from the **HANA Cloud** connection, **DSP1_OPENSAP** container (source connection) to **SAP Datasphere** (target connection)
+<img width="740" alt="Screenshot 2023-10-23 at 3 34 01 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/da5d48f2-21db-41fd-8e9b-3780f6cab32a">
+<img width="577" alt="Screenshot 2023-10-23 at 3 35 25 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/6b9322ea-be5a-4658-9c72-1ead5f0986cb">
+
+   <img width="457" alt="Screenshot 2023-10-23 at 3 37 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/b3174689-70e3-45d1-aecb-666948a96d5a">
+<img width="296" alt="Screenshot 2023-10-23 at 3 37 57 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/1b917931-23fc-4b26-9544-0fba72438bae">
+<img width="578" alt="Screenshot 2023-10-23 at 3 38 57 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/1eea096b-6082-4464-bce0-a09f98b5bafb">
+<img width="846" alt="Screenshot 2023-10-23 at 3 39 40 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/613ff26a-26c9-48e3-8f27-b2c6b039609b">
+<img width="576" alt="Screenshot 2023-10-23 at 3 40 33 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/7b46584c-2a80-481f-bec5-d98d8a9fa2f0">
+
 -   Select the following 16 source objects:
     -   Addresses
     -   BusinessPartners
