@@ -283,7 +283,7 @@ Since external hierarchies support time-dependency for complete hierarchies as w
 *   Preview its data. Confirm that hierarchy 002 is only valid in 2023 whereas hierarchy 003 is valid from 2024-01-01 and beyond 
 *   Check the modelling [that we did above when we touched table *HierarchyDirectory*](#create-hierarchy-directory-dimension) and worked on the Attributes section. Back then, we assigned semantic type *Business Date - From* to attribute *VALIDFROM* and semantic type *Business Date - To* to attribute *VALIDTO*. With this, we have done all required modelling on the dimension side 
 *   Open Analytic Model *4AM_SalesOrderItems*
-*   Create a new variable of type Referecnce Date Variable. Set its default to today. 
+*   Create a new variable of type Reference Date Variable. Set its default to today. 
 
 ![](./images/ReferenceDateVariabnle.png)
 
