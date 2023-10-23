@@ -113,7 +113,11 @@ Screenshot 2023-10-23 at 3.56.02 PM
   
 -   Ensure mapping is correct (mapped on PRODUCTCATEGORYID)
 -   **Deploy** your view
--   Add a **text association** on view **4VD_ProductCategory** by opening the view and adding a text assocation to ProductCategoryTexts that maps 4VD_ProductCategory.PRODUCTCATEGORYID to ProductCategoryTexts.PRODUCTCATEGORYID. 
+-   Add a **text association** on view **4VD_ProductCategory** by opening the view and adding a text assocation to ProductCategoryTexts that maps 4VD_ProductCategory.PRODUCTCATEGORYID to ProductCategoryTexts.PRODUCTCATEGORYID.
+<img width="1022" alt="Screenshot 2023-10-23 at 3 59 04 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/2c61dc60-caab-4c9c-873b-8f9e34fbd15d">
+<img width="754" alt="Screenshot 2023-10-23 at 3 59 55 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/210e74b8-3264-4906-859b-7bc41065c2c1">
+
+  
 -   **Deploy** 4VD_ProductCategory
 
 ### Update ER Model
