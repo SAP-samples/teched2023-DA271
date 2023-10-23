@@ -145,7 +145,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 
 ![](media/b49d7cd24261ba9e231a4d332d1aefe4.png)
 
--   Confirm with **Close**
+-   Confirm with **Save**
 -   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see French texts for products and their category.
 
 ## Add Language-independent Labels For Countries & Regions
@@ -163,7 +163,7 @@ For simplicity, we do not go via own dimensions for countries and regions, but a
         -   Set COUNTRYTEXT as **label column** of COUNTRYCODE
 -   **Deploy** your view
 
-### Add Region Text
+### Add Regions Text
 
 -   Open entity **Region** and perform the following updates
     -   Add **Semantic Type** to Text
