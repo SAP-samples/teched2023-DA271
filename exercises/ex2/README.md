@@ -109,6 +109,8 @@ Since table ProductCategories only has three columns, the hiding of CREATEDBY an
 
 -   **Deploy** your table
 -   Open 4VD_Products and add an **Association** between 4VD_Products and 4VD_ProductCategory
+Screenshot 2023-10-23 at 3.56.02 PM
+  
 -   Ensure mapping is correct (mapped on PRODUCTCATEGORYID)
 -   **Deploy** your view
 -   Add a **text association** on view **4VD_ProductCategory** by opening the view and adding a text assocation to ProductCategoryTexts that maps 4VD_ProductCategory.PRODUCTCATEGORYID to ProductCategoryTexts.PRODUCTCATEGORYID. 
@@ -136,6 +138,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Open node PRODUCTID and choose to add associated dimension PRODCATEGORYID. Note that it also has a capital T (for Text)
 
 ![](media/9c62ada6fc3bdc0c12851c81d5e106c3.png)
+<img width="747" alt="Screenshot 2023-10-23 at 3 57 43 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0732be19-3eac-4c11-9d36-60f2b1f4451b">
 
 -   **Deploy** your analytic model
 -   Open **Data Preview**
