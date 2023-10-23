@@ -31,7 +31,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 
 ![](media/99c6158dbb054af8b600643734a0dea2.png)
 
--   Open Analytic Model *SalesOrderItems*
+-   Open Analytic Model *4AM_SalesOrderItems*
 -   Open Data Preview
 -   Drill by CREATION DATE
 -   Click the three dots to the right of CREATION DATE to select the hierarchy
@@ -75,6 +75,8 @@ In our example data, each row in the entity 4VD_Employees has columns for the ma
     -   CHILD: EMPLOYEEID
 
 ![](media/325a8982aaadd6e653f2d70840ef8852.png)
+
+Save and deploy
 
 ### Update Analytic Model and preview results
 
@@ -147,7 +149,7 @@ On import of all tables, the table *HierarchyDirectoryTexts* was imported that w
     -   For HIERARCHYID, set label column to DESCRIPTION
 -   Save & Deploy 
 -   Reopen local table *HierarchyDirectory* 
--   In section Assocations, create a new text association between to *HierarchyDirectoryTexts* and define the mapping as HierarchyDirectory.HIERARCHYID = HierarchyDirectoryTexts.HIERARCHYID
+-   In section Assocations, create a new text association to *HierarchyDirectoryTexts* and define the mapping as HierarchyDirectory.HIERARCHYID = HierarchyDirectoryTexts.HIERARCHYID
 -   Save & Deploy
 
 ### Create Text Node Dimension
