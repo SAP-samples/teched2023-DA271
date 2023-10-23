@@ -105,7 +105,7 @@ We could now run all 8 data flows manually; just open each one and hit run. Sinc
 -   Save & deploy as 4TC_TCUR_Replication
 -   Open Data Integration Monitor and authorize system to run task chains
 
-![](media/363d8c9674a2592360ac534d0777259a.png)
+<img width="868" alt="Screenshot 2023-10-23 at 11 21 49 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/5f635ad7-a2bc-40b6-8b4c-c173dea2aeba">
 
 -   Change to Task Chain Monitor
 -   Select entry 4TC_TCUR_Replication and choose Run
