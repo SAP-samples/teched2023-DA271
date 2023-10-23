@@ -12,7 +12,9 @@ User Steps:
 
 -   Select the menu option **Data Builder** on the left-hand side
 -   Under the **Analytic Model** tab, click on **New Analytic Model**
--   Drag view **4VF_SalesOrderItems** from the left panel and drop it onto the canvas. 
+-   Drag view **4VF_SalesOrderItems** from the left panel and drop it onto the canvas.
+- <img width="718" alt="Screenshot 2023-10-23 at 3 42 35 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/33fd5dfa-a6fa-409f-bfc3-b7d8dbfe2781">
+
 -   The system analyzes its structure (i.e. measures, attributes & assocations) and let's you select which one to include by default
     -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
 
