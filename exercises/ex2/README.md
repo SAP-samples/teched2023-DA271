@@ -10,7 +10,7 @@ In this exercise we add labels for company names & employees. These obviously do
 
 ### Update Employee Labels
 
--   Open view **4VD_Employees**
+-   Open view **4VD_Employee**
 -   Update labels by clicking on the pencil ![](media/120de5cb8e94c57e5f37c78c5a162b39.png)icon within the **Attributes** section of the **Model Properties**
     -   Set **Semantic Type** of FULL NAME to Text
     -   Set **Label Column** of EMPLOYEEID to FULL NAME
@@ -29,13 +29,13 @@ Repeat above steps for tying the company name to the company identifier
 
 ### Update Analytic Model and Preview Results
 
-The new metadata needs to be considered also by the Analytic Model. For the metadata to persist, the Analytic Model page needs to be refreshed.
+The new modeling we have just done needs to now be loaded by the Analytic Model. 
 
--   Open *4AM_SalesOrderItems* and refresh page
+-   Open *4AM_SalesOrderItems* and refresh browser 
 -   Confirm that dimension PARTNERID now has a capital T (for Text) next to itself in the dimension list
 -   Confirm that RESPONSIBLE now also has a capital T next to itself in the dimension list
 -   **Deploy** your Analytic Model
--   Open **Data Preview**
+-   Open **Preview**
 -   Drill by PARTNERID and confirm that company name is now displayed
 -   Drill by RESPONSIBLE and confirm that employee's full name is now displayed
 -   Under **Rows** within the **Builder**, check drill-settings (three dots in dimension list on the right) and change presentation from ID and Description to **Description and ID**.
