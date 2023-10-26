@@ -1,0 +1,19 @@
+﻿NODEID;LANGUGAGE;DESCRIPTION
+PREM;EN;Premium
+STD;EN;Standard
+LOWEND;EN;Low-End
+MEN;EN;Men
+WOMEN;EN;Women
+KIDS;EN;Kids
+FLAG;EN;Flagship
+CORE;EN;Core Products
+OTH;EN;Others
+PREM;FR;Prime
+STD;FR;Standard
+LOWEND;FR;Bas de gamme
+MEN;FR;Hommes
+WOMEN;FR;Femmes
+KIDS;FR;Enfants
+FLAG;FR;Produits Phare
+CORE;FR;Produits de base
+OTH;FR;Autres
