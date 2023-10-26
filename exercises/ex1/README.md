@@ -107,7 +107,10 @@ Many users will want to see only data for e.g. the current year. With the prompt
 
 ![](media/26f76cfa604c2ca94525b1730f6fda87.png)
 
--   Open the value help and select years **2021, 2022, 2023** and click **OK**
+-   Open the value help and select years **2021, 2022, 2023** and click **OK**<br/>
+![](./images/preview_valuehelp_year.png)
+
+
 If you look closely, you might note that the measure values have changed
 -   Under **Dimensions,** drill into **Creation Date** and enable the row on **YEAR** to reveal the filtered years. Confirm that only the selected years have indeed been retrieved by the system. 
 
@@ -133,7 +136,7 @@ User Steps
 Additionally, we could also have used a variable and used it in the restriction expression to make the list of reference countries configurable
 
 Next, we use the measure for subsequent calculations: 
--   Add calculated measure **Share of All Countries Sales** (Share_Of_All_Countries_Sales) with expression GROSS_AMOUNT / ALL_COUNTRIES_GROSSAMOUNT
+-   Add calculated measure **Share of All Countries Sales** (Share_Of_All_Countries_Sales) with expression *GROSS_AMOUNT / Gross_Sales_All_Countries*
 
 ![](media/e5b0c55ccf6a67f7c29fba9768f30f5c.png)
 
