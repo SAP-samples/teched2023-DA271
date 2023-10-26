@@ -6,7 +6,9 @@ We have prepared a simple data model to analyze product sales for a prototypical
 
 For better overview of the imported objects and their relationships & details, you'll also create an [entity-relationship model](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/a91c042549fb497384e756d5f5c71fde.html) and inspect the objects in the [impact & lineage analysis](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/9da4892cb0e4427ab80ad8d89e6676b8.html).
 
-## Steps
+:warning: If you are not using an SAP academy system (TechEd 2023) or an SAP Guided Experience system (cp. [Exercise Requirements](../../README.md#prerequisites)), please jump to chapter **Steps in your own SAP Datasphere system** 
+
+## Steps in SAP Academy systems and SAP Guided Experience Systems
 
 -   Download CSN file from Github [[link](../../model/DA271_DataModel%20-%20Quick%20Start.json)]
 -   Select the menu option **Data Builder** on the left-hand side
@@ -71,6 +73,9 @@ For better overview of the imported objects and their relationships & details, y
 -   To inspect all entities, select each one and inspect the View Properties panel on the right side of the screen. This gives details on their properties like semantic usage, columns, measures & attributes (only for 4VF_SalesOrderItems), semantic types as well as associations (also visible in the ER model itself). You can also preview the data of an entity by clicking on the entity and clicking on the **Preview Data**![](media/4607e716afa73a5ce285b733d94c935d.png) button. 
 
 - You can also view the impact & lineage graph of an entity by clicking on the **Impact and Lineage Analysis** ![](media/a727dcc612e497793134b01f08c97a17.png) button. Note that the subsequent popup makes a differentiation between data lineage and dependency lineage (cp. [SAP Help Documentation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/9da4892cb0e4427ab80ad8d89e6676b8.html#loio9da4892cb0e4427ab80ad8d89e6676b8__section_dependency_analysis)).
+
+## Steps in all other SAP Datasphere systems
+You can 
 
 ## Summary
 

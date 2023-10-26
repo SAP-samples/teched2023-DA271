@@ -27,6 +27,7 @@ Concretely, you'll get to know the following:
 -   Access to a suitable SAP Datasphere system
     - During TechEd 2023 hands-on sessions, you will be provided with user credentials for a personalized space in the [Datasphere system of the SAP Academy](https://academy.ap11.hcs.cloud.sap/dwaas-ui/index.html). 
     - Subsequent learners will be able to use the Guided Experience Systems for SAP Datasphere <br/> (request your user from [here](https://www.sap.com/products/technology-platform/datasphere.html) > "Experience SAP Datasphere")
+    - Users can also use their own SAP Datasphere system to run through the exercises with minor adjustments. Since the system will not have the required backend systems available, the data import process will differ. [Preparatory exercise 0](./exercises/ex0/) offers a dedicated subchapter to cater to this.  
 -   Object Model: Download the following model file to your computer: [DA271_DataModel - Quick Start.json](./model/DA271_DataModel%20-%20Quick%20Start.json) 
 -   Time: 2+ hours 
 
