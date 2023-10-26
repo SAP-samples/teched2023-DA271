@@ -80,8 +80,7 @@ Let's now replicate the currency conversion data from SAP S/4 into respective ar
 
 -   Open each of the for sections for Remote Tables, Data Flows, Tables & Views and inspect what objects will be created. You might want to read up [background in the documentation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b462239ffb644d9baab4442a10a72edf.html).
 -   Confirm with CREATE  
-    This will generate 32 objects, namely 8 remote tables, 8 data flows, 8 local tables and 8 views
--   Select all objects and deploy
+    This will generate and deploy 32 objects, namely 8 remote tables, 8 data flows, 8 local tables and 8 views
 -   Open table Exchange Rates (SAP.CURRENCY.TABLE.TCURR)
 -   Preview the data to confirm it contains no data  
     We still need to run those 8 data flows to actually replicate the data from the remote tables (e.g. SAP.CURRENCY.RTABLE.TCURR) into the local tables. This is also required to ensure satisfactory performance during currency conversion
