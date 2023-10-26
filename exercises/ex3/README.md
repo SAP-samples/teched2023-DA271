@@ -210,7 +210,7 @@ As before, the required data has been imported as local table *ProductHierarchy*
 -   Fill the configuration window as follows
     -   Parent: PARENTID
     -   Child: CHILDID
-    -   Hierarchy Name Column: HIERARCHY
+    -   Hierarchy Name Column: HIERARCHYID
     -   Node Type Column: NODETYPE
     -   Node Type Value \#1
         -   Node Type Value: ProductNode
@@ -221,7 +221,7 @@ As before, the required data has been imported as local table *ProductHierarchy*
         -   Set as Leaf: Unchecked
         -   Column 1: TEXTNODEID
 
-![](media/f6f42867cf8c8083471faa2c1977286f.png)
+![](./images/popup_hierarchy_directory_settings_final.png)
 
 -   Save & Deploy
 
@@ -274,6 +274,23 @@ As a final step we update the Analytic Model to view the results from this model
 
 ![](./images/HierarchyMen_FR.png)
 
+### Optional: Introducing a new hierarchy level "Adults"
+Imagine you wanted to group nodes "Men" & "Women" under a common parent "Adults". What would you need to do? Note that SAP Datasphere has a table editor for all local tables which allows users to potentially change data in tables. This is normally reserved for emergency situations, but we'll use it here in order to add rows to the relevant tables. We'll only sketch the solution high-level and leave it to you to do the exact steps
+*   Open table HierarchyDirectory and choose Table Editor
+
+![](./images/producthierarchy_table_button_data_editor.png)
+ *  Find rows with CHILDID 0100 and 0101. Think what changes would be required to make them children of a new node *Adults*. Think about how that node would need to look like. You can add rows via the *Add* button
+
+ ![](./images/producthierarchy_dataeditor.png)
+ 
+ * Save your changes
+ * Go back to the Analytic Model data editor and refresh your data
+
+ ![](./images/am_preview_refresh_data.png)
+
+ * Check if your hierarchy now shows a node for adults. 
+ * Does it have a proper description? What change needs to happen in order to give it a description? 
+
 ## Leverage time-dependent hierarchies
 Remember that the marketing department is in the process of developing a new positioning away from *Premium-Standard-Low* towards *Flagship-Core-Others*. That new hierarchy shall go live in 2024 and groups products totally differently. 
 
@@ -293,6 +310,9 @@ Since external hierarchies support time-dependency for complete hierarchies as w
 *   Save & deploy
 *   Preview the data. 
 *   The user prompt will ask you for the reference date. Confirm the default. 
+
+:warning: 2023-10-26 The dialog will claim that "Variable is obsolete, ...". Never mind. The message is wrong. The bug is currently in fixing.  
+
 *   Drill by PRODUCTID
 *   Open hierarchies for PRODUCTID via the three dots (...). It should show the same hierarchies as before
 *   Change the prompt values by clicking the prompt icon of the toolbar
