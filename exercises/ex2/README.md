@@ -31,7 +31,7 @@ Repeat above steps for tying the company name to the company identifier
 
 The new modeling we have just done needs to now be loaded by the Analytic Model. 
 
--   Open *4AM_SalesOrderItems* and refresh browser 
+-   Open *4AM_SalesOrderItems* and refresh browser page 
 -   Confirm that dimension PARTNERID now has a capital T (for Text) next to itself in the dimension list
 -   Confirm that RESPONSIBLE now also has a capital T next to itself in the dimension list
 -   **Deploy** your Analytic Model
@@ -39,6 +39,8 @@ The new modeling we have just done needs to now be loaded by the Analytic Model.
 -   Drill by PARTNERID and confirm that company name is now displayed
 -   Drill by RESPONSIBLE and confirm that employee's full name is now displayed
 -   Under **Rows** within the **Builder**, check drill-settings (three dots in dimension list on the right) and change presentation from ID and Description to **Description and ID**.
+
+:warning: 2023-10-26: If Analytic Model hasn't picked up the metadata change, enforce an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
 
 ## Add Language-independent Labels For Products and Product Categories
 
@@ -89,7 +91,7 @@ Since table ProductCategories only has three columns, the hiding of CREATEDBY an
 
 -   Create new **Graphical View** from the **Data Builder** home page
 -   Drag table **ProductCategories** into the canvas
--   Add a projection node ![](media/df28fe621d4e7dc45d527324527e8fa4.png)and choose to exclude columns CREATEDBY and CREATEDAT by clicking on the column and selecting the **x**
+-   Add a projection node ![](media/df28fe621d4e7dc45d527324527e8fa4.png)and choose to exclude columns CREATEDBY and CREATEDAT by selecting the column name and hitting the **X** in the toolbar
 
 ![](media/7ad8383ab8c98e02585ac1a4a8a9a454.png)
 
@@ -137,7 +139,7 @@ We should update the ER model with the new objects and their relationships in or
 
 The new metadata needs to be considered also by the Analytic Model. For it to take note of the updated metadata, the Analytic Model page needs to be loaded newly or refreshed. Subsequently you should save and deploy.
 
--   Open *4AM_SalesOrderItems* and refresh page
+-   Open *4AM_SalesOrderItems* and refresh browser page
 -   Confirm that dimension PRODUCTID now has a capital T (for Text) next to itself in the dimension list
 -   Open node PRODUCTID and choose to add associated dimension PRODCATEGORYID. Note that it also has a capital T (for Text)
 
@@ -153,7 +155,11 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 ![](media/b49d7cd24261ba9e231a4d332d1aefe4.png)
 
 -   Confirm with **Save**
--   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see French texts for products and their category.
+-   Repeat drilling by PRODUCTID and PRODCATEGORYID. Confirm that you now see French texts for products and their category.<br/>
+![](./images/french_drill_by_prod_prodcat.png)
+
+:warning: 2023-10-26: If Analytic Model hasn't picked up the metadata change, enforce an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
+
 
 ## Add Language-independent Labels For Countries & Regions
 For completeness sake, we should quickly add labels to countries & regions as well - "Germany" is just easier to read than "DE", isn't it? With what we have learned so far, that's just a couple of minutes more work, but it'll make life quite a bit simpler for our users.
@@ -191,7 +197,7 @@ For simplicity, we do not go via own dimensions for countries and regions, but a
 
 ![](media/64272377a7c415df34808e8cdce8a721.png)
 
--   **Deploy** your view
+-   **Deploy** your view. In the warning popup, choose **Deploy anyway**. 
 
 ### Update ER Model
 
@@ -206,7 +212,7 @@ We should update the ER model with the new objects and their relationships in or
 
 The new metadata needs to be considered also by the Analytic Model. For the metadata to persist, the Analytic Model page needs to be refreshed. Subsequently you should save and deploy.
 
--   Open *4AM_SalesOrderItems* and refresh page
+-   Open *4AM_SalesOrderItems* and refresh browser page
 -   Confirm that dimension COUNTRY now has a capital T next to itself in the dimension list
 -   Confirm that REGION now also has a capital T next to itself in the dimension list
 -   **Deploy** your Analytic Model
@@ -215,6 +221,8 @@ The new metadata needs to be considered also by the Analytic Model. For the meta
 -   Drill by REGION and confirm that region name is now displayed in French
 -   Change settings of your user by clicking on your user profile in the top-right of the application. In section **Language & Region**, change **Data Access Language** from French to English
 -   Repeat drilling by COUNTRY and REGION and confirm that all their texts are now displayed in English again.
+
+:warning: 2023-10-26: If Analytic Model hasn't picked up the metadata change, enforce an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
 
 ## Summary
 

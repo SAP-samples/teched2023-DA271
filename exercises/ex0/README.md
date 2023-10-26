@@ -131,7 +131,7 @@ In this step, we generate a helper dimension containing time data and its proper
 You'll need to upload data into all tables from CSV files. For SAP TechEd & Guided Experience, the respective data could be loaded from a connected SAP HANA Cloud system, but since your space has no connection to it, you'll need to provide the data manually
 
 *   Download the [zip file containing all CSVs from Github](../../model/DA271%20-%20all%20CSVs.zip) 
-*   Extract the zip file into a folder of your choice on your hard drive
+*   Extract the zip file into some folder on your hard drive
 *   In Data Builder, choose tab Tables. This will filter the objet list on the tables only
 * For each and every table in the list (puh, yes, this is painful :frowning:), do the following steps
     *   Open table by clicking on its name in Data Builder
