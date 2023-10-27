@@ -82,6 +82,8 @@ Save and deploy
 
 The Analytic Model page needs to be reopened or refreshed to load the updated Data Layer modeling. Then you should save and deploy.
 
+:warning: 2023-10-26: If below set of steps does not work as expected, it means that Analytic Model hasn't picked up the metadata change. You can enforce a an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
+
 -   Open *4AM_SalesOrderItems* and refresh page
 -   Save & deploy
 -   Open Data Preview
@@ -253,6 +255,8 @@ It is always good practice to keep the ER model up-to-date for good overview abo
 ### Update Analytic Model and preview results
 
 As a final step we update the Analytic Model to view the results from this modeling. Remember that the Analytic Model only loads newly updated metadata from lower layers when loading the editor or refreshing the browser page. Then you also need to save & deploy the updated model information.
+
+:warning: 2023-10-26: If below set of steps does not work as expected, it means that Analytic Model hasn't picked up the metadata change. You can enforce a an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
 
 -   Open *4AM_SalesOrderItems* and refresh its browser page
 -   Save & deploy
