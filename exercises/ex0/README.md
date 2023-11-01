@@ -39,10 +39,10 @@ If your system is an SAP Academy system (URL contains "academy") or an SAP Guide
     -   HierarchyDirectoryTexts - Hierarchy Directory Texts
     -   ProductCategories - Product Categories
     -   ProductCategoryTexts
-    -   ProductHierarchy
+    -   ProductHierarchy - ProductHierarchy
     -   ProductHierarchyNodes - Product Hierarchy Nodes
     -   ProductHierarchyNodesTexts - Product Hierarchy Nodes
-    -   Products
+    -   Products - Products
     -   ProductTexts
     -   Regions
     -   SalesOrderItems

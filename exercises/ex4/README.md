@@ -33,15 +33,15 @@ So far, all amounts used in reporting, like GROSSAMOUNT and NETAMOUNT are just n
 
 ![](media/e0b946cc9d7b3d98f19b9eedbe68b064.png)
 
--   Save & Deploy
+-   Click Deploy
 
 ## Update Analytic Model and preview results
 
 Refresh the Analytic Model to take note of the updated metadata. Then save and deploy.
 
 -   Open *4AM_SalesOrderItems* and refresh page
--   Save & deploy
--   Open Data Preview
+-   Click deploy
+-   Open **Preview**
 -   Confirm that all amounts now show a dollar sign. The quantity shows a unit symbol (EA for EACH) and the average price correctly denotes its unit as \$ / EA, i.e. dollars per piece.
 
 ![](media/c3f4a57d9b483e0a7c800ad5f7b70a95.png)
@@ -123,7 +123,7 @@ Now all groundwork has been laid for automatic currency conversion
 
 ![](media/61540c7182cb8ed5fd87b675fe865d4e.png)
 
--   Save & deploy
+-   Click deploy
 -   Preview data of Analytic Model
 -   Confirm gross amount is now automatically converted and displayed as Gross Sales EUR
 

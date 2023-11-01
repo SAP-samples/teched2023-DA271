@@ -35,12 +35,13 @@ Concretely, you'll get to know the following:
 -   [Overview on exercises & object model](./exercises/overview/)
 -   [Exercise 0 - Getting Started - Uploading initial data and data model](exercises/ex0/)
 -   [Exercise 1 - Build your Analytic Model to prepare data for consumption](exercises/ex1/)
+
+:warning: If you are short on time, you can choose to only do one of the exercises [#2](./exercises/ex2/), [#3](./exercises/ex3/) and [#4](./exercises/ex4/), since they are all independent of each other. 
+
 -   [Exercise 2 - Add labels and internationalization](exercises/ex2/)
 -   [Exercise 3 - Add hierarchies](exercises/ex3/)
 -   [Exercise 4 - Add currency conversion](exercises/ex4/)
 -   [Session Wrap-Up](./exercises/Session%20Wrap-Up/)
-
-:warning: If you are short on time, you can choose to only do one of the exercises [#2](./exercises/ex2/), [#3](./exercises/ex3/) and [#4](./exercises/ex4/), since they are all independent of each other. 
 
 ## Code of Conduct
 

@@ -31,10 +31,6 @@ After building the model, you'll realize that you'd also like to provide conveni
 :smile:
 :laughing:
 
-[!NOTE]   
-test
-[!NOTE]\
-
 
 # Graphical overview of object model
 So far on the session overview in text format. Let's now also look at the artefacts and their relationships at the start of the modelling exercises and also how the final object model looks like at the end of the session. 

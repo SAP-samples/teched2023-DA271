@@ -75,7 +75,7 @@ Both cases are technically supported, but a warning will be issued. Both cases s
 ![](media/15c1422ff9eecfe27e1300167064002f.png)
 
 -   Ensure the mappings are correct (joined on PRODUCTID)
--   **Deploy** your view
+-   **Deploy** your table
 
 As you see, we follow the standard way for language-dependent texts to work: a dimension (4VD_Products) with its key (here 4VD_Products .PRODUCTID) uses a text association to map to a text entity (here ProductTexts) and its key (here ProductTexts.PRODUCTID)
 
@@ -111,7 +111,6 @@ Since table ProductCategories only has three columns, the hiding of CREATEDBY an
 
 -   **Deploy** your table
 -   Open 4VD_Products and add an **Association** between 4VD_Products and 4VD_ProductCategory
-Screenshot 2023-10-23 at 3.56.02 PM
   
 -   Ensure mapping is correct (mapped on PRODUCTCATEGORYID)
 -   **Deploy** your view
@@ -147,7 +146,7 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 <img width="747" alt="Screenshot 2023-10-23 at 3 57 43 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0732be19-3eac-4c11-9d36-60f2b1f4451b">
 
 -   **Deploy** your analytic model
--   Open **Data Preview**
+-   Open **Preview**
 -   Drill by PRODUCTID and confirm that Product Names are now being displayed
 -   Drill by PRODCATEGORYID and confirm that the category ID name is now displayed
 -   Change settings of your user by clicking on your user profile in the top-right of the application. In section **Language & Region**, change **Data Access Language** from English to French.
@@ -174,7 +173,7 @@ For simplicity, we do not go via own dimensions for countries and regions, but a
         -   Set LANGUAGE to **semantic type** Language
         -   Set COUNTRYTEXT to **semantic type** Text
         -   Set COUNTRYTEXT as **label column** of COUNTRYCODE
--   **Deploy** your view
+-   **Deploy** your table
 
 ### Add Regions Text
 
@@ -183,11 +182,11 @@ For simplicity, we do not go via own dimensions for countries and regions, but a
     -   Set LANGUAGE to **Semantic Type** Language
     -   Set REGIONTEXT to **Semantic Type** Text
     -   Set REGIONTEXT as **Label Column** of REGIONCODE
--   **Deploy** your view
+-   **Deploy** your table
 
 ### Update Addresses view
 
--   Open entity **4VD_Addresses**
+-   Open entity **4VD_Addresses** and refresh browser page
 -   Add **Text** **Association** between 4VD_Addresses and its attribute COUNTRY and Countries.COUNTRYCODE
 -   If mapping is missing, simply drag COUNTRY column to COUNTRYCODE
 -   Add **Text Association** between 4VD_Addresses and its attribute REGION and REGION.REGIONCODE
@@ -197,7 +196,8 @@ For simplicity, we do not go via own dimensions for countries and regions, but a
 
 ![](media/64272377a7c415df34808e8cdce8a721.png)
 
--   **Deploy** your view. In the warning popup, choose **Deploy anyway**. 
+-   **Deploy** your view. In the warning popup, choose **Deploy anyway**.
+
 
 ### Update ER Model
 
@@ -216,7 +216,7 @@ The new metadata needs to be considered also by the Analytic Model. For the meta
 -   Confirm that dimension COUNTRY now has a capital T next to itself in the dimension list
 -   Confirm that REGION now also has a capital T next to itself in the dimension list
 -   **Deploy** your Analytic Model
--   Open **Data Preview**
+-   Open **Preview**
 -   Drill by COUNTRY and confirm that country name is now displayed in French
 -   Drill by REGION and confirm that region name is now displayed in French
 -   Change settings of your user by clicking on your user profile in the top-right of the application. In section **Language & Region**, change **Data Access Language** from French to English

@@ -32,7 +32,7 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 ![](media/99c6158dbb054af8b600643734a0dea2.png)
 
 -   Open Analytic Model *4AM_SalesOrderItems*
--   Open Data Preview
+-   Open **Preview**
 -   Drill by CREATION DATE
 -   Click the three dots to the right of CREATION DATE to select the hierarchy
 
@@ -59,7 +59,7 @@ We now follow the pattern of the time hierarchy to build a region hierarchy of R
 
 ![](media/1529fb210ec074351033356817b1d91a.png)
 
--   Save & Deploy
+-   Click Deploy
 
 ### Create organizational hierarchy of type parent-child hierarchy
 
@@ -76,7 +76,7 @@ In our example data, each row in the entity 4VD_Employees has columns for the ma
 
 ![](media/325a8982aaadd6e653f2d70840ef8852.png)
 
-Save and deploy
+Click deploy
 
 ### Update Analytic Model and preview results
 
@@ -85,8 +85,8 @@ The Analytic Model page needs to be reopened or refreshed to load the updated Da
 :warning: 2023-10-26: If below set of steps does not work as expected, it means that Analytic Model hasn't picked up the metadata change. You can enforce a an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
 
 -   Open *4AM_SalesOrderItems* and refresh page
--   Save & deploy
--   Open Data Preview
+-   Click deploy
+-   Open **Preview**
 -   Drill by RESPONSIBLE
 -   Open three dots next to RESPONSIBLE and choose to select another hierarchy
 
@@ -135,7 +135,7 @@ Hierarchy directories are modelled as dimensions and the product hierarchy entit
 -   In section Attributes, change
     -   For VALIDFROM, set semantic type to *Business Date - From*  
         For VALIDTO, set semantic type to *Business Date - To*
--   Save & deploy
+-   Click deploy
 
 ### Create Text entity for Hierarchy Directory and associate it
 In order to support language-dependent texts, the dimension *HierarchyDirectory* needs to associate to a Text entity that brings along the language-dependent descriptions of each hierarchy for each of the relevant languages. This is identical to the workflow we did for language-dependent texts in [exercise 2](../ex2/). 
@@ -149,10 +149,10 @@ On import of all tables, the table *HierarchyDirectoryTexts* was imported that w
     -   For LANGUAGE, set semantic type to Language
     -   For DESCRIPTION, set semantic type to Text
     -   For HIERARCHYID, set label column to DESCRIPTION
--   Save & Deploy 
+-   Click Deploy 
 -   Reopen local table *HierarchyDirectory* 
 -   In section Assocations, create a new text association to *HierarchyDirectoryTexts* and define the mapping as HierarchyDirectory.HIERARCHYID = HierarchyDirectoryTexts.HIERARCHYID
--   Save & Deploy
+-   Click Deploy
 
 ### Create Text Node Dimension
 
@@ -165,7 +165,7 @@ During data import, a *ProductHierarchyNodes* table was imported. We'll update i
 -   Open table *ProductHierarchyNodes*
 -   Preview data
 -   In section *General*, change Semantic Usage to *Dimension*
--   Save & deploy
+-   Click deploy
 
 :warning: In the S/4 case, text nodes often carry an additional key field for the hierarchy id. We are abstracting from this in this simple example case, but note that it would totally be supported to have a hierarchy id as additionl key field in your text node dimension. 
 
@@ -181,10 +181,10 @@ On import of all tables, the table *ProductHierarchyNodeTexts* was imported that
     -   For LANGUAGE, set semantic type to Language
     -   For DESCRIPTION, set semantic type to Text
     -   For NODEID, set label column to DESCRIPTION
--   Save & Deploy 
+-   Click Deploy 
 -   Reopen local table *ProductHierarchyNodes* 
 -   In section Assocations, create a new text association to *ProductHierarchyNodeTexts* and define the mapping as ProductHierarchyNodes.NODEID = ProductHierarchyNodeTexts.NODEID
--   Save & Deploy
+-   Click Deploy
 
 ### Create entity for product hierarchy with directory
 
@@ -199,7 +199,7 @@ As before, the required data has been imported as local table *ProductHierarchy*
 -   Open table *ProductHierarchy*
 -   Preview its data
 -   In section Associations
-    -   Create an association to dimension *HierarchyDirectory* with mapping as *ProductHierarchy.HIERARCHY=HierarchyDirectory.HIERARCHYID*
+    -   Create an association to dimension *HierarchyDirectory* with mapping as *ProductHierarchy.HIERARCHYID=HierarchyDirectory.HIERARCHYID*
     -   Create an association to dimension *ProductHierarchyNodes* with mapping as *ProductHierarchy.TEXTNODEID=HierarchyDirectory.NODEID*
 -   In section *General*, change Semantic Usage to *Hierarchy with Directory*. A new button Hierarchy with Directory Settings appears together with some error message that we haven't completed all modelling steps yet
 
@@ -225,7 +225,7 @@ As before, the required data has been imported as local table *ProductHierarchy*
 
 ![](./images/popup_hierarchy_directory_settings_final.png)
 
--   Save & Deploy
+-   Click Deploy
 
 :warning: Note that in the general case like e.g. S/4, multiple columns can be defined for each node type value, thus representing the composite key of the respective dimension. 
 
@@ -242,7 +242,7 @@ Now to associate the new external hierarchy from the product dimension.
 
 ![](media/160f6762e8e07e361193f6fbb1febdfa.png)
 
--   Save & Deploy
+-   Click Deploy
 
 ### Update ER model (optional)
 It is always good practice to keep the ER model up-to-date for good overview about your modelling. You can also use the impact & lineage graph, if you prefer it, but ER models are a good alternative way of keeping a good eye on your modelling
@@ -259,8 +259,8 @@ As a final step we update the Analytic Model to view the results from this model
 :warning: 2023-10-26: If below set of steps does not work as expected, it means that Analytic Model hasn't picked up the metadata change. You can enforce a an additional deploy by adding a blank space (" ") to the business name of the Analytic Model and hit deploy. Then repeat the steps above around the Analytic Model. This error is currently in fixing. 
 
 -   Open *4AM_SalesOrderItems* and refresh its browser page
--   Save & deploy
--   Open Data Preview
+-   Click deploy
+-   Open **Preview**
 -   Drill by PRODUCTID
 -   Choose to show a different hierarchy via the three dots in the Rows area of the Builder panel
 -   Choose hierarchy *Men-Women-Kids*
@@ -311,7 +311,7 @@ Since external hierarchies support time-dependency for complete hierarchies as w
 
 ![](./images/ReferenceDateVariabnle.png)
 
-*   Save & deploy
+*   Click deploy
 *   Preview the data. 
 *   The user prompt will ask you for the reference date. Confirm the default. 
 
