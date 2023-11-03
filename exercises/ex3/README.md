@@ -21,8 +21,6 @@ The time dimension *Time Dimension - Day* includes a "level-based hierarchy". Si
 
 -   Open ER Model
 -   Choose node *Time Dimension - Day* and click the Details button in the top right to open its properties dialog
--   <img width="1381" alt="Screenshot 2023-10-23 at 10 45 06 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/1b2dfde3-37ed-49d0-a6ea-b85d827566be">
-
 -   Click the hierarchy icon in the view properties
 
 ![](media/68847b02fa00728eb788d32b16814046.png)
@@ -304,9 +302,7 @@ Since external hierarchies support time-dependency for complete hierarchies as w
 *   Preview its data. Confirm that hierarchy 002 is only valid in 2023 whereas hierarchy 003 is valid from 2024-01-01 and beyond 
 *   Check the modelling [that we did above when we touched table *HierarchyDirectory*](#create-hierarchy-directory-dimension) and worked on the Attributes section. Back then, we assigned semantic type *Business Date - From* to attribute *VALIDFROM* and semantic type *Business Date - To* to attribute *VALIDTO*. With this, we have done all required modelling on the dimension side 
 *   Open Analytic Model *4AM_SalesOrderItems*
-*   Create a new variable of type Reference Date Variable.
-<img width="537" alt="Screenshot 2023-10-23 at 11 28 49 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/d96f261b-f860-4890-85ca-7f57650cddb8">
-
+*   Create a new variable of type *Reference Date Variable*.
 *   Set its default to today. 
 
 ![](./images/ReferenceDateVariabnle.png)
