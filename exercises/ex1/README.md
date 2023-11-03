@@ -13,8 +13,6 @@ User Steps:
 -   Select the menu option **Data Builder** on the left-hand side
 -   Under the **Analytic Model** tab, click on **New Analytic Model**
 -   Drag view **4VF_SalesOrderItems** from the left panel and drop it onto the canvas.
-- <img width="718" alt="Screenshot 2023-10-23 at 3 42 35 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/33fd5dfa-a6fa-409f-bfc3-b7d8dbfe2781">
-
 -   The system analyzes its structure (i.e. measures, attributes & assocations) and let's you select which one to include by default
     -   **Enable** all measures and attributes, as well as the associated dimensions, and click **Import**
 
@@ -83,11 +81,7 @@ Note that you could also build much more complex measures by making use of the d
 
 Let's now create **restricted measures**, i.e. measures that build on existing measures but restrict them along a filter. This is typically used for comparing values by status like e.g. comparing of the value of **all** orders with the value of **all open** orders. Here we'll compare domestic sales with international sales.  
 -   Choose to create a measure of type **restricted measure**.
-<img width="1039" alt="Screenshot 2023-10-23 at 3 45 29 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/1fb16eb5-bdae-4627-8143-850f1c50f460">
-
 -   Create **Domestic Gross Sales** based on source measure GROSSAMOUNT and with restriction as COUNTRY = 'DE' in the expression
--   <img width="840" alt="Screenshot 2023-10-23 at 3 47 13 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/5e22fc0a-8f3e-4425-ae84-03cc784d5737">
-
 -   Create another restricted measure 
 -   Call it **International Gross Sales**, base it on source measure GROSSAMOUNT and add restriction as COUNTRY != 'DE' in the expression
 

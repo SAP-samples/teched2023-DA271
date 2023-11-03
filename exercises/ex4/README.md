@@ -72,12 +72,8 @@ The dollar sign semantics also affect the calculation to ensure currencies are c
 Let's now replicate the currency conversion data from SAP S/4 into respective artefacts in SAP Datasphere. As described in the introduction, this has been packaged very conveniently.
 
 -   Open Data Builder
--   Choose + \> Currency Conversion Views
-<img width="1367" alt="Screenshot 2023-10-23 at 11 12 29 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/5c9ae794-ad58-46cd-9488-378722600e6b">
- 
+-   Choose + \> Currency Conversion Views 
 -   Choose source S4_HANA
-  <img width="604" alt="Screenshot 2023-10-23 at 11 13 46 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/844f7acc-e1b5-465b-b3c3-d6b1e61c48ca">
-
 -   Open each of the for sections for Remote Tables, Data Flows, Tables & Views and inspect what objects will be created. You might want to read up [background in the documentation](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b462239ffb644d9baab4442a10a72edf.html).
 -   Confirm with CREATE  
     This will generate and deploy 32 objects, namely 8 remote tables, 8 data flows, 8 local tables and 8 views
@@ -103,9 +99,6 @@ We could now run all 8 data flows manually; just open each one and hit run. Sinc
 
 -   Save & deploy as 4TC_TCUR_Replication
 -   Open Data Integration Monitor and authorize system to run task chains
-
-<img width="868" alt="Screenshot 2023-10-23 at 11 21 49 AM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/5f635ad7-a2bc-40b6-8b4c-c173dea2aeba">
-
 -   Change to Task Chain Monitor
 -   Select entry 4TC_TCUR_Replication and choose Run
 -   Choose to see run details of 4TC_TCUR_Replication

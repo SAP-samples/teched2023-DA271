@@ -115,10 +115,6 @@ Since table ProductCategories only has three columns, the hiding of CREATEDBY an
 -   Ensure mapping is correct (mapped on PRODUCTCATEGORYID)
 -   **Deploy** your view
 -   Add a **text association** on view **4VD_ProductCategory** by opening the view and adding a text assocation to ProductCategoryTexts that maps 4VD_ProductCategory.PRODUCTCATEGORYID to ProductCategoryTexts.PRODUCTCATEGORYID.
-<img width="1022" alt="Screenshot 2023-10-23 at 3 59 04 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/2c61dc60-caab-4c9c-873b-8f9e34fbd15d">
-<img width="754" alt="Screenshot 2023-10-23 at 3 59 55 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/210e74b8-3264-4906-859b-7bc41065c2c1">
-
-  
 -   **Deploy** 4VD_ProductCategory
 
 ### Update ER Model
@@ -143,8 +139,6 @@ The new metadata needs to be considered also by the Analytic Model. For it to ta
 -   Open node PRODUCTID and choose to add associated dimension PRODCATEGORYID. Note that it also has a capital T (for Text)
 
 ![](media/9c62ada6fc3bdc0c12851c81d5e106c3.png)
-<img width="747" alt="Screenshot 2023-10-23 at 3 57 43 PM" src="https://github.com/SAP-samples/teched2023-DA271/assets/144805208/0732be19-3eac-4c11-9d36-60f2b1f4451b">
-
 -   **Deploy** your analytic model
 -   Open **Preview**
 -   Drill by PRODUCTID and confirm that Product Names are now being displayed
